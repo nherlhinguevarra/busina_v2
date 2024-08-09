@@ -12,49 +12,48 @@
 </head>
 <body>
     <div class="container">
-        
             <aside class="sidebar">
                 <div class="logo-btn">
                     <button class="sidebar-close-btn" aria-label="Close sidebar">
-                        <img src="https://img.icons8.com/fluency-systems-filled/96/616779/menu.png" alt="Sidebar Close" style="width: 24px; height: 24px;">
+                        <img src="{{ asset('storage/images/close-btn.png') }}" alt="Sidebar Close" style="width: 50px; height: 50px;">
                     </button>
                     <img src="{{ asset('storage/images/BUsina-logo-gray.png') }}" class="side-logo" alt="Description">
                 </div>
                     <!-- Side menu content -->
                 <ul>
-                    <li>
-                        <a href="{{ route('dashboard') }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/dashboard-layout.png" alt="Dashboard Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/dashboard-layout.png" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" alt="Dashboard Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Dashboard
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('pending_applications') }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/data-pending.png" alt="Pending Applications Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('pending_applications') ? 'active' : '' }}">
+                        <a href="{{ route('pending_applications') }}" class="{{ request()->routeIs('pending_applications') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/data-pending.png" class="{{ request()->routeIs('pending_applications') ? 'active' : '' }}" alt="Pending Applications Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Pending Applications
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('registered_vehicles') }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/fiat-500.png" alt="Registered Vehicles Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('registered_vehicles') ? 'active' : '' }}">
+                        <a href="{{ route('registered_vehicles') }}" class="{{ request()->routeIs('registered_vehicles') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/fiat-500.png" class="{{ request()->routeIs('registered_vehicles') ? 'active' : '' }}" alt="Registered Vehicles Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Registered Vehicles
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('reported_violations') }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/foul.png" alt="Reported Violations Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('reported_violations') ? 'active' : '' }}">
+                        <a href="{{ route('reported_violations') }}" class="{{ request()->routeIs('reported_violations') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/foul.png" class="{{ request()->routeIs('reported_violations') ? 'active' : '' }}" alt="Reported Violations Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Reported Violations
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('all_users') }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/user.png" alt="All Users Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('all_users') ? 'active' : '' }}">
+                        <a href="{{ route('all_users') }}" class="{{ request()->routeIs('all_users') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/user.png" class="{{ request()->routeIs('all_users') ? 'active' : '' }}" alt="All Users Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             All Users
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('guidelines') }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" alt="Guidelines Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
+                        <a href="{{ route('guidelines') }}" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Guidelines
                         </a>
                     </li>
@@ -80,38 +79,44 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleButton = document.querySelector('.sidebar-toggle');
-            const closeButton = document.querySelector('.sidebar-close-btn');
-            const sidebar = document.querySelector('.sidebar');
-            const datetimeElement = document.getElementById('datetime');
+    document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.querySelector('.sidebar-toggle');
+    const closeButton = document.querySelector('.sidebar-close-btn');
+    const sidebar = document.querySelector('.sidebar');
+    const datetimeElement = document.getElementById('datetime');
+    const mainContent = document.querySelector('.main-content');
 
-            function updateClock() {
-            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const now = new Date();
-            const day = daysOfWeek[now.getDay()];
-            const date = now.toLocaleDateString();
-            const time = now.toLocaleTimeString();
-            document.getElementById('clock').textContent = `${day}, ${date} - ${time}`;
-            }
+    function updateClock() {
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const now = new Date();
+        const day = daysOfWeek[now.getDay()];
+        const date = now.toLocaleDateString();
+        const time = now.toLocaleTimeString();
+        document.getElementById('clock').textContent = `${day}, ${date} - ${time}`;
+    }
 
-            toggleButton.addEventListener('click', function() {
-                sidebar.classList.add('collapsed');
-            });
+    toggleButton.addEventListener('click', function() {
+        sidebar.classList.add('collapsed');
+        mainContent.classList.add('blur'); // Add blur when sidebar is opened
+    });
 
-            closeButton.addEventListener('click', function() {
-                sidebar.classList.remove('collapsed');
-            });
+    closeButton.addEventListener('click', function() {
+        sidebar.classList.remove('collapsed');
+        mainContent.classList.remove('blur'); // Remove blur when sidebar is closed
+    });
 
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 769) {
-                    sidebar.classList.remove('collapsed');
-                }
-            });
-            setInterval(updateClock, 1000);
-            updateClock();
-        });
-    </script>
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 769) {
+            sidebar.classList.remove('collapsed');
+            mainContent.classList.remove('blur'); // Ensure blur is removed on resize
+        }
+    });
+
+    setInterval(updateClock, 1000);
+    updateClock();
+});
+</script>
+
 </body>
 </html>
 
