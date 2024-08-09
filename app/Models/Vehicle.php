@@ -27,18 +27,18 @@ class Vehicle extends Model
     ];
 
     public function transaction() {
-        return $this->hasMany('transaction');
+        return $this->hasMany(Transaction::class, 'vehicle_id');
     }
 
     public function violation() {
-        return $this->hasMany('violation');
+        return $this->hasMany(Violation::class, 'vehicle_id');
     }
 
     public function vehicle_type() {
-        return $this->hasOne('vehicle_type');
+        return $this->belongsTo(Vehicle_type::class, 'vehicle_type_id');
     }
 
     public function vehicle_owner() {
-        return $this->hasOne('vehicle_owner');
+        return $this->belongsTo(Vehicle_owner::class, 'vehicle_owner_id');
     }
 }

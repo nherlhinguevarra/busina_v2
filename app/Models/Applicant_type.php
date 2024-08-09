@@ -14,6 +14,6 @@ class Applicant_type extends Model
     protected $fillable = ['type'];
 
     public function vehicle_owner() {
-        return $this->belongsTo('vehicle_owner');
+        return $this->hasMany(Vehicle_owner::class, 'applicant_type_id');
     }
 }

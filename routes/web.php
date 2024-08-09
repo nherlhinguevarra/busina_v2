@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataTableController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,6 +26,10 @@ Route::get('/all_users', function () {
 Route::get('/guidelines', function () {
     return view('guidelines');
 })->name('guidelines');
+
+Route::get('/pending_applications', [DataTableController::class, 'index'])->name('pending_applications');
+Route::get('/pa_details/{id}', [DataTableController::class, 'showDetails'])->name('pa_details');
+Route::get('/export-all-details-csv', [DataTableController::class, 'exportAllDetailsToCSV'])->name('exportAllDetailsToCSV');
 
 
 

@@ -73,7 +73,6 @@
                 </ul>
             </header>
             <main class="content">
-                <h1>HELLO WORLD!</h1>
                 @yield('content')
             </main>
         </div>

@@ -26,26 +26,26 @@ class Vehicle_owner extends Model
     ];
 
     public function user_logs() {
-        return $this->hasMany('user_logs');
+        return $this->hasMany(User_logs::class, 'vehicle_owner_id');
     }
 
     public function student() {
-        return $this->belongsTo('student');
+        return $this->belongsTo(Student::class, 'std_no');
     }
 
     public function users() {
-        return $this->belongsTo('users');
+        return $this->belongsTo(Users::class, 'vehicle_owner_id');
     }
 
     public function vehicle() {
-        return $this->belongsTo('vehicle');
+        return $this->hasMany(Vehicle::class, 'vehicle_owner_id');
     }
 
     public function applicant_type() {
-        return $this->hasOne('applicant_type');
+        return $this->belongsTo(Applicant_type::class, 'applicant_type_id');
     }
 
     public function employee() {
-        return $this->hasOne('employee');
+        return $this->hasOne(Employee::class, 'emp_id');
     }
 }

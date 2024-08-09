@@ -1,47 +1,52 @@
 @extends('layouts.main')
 
-@section('title', 'Pending Applications')
+@section('title', 'Vehicle Owners')
 
 @section('content')
-<div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Data Table</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'My Laravel App')</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('storage/css/pending-applications.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+</head>
 
-        <table class="table-auto w-full border-collapse border border-gray-200 mb-4">
-            <thead>
-                <tr>
-                    <th class="border border-gray-200 px-4 py-2">Column 1</th>
-                    <th class="border border-gray-200 px-4 py-2">Column 2</th>
-                    <th class="border border-gray-200 px-4 py-2">Column 3</th>
-                    <!-- Add more columns as needed -->
+<div class="container" style="margin: 20px auto; padding: 16px; max-width: 1200px;">
+    <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 16px;">Pending Applications</h1>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px;">Full Name</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Applicant Type</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Date and Time Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($data as $row)
+                <tr style="cursor: pointer;" onclick="window.location='{{ route('pa_details', ['id' => $row->id]) }}'">
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{ $row->fname . ' ' . $row->mname . ' ' . $row->lname }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{ $row->created_at }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $row)
-                    <tr class="hover:bg-gray-100 cursor-pointer" onclick="window.location='{{ route('details', ['id' => $row->id]) }}'">
-                        <td class="border border-gray-200 px-4 py-2">{{ $row->column1 }}</td>
-                        <td class="border border-gray-200 px-4 py-2">{{ $row->column2 }}</td>
-                        <td class="border border-gray-200 px-4 py-2">{{ $row->column3 }}</td>
-                        <!-- Add more columns as needed -->
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <!-- Pagination Details -->
-        <div class="flex justify-between items-center">
-            <div>
-                Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} entries
-            </div>
-            <div>
-                {{ $data->links() }}
-            </div>
+            @endforeach
+        </tbody>
+    </table>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} entries
         </div>
-
-        <!-- Export Button -->
-        <form action="{{ route('data-table') }}" method="GET">
-            <button type="submit" name="export" value="csv" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-                Export as CSV
-            </button>
-        </form>
+        <div>
+            {{ $data->links() }}
+        </div>
     </div>
+    <form action="{{ route('pending_applications') }}" method="GET" style="margin-top: 16px;">
+        <button type="submit" name="export" value="csv" style="background-color: #007bff; color: white; padding: 8px 16px; border: none; border-radius: 4px;">
+            Export as CSV
+        </button>
+    </form>
+    <form action="{{ route('exportAllDetailsToCSV') }}" method="GET">
+        <button type="submit" style="background-color: #007bff; color: white; padding: 8px 16px; border: none; border-radius: 4px;">Export All Details to CSV</button>
+    </form>
+</div>
 @endsection
