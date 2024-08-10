@@ -28,14 +28,14 @@ class Transaction extends Model
     ];
 
     public function vehicle() {
-        return $this->hasOne('vehicle');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 
     public function claiming_status() {
-        return $this->hasOne('claiming_status');
+        return $this->belongsTo(Claiming_status::class, 'claiming_status_id');
     }
 
     public function employee() {
-        return $this->hasOne('employee');
+        return $this->hasOne(Employee::class, 'emp_id');
     }
 }

@@ -23,18 +23,18 @@ class Violation extends Model
     ];
 
     public function violation_type() {
-        return $this->hasOne('violation_type');
+        return $this->belongsTo(Violation_type::class, 'violation_type_id');
     }
 
     public function settle_violation() {
-        return $this->hasOne('settle_violation');
+        return $this->hasOne(Settle_violation::class, 'violation_id');
     }
 
     public function vehicle() {
-        return $this->hasOne('vehicle');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 
     public function authorized_user() {
-        return $this->hasOne('authorized_user');
+        return $this->belongsTo(Authorized_user::class, 'reported_by');
     }
 }

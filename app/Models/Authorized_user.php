@@ -9,7 +9,7 @@ class Authorized_user extends Model
 {
     use HasFactory;
 
-    protected $table = 'authorzied_user';
+    protected $table = 'authorized_user';
 
     protected $fillable = [
         'fname',
@@ -23,7 +23,7 @@ class Authorized_user extends Model
     ];
 
     public function violation() {
-        return $this->hasMany('violation');
+        return $this->hasMany(Violation::class, 'reported_by');
     }
 
     public function users() {

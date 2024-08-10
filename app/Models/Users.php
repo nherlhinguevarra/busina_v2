@@ -51,10 +51,10 @@ class Users extends Authenticatable
     }
 
     public function authorized_user() {
-        return $this->belongsTo('authorized_user');
+        return $this->belongsTo(Authorized_user::class, 'authorized_user_id');
     }
 
     public function vehicle_owner() {
-        return $this->belongsTo('vehicle_owner');
+        return $this->belongsTo(Vehicle_owner::class, 'vehicle_owner_id');
     }
 }

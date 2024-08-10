@@ -34,7 +34,7 @@ class Vehicle_owner extends Model
     }
 
     public function users() {
-        return $this->belongsTo(Users::class, 'vehicle_owner_id');
+        return $this->hasOne(Users::class, 'vehicle_owner_id');
     }
 
     public function vehicle() {

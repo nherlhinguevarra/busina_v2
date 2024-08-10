@@ -18,6 +18,6 @@ class Claiming_status extends Model
     ];
 
     public function transaction() {
-        return $this->hasOne('transaction');
+        return $this->hasMany(Transaction::class, 'claiming_status_id', 'id');
     }
 }

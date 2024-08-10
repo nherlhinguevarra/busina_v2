@@ -39,6 +39,6 @@ class Vehicle extends Model
     }
 
     public function vehicle_owner() {
-        return $this->belongsTo(Vehicle_owner::class, 'vehicle_owner_id');
+        return $this->belongsTo(Vehicle_owner::class, 'vehicle_owner_id', 'id');
     }
 }
