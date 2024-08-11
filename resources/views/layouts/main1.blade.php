@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('storage/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     
 </head>
@@ -75,12 +75,17 @@
             <div>
                 @yield('title-details')
             </div>
-            <main class="content">
+            <div class="grid-container">
+            <div class="top-left">
                 @yield('content')
-            </main>
-            <main class="content">
+            </div>
+            <div class="top-right">
                 @yield('content-2')
-            </main>
+            </div>
+            <div class="bottom">
+                @yield('content-3')
+            </div>
+    </div>
         </div>
     </div>
     <script>

@@ -62,7 +62,7 @@
                 <th class="th-class">Full Name</th>
                 <th class="th-class">Email</th>
                 <th class="th-class">Type</th>
-                <th class="th-class">Registration No.</th>
+                <th class="th-class">Registration No/s.</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -71,11 +71,24 @@
                     <td class="td-class">{{ $row->fname . ' ' . $row->mname . ' ' . $row->lname }}</td>
                     <td class="td-class">{{ $row->users->email ?? 'No email' }}</td>
                     <td class="td-class">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
-                    <td class="td-class">{{ $row->created_at->format('Y-m-d') }}</td>
+                    <td class="td-class">
+                        @php
+                            $registrationNumbers = [];
+                            foreach ($row->vehicle as $vehicle) {
+                                foreach ($vehicle->transaction as $transaction) {
+                                    if (!empty($transaction->registration_no)) {
+                                        $registrationNumbers[] = $transaction->registration_no;
+                                    }
+                                }
+                            }
+                            echo implode(', ', $registrationNumbers);
+                        @endphp
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
     <div class="pagination">
         <div>
             Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} entries

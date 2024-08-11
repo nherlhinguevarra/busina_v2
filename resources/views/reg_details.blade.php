@@ -1,23 +1,69 @@
-@extends('layouts.main')
+@extends('layouts.main1')
 
 @section('title', 'Transaction Details')
 
+@section('title-details')
+<div class="title=details">
+    <h1>Registration Details</h1>
+</div>
+@endsection
+
 @section('content')
-    <h1>Transaction Details</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'My Laravel App')</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('storage/css/details.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+</head>
 
-    <!-- Owner Information -->
-    <h2>Owner Information</h2>
+<!-- Owner Information -->
+<h2 class="section-title">Vehicle Owner Information</h2>
+<div class="owner-info">
     <ul>
-        <li>Full Name: {{ $transaction->vehicle->vehicle_owner->fname }} {{ $transaction->vehicle->vehicle_owner->mname }} {{ $transaction->vehicle->vehicle_owner->lname }}</li>
-        <li>Contact No: {{ $transaction->vehicle->vehicle_owner->contact_no }}</li>
-        <li>QR Code: {{ $transaction->vehicle->vehicle_owner->qr_code }}</li>
-        <li>Employee ID: {{ $transaction->vehicle->vehicle_owner->emp_id }}</li>
-        <li>Student ID: {{ $transaction->vehicle->vehicle_owner->std_id }}</li>
-        <li>Driver License No: {{ $transaction->vehicle->vehicle_owner->driver_license_no }}</li>
-        <li>Applicant Type: {{ $transaction->vehicle->vehicle_owner->applicant_type->type ?? 'Unknown' }}</li>
-        <li>Created At: {{ $transaction->vehicle->vehicle_owner->created_at }}</li>
+        <li>
+            <span>Full Name:</span> 
+            <span class="deets">{{ $transaction->vehicle->vehicle_owner->fname }} {{ $transaction->vehicle->vehicle_owner->mname }} {{ $transaction->vehicle->vehicle_owner->lname }}</li>
+        <li>
+            <span>Contact No:</span> 
+            <span class="deets">{{ $transaction->vehicle->vehicle_owner->contact_no }}</span>
+        </li>
+        <li>
+            <span>Employee ID:</span> 
+            <span class="deets">{{ $transaction->vehicle->vehicle_owner->emp_id }}</span>
+        </li>
+        <li>
+            <span>Student ID:</span>
+            <span class="deets">{{ $transaction->vehicle->vehicle_owner->std_id }}</span>
+        </li>
+        <li>
+            <span>Driver License No:</span>
+            <span class="deets">{{ $transaction->vehicle->vehicle_owner->driver_license_no }}</span>
+        </li>
+        <li>
+            <span>Applicant Type:</span>
+            <span class="deets">{{ $transaction->vehicle->vehicle_owner->applicant_type->type ?? 'Unknown' }}</span>
+        </li>
+        <li>
+            <span>Created At:</span>
+            <span class="deets">{{ $transaction->vehicle->vehicle_owner->created_at }}</span>
+        </li>
     </ul>
+    <ul class="qr-code">
+        <li>QR Code:</li>
+        <li>
+            @if($transaction->qr_code_base64)
+                <img src="data:image/png;base64,{{ $transaction->qr_code_base64 }}" alt="QR Code" class="code">
+            @else
+                <p>No QR code available.</p>
+            @endif
+        </li>
+    </ul>
+</div>
+@endsection
 
+@section('content-3')
     <!-- Vehicle Information -->
     <h2>Vehicle Information</h2>
     <ul>
@@ -32,7 +78,9 @@
         <li>Copy of OR/CR: {{ $transaction->vehicle->copy_or_cr }}</li>
         <li>Vehicle Type: {{ $transaction->vehicle->vehicle_type->type ?? 'Unknown' }}</li>
     </ul>
+@endsection
 
+@section('content-2')
     <!-- Transactions -->
     <h3>Transaction Information</h3>
     <ul>

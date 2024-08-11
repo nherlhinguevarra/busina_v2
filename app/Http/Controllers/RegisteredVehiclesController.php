@@ -128,6 +128,8 @@ class RegisteredVehiclesController extends Controller
             'claiming_status' // Load claiming status
         ])->findOrFail($id);
 
+        $transaction->qr_code_base64 = base64_encode($transaction->vehicle->vehicle_owner->qr_code);
+
         return view('reg_details', ['transaction' => $transaction]);
     }
 

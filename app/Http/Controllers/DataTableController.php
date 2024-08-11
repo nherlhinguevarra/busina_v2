@@ -125,6 +125,8 @@ class DataTableController extends Controller
             'vehicle.transaction'  // Load transactions related to vehicles
         ])->findOrFail($id);
 
+        $item->qr_code_base64 = base64_encode($item->qr_code);
+
         return view('pa_details', compact('item'));
     }
 
