@@ -20,6 +20,28 @@ class DataTableController extends Controller
             })
             ->paginate($perPage);
 
+            foreach ($data as $row) {
+                $applicantType = $row->applicant_type->type ?? 'Unknown';
+        
+                switch ($applicantType) {
+                    case 'BU-personnel':
+                        $row->color = 'blue';
+                        break;
+                    case 'Non-personnel':
+                        $row->color = 'green';
+                        break;
+                    case 'Student':
+                        $row->color = 'orange';
+                        break;
+                    case 'VIP':
+                        $row->color = 'gray';
+                        break;
+                    default:
+                        $row->color = 'black';
+                        break;
+                }
+            }
+
         if ($request->query('export') === 'csv') {
             return $this->exportToCSV($data);
         }

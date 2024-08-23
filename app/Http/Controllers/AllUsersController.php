@@ -128,6 +128,10 @@ class AllUsersController extends Controller
             'vehicle.transaction'
         ])->findOrFail($id);
 
-        return view('au_details', compact('item'));
+        $sortedVehicles = $item->vehicle->sortBy('created_at');
+
+        $userEmail = $item->users ? $item->users->email : 'Unknown';
+
+        return view('au_details', compact('item', 'userEmail', 'sortedVehicles'));
     }
 }

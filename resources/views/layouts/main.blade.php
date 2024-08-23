@@ -23,37 +23,37 @@
                 <ul>
                     <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/dashboard-layout.png" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" alt="Dashboard Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/dashboard-layout.png" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" alt="Dashboard Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Dashboard
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('pending_applications') ? 'active' : '' }}">
-                        <a href="{{ route('pending_applications') }}" class="{{ request()->routeIs('pending_applications') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/data-pending.png" class="{{ request()->routeIs('pending_applications') ? 'active' : '' }}" alt="Pending Applications Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('pending_applications') || request()->routeIs('pa_details') ? 'active' : '' }}">
+                        <a href="{{ route('pending_applications') }}" class="{{ request()->routeIs('pending_applications') || request()->routeIs('pa_details') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/data-pending.png" class="{{ request()->routeIs('pending_applications') || request()->routeIs('pa_details') ? 'active' : '' }}" alt="Pending Applications Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Pending Applications
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('registered_vehicles') ? 'active' : '' }}">
-                        <a href="{{ route('registered_vehicles') }}" class="{{ request()->routeIs('registered_vehicles') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/fiat-500.png" class="{{ request()->routeIs('registered_vehicles') ? 'active' : '' }}" alt="Registered Vehicles Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('registered_vehicles') || request()->routeIs('reg_details') ? 'active' : '' }}">
+                        <a href="{{ route('registered_vehicles') }}" class="{{ request()->routeIs('registered_vehicles') || request()->routeIs('reg_details') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/fiat-500.png" class="{{ request()->routeIs('registered_vehicles') || request()->routeIs('reg_details') ? 'active' : '' }}" alt="Registered Vehicles Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Registered Vehicles
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('reported_violations') ? 'active' : '' }}">
-                        <a href="{{ route('reported_violations') }}" class="{{ request()->routeIs('reported_violations') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/foul.png" class="{{ request()->routeIs('reported_violations') ? 'active' : '' }}" alt="Reported Violations Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('reported_violations') || request()->routeIs('rv_details') ? 'active' : '' }}">
+                        <a href="{{ route('reported_violations') }}" class="{{ request()->routeIs('reported_violations') || request()->routeIs('rv_details') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/foul.png" class="{{ request()->routeIs('reported_violations') || request()->routeIs('rv_details') ? 'active' : '' }}" alt="Reported Violations Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Reported Violations
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all_users') ? 'active' : '' }}">
-                        <a href="{{ route('all_users') }}" class="{{ request()->routeIs('all_users') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/user.png" class="{{ request()->routeIs('all_users') ? 'active' : '' }}" alt="All Users Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="{{ request()->routeIs('all_users') || request()->routeIs('au_details') ? 'active' : '' }}">
+                        <a href="{{ route('all_users') }}" class="{{ request()->routeIs('all_users') || request()->routeIs('au_details') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/user.png" class="{{ request()->routeIs('all_users') || request()->routeIs('au_details') ? 'active' : '' }}" alt="All Users Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             All Users
                         </a>
                     </li>
                     <li class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
                         <a href="{{ route('guidelines') }}" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 19px; height: 19px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Guidelines
                         </a>
                     </li>
