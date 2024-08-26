@@ -4,6 +4,7 @@ use App\Http\Controllers\AllUsersController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataTableController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PendingPickupController;
 use App\Http\Controllers\RegisteredVehiclesController;
 use App\Http\Controllers\ReportedViolationsController;
@@ -51,7 +52,7 @@ Route::get('/all_users', [AllUsersController::class, 'index'])->name('all_users'
 Route::get('/au_details/{id}', [AllUsersController::class, 'showDetails'])->name('au_details');
 Route::get('/export-all-details-csv', [AllUsersController::class, 'exportAllDetailsToCSV'])->name('exportAllDetailsToCSV');
 
-
+Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
 
 
 

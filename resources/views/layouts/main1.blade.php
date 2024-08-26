@@ -57,6 +57,12 @@
                             Guidelines
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('payments') ? 'active' : '' }}">
+                        <a href="{{ route('payments') }}" class="{{ request()->routeIs('payments') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" class="{{ request()->routeIs('payments') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                            Payments
+                        </a>
+                    </li>
                 </ul>
             </aside>
         <div class="main-content">
