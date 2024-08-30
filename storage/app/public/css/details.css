@@ -1,0 +1,94 @@
+.title-details {
+  margin: 0px;
+  color: #566a7f;
+  margin-left: 5px;
+}
+h1 {
+    font-size: 24px; 
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.section-title {
+    font-size: 18px;
+    margin: 0;
+    color:#566a7f;
+}
+
+.owner-info ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensure the container takes full width */
+    margin-right: 20px;
+}
+
+.owner-info ul li {
+    display: flex;
+    justify-content: space-between; /* Aligns items to the left and right */
+    align-items: center;
+    padding-bottom: 20px;
+    font-size: 14px;
+    width: 100%; /* Ensure each li takes full width */
+    color:#566a7f;
+}
+
+.deets {
+    border: 1px solid #ddd;
+    padding: 3px;
+    width: 70%;
+    text-align: right;
+    height: 100%;
+    align-content: center;
+    background-color:#ffffff ;
+}
+
+.owner-info {
+   display: flex;
+   gap: 50px;
+}
+
+.code {
+    margin-left: 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    width: 150px;
+    height: 150px;
+}
+.num {
+    font-size: 20px;
+}
+.vehicle {
+    border: 1px solid #dddedf;
+    border-radius: 10px;
+    background-color: aliceblue;
+    padding: 10px;
+}
+.veh-no {
+    font-size: 14px;
+    color: #566a7f;
+    margin: 20px;
+}
+/* Ensure this is in a CSS file that's linked to your Blade view */
+.applicant-type {
+    font-weight: bold;
+}
+
+.bu-personnel {
+    color: blue;
+}
+
+.non-personnel {
+    color: green;
+}
+
+.student {
+    color: orange;
+}
+
+.vip {
+    color: gray;
+}
+
+.unknown {
+    color: black;
+}
