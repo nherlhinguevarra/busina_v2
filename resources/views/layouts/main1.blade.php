@@ -63,6 +63,12 @@
                             Payments
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('logout') ? 'active' : '' }}">
+                        <a href="{{ route('logout') }}" class="{{ request()->routeIs('logout') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" class="{{ request()->routeIs('logout') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px; margin-top: 100px;">
+                            Log Out
+                        </a>
+                    </li>
                 </ul>
             </aside>
         <div class="main-content">

@@ -22,6 +22,14 @@ class Authorized_user extends Model
         'updated_at'
     ];
 
+    protected $primaryKey = 'id';
+
+    // Accessor to get the full name
+    public function getFullNameAttribute()
+    {
+        return trim("{$this->fname} {$this->mname} {$this->lname}");
+    }
+    
     public function violation() {
         return $this->hasMany(Violation::class, 'reported_by');
     }
