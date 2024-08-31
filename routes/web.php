@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisteredVehiclesController;
 use App\Http\Controllers\ReportedViolationsController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UnsettledViolationsController;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -101,9 +102,3 @@ Route::get('/updated_pass_result', function () {
 Route::get('/email', function () {
     return view('email');
 })->name('email'); // Password reset link emailed confirmation
-
-
-
-
-
-

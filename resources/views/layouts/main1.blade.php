@@ -45,6 +45,12 @@
                             Reported Violations
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('payments') ? 'active' : '' }}">
+                        <a href="{{ route('payments') }}" class="{{ request()->routeIs('payments') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/wallet-app.png" class="{{ request()->routeIs('payments') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                            Payments
+                        </a>
+                    </li>
                     <li class="{{ request()->routeIs('all_users') || request()->routeIs('au_details') ? 'active' : '' }}">
                         <a href="{{ route('all_users') }}" class="{{ request()->routeIs('all_users') || request()->routeIs('au_details') ? 'active' : '' }}">
                             <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/user.png" class="{{ request()->routeIs('all_users') || request()->routeIs('au_details') ? 'active' : '' }}" alt="All Users Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
@@ -57,17 +63,14 @@
                             Guidelines
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('payments') ? 'active' : '' }}">
-                        <a href="{{ route('payments') }}" class="{{ request()->routeIs('payments') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" class="{{ request()->routeIs('payments') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
-                            Payments
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('logout') ? 'active' : '' }}">
-                        <a href="{{ route('logout') }}" class="{{ request()->routeIs('logout') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/driving-guidelines.png" class="{{ request()->routeIs('logout') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px; margin-top: 100px;">
+                    <li class="{{ request()->routeIs('logout') ? 'active' : '' }}" style="margin-top: 80px;">
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="{{ request()->routeIs('logout') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/open-pane.png" class="{{ request()->routeIs('logout') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Log Out
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </aside>

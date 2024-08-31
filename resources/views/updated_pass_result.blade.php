@@ -24,10 +24,10 @@
             <div class="cover">
                 <div class="login-name">
                     <h3>BICOL <span>UNIVERSITY</span></h3>
-                    <h1>SECURITY SECTION</h1>
+                    <h1>MOTORPOOL SECTION</h1>
                 </div>
                 <div class="login-asset">
-                    <img src="{{ asset('images/Asset2.png') }}">
+                    <img src="{{ asset('storage/images/busina_login.png') }}">
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="check_img">
-                    <img src="{{ asset('images/password.png') }}" alt="">
+                    <img src="{{ asset('storage/images/password.png') }}" alt="">
                 </div>
                 
                 <div class="newpass-note">

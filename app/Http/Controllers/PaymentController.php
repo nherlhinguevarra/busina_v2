@@ -17,7 +17,8 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = $this->payMongoService->getPayments();
+        $payouts = $this->payMongoService->getPayouts();
 
-        return view('payments', compact('payments'));
+        return view('payments', compact('payments', 'payouts'));
     }
 }
