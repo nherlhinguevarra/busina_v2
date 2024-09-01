@@ -125,7 +125,7 @@ body, html {
 }
 .cont {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 1.5fr; /* 1fr for the first 3 columns, 2fr for the 4th column */
+    grid-template-columns: repeat(4, 1fr) 2.5fr; /* 1fr for the first 3 columns, 2fr for the 4th column */
     margin: 20px;
     gap: 10px;
 }
@@ -224,6 +224,26 @@ body, html {
     height: 15px;
     width: 15px;
 }
+
+.row {
+    display:grid;
+    grid-template-rows: 25px 1fr;
+    text-align: center;
+    gap: 10px;
+}
+
+.stat-num {
+    color:#09b3e4;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.stat-label {
+    color:#566a7f;
+    font-size: 12px;
+    font-weight: 600;
+}
+
 
 @media (max-width: 1200px) {
     .sidebar {

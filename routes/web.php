@@ -3,6 +3,7 @@
 use App\Http\Controllers\AllUsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardStats;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataTableController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -43,6 +44,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('guidelines');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Route::get('/dashboard-tables', [DashboardController::class, 'index'])->name('dashboard.tables');
+    // Route::get('/dashboard-stats', [DashboardStats::class, 'index'])->name('dashboard.stats');
+
+    // Route::get('/dashboard', function (Request $request) {
+    //     // Fetch data from both controllers
+    //     $tableController = app()->make('App\Http\Controllers\DashboardController');
+    //     $statsController = app()->make('App\Http\Controllers\DashboardStats');
+    
+    //     // Get the data for tables
+    //     $tablesData = $tableController->index($request)->getData();
+    
+    //     // Get the data for stats
+    //     $statsData = $statsController->index($request)->getData();
+    
+    //     // Merge both data sets
+    //     $data = array_merge($tablesData, $statsData);
+    
+    //     return view('dashboard', $data);
+    // })->name('dashboard');
 
     Route::get('/pending_applications', [DataTableController::class, 'index'])->name('pending_applications');
     Route::get('/pa_details/{id}', [DataTableController::class, 'showDetails'])->name('pa_details');

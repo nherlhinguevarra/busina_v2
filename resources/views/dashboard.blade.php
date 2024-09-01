@@ -16,8 +16,30 @@
 
 <body>
     <div class="cont">
-        <div class="box">Column 1</div>
-        <div class="box">Column 2</div>
+        <div class="box">
+            <div class="row">
+                <span class="stat-num">{{ $pendingApplications }}</span>
+                <span class="stat-label">Pending Applications To Be Reviewed</span>
+            </div>      
+        </div>
+        <div class="box">
+            <div class="row">
+                    <span class="stat-num">{{ $registeredVehicles }}</span>
+                    <span class="stat-label">Registered Vehicles This Month</span>       
+            </div>     
+        </div>
+        <div class="box">
+            <div class="row">
+                <span class="stat-num">{{ $violationsToBeReviewed }}</span>
+                <span class="stat-label">Violations To Be Reviewed</span>
+            </div>
+        </div>
+        <div class="box">
+            <div class="row">
+                <span class="stat-num">{{ $reportedViolationsThisMonth }}</span>
+                <span class="stat-label">Reported Violations This Month</span>
+            </div>
+        </div>
         <div class="box">Column 3 (twice the size)</div>
     </div>
     <div class="cont-2">
