@@ -59,11 +59,14 @@ body, html {
     display: flex;
     flex-direction: row;
     padding-left: 15px;
+    position: relative;
 }
 
 .header ul li {
     list-style: none;
     padding-right: 15px;
+    justify-items: center;
+    align-content: center;
 }
 .heading {
     display: flex; 
@@ -154,6 +157,7 @@ body, html {
     background-color:#ffffff;
     border-radius: 5px;
     box-shadow: 0 0 0.375rem 0.25rem rgba(161, 172, 184, 0.15);
+    position: relative;
 }
 
 .page-title {
@@ -194,9 +198,47 @@ body, html {
     background-color: #ffffff; /* White */
 }
 .pagination {
+    margin-top: 30px;
     font-size: 12px;
-    color:#566a7f; 
+    color:#566a7f;
+    bottom: 0;
 }
+.showing {
+    position: absolute;
+    bottom: 30px;
+}
+.pagination-buttons {
+    position: absolute;
+    bottom: 15px; /* Positions the pagination 10px above the bottom */
+    left: 0;
+    right: 0;
+    text-align: center; /* Centers the pagination buttons */
+}
+.pagination-buttons a {
+    text-decoration: none;
+    color:#566a7f;
+    border: 1px solid #697a8d;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color:#f2f2f2;
+}
+.pg-active {
+    border: 1px solid #697a8d;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    color:#566a7f;
+    background-color: rgba(53, 192, 247, 0.3);
+}
+.page-btn {
+    color: #b0b0b0;
+    border: 1px solid #b7b7b7;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color:#f2f2f2;
+} 
 .main-content {
     height: 100vh;
     overflow-y: auto;
@@ -223,7 +265,140 @@ body, html {
     border: none;
     height: 15px;
     width: 15px;
+    margin-top: -10px;
 }
+.hd-left {
+    display: flex;
+}
+.hd-right {
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+}
+.notification-dropdown {
+    display: none; /* Hide by default */
+    position: absolute; /* Position relative to the notification icon */
+    top: 100%; /* Position below the notification icon */
+    right: 0; /* Align to the right */
+    background-color: #ffffff; /* Background color of the dropdown */
+    box-shadow: 0 0 0.375rem 0.25rem rgba(161, 172, 184, 0.15); /* Shadow for better visibility */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside the dropdown */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+.notification-dropdown ul {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 400px;
+}
+.notification-dropdown ul li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0; /* Divider line */
+    font-size: 14px;
+    color: #566a7f;
+}
+.notification-dropdown ul li:last-child {
+    border-bottom: none;
+}
+.notification-dropdown ul li a {
+    text-decoration: none; /* Remove default link underlining */
+    color: #697a8d; /* Color of the link text */
+    padding: 10px; /* Padding inside each link */
+}
+.notification-dropdown ul li a:hover {
+    background-color: rgba(53, 192, 247, 0.1); /* Background color on hover */
+}
+.notification-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Optional: separate items with a border */
+}
+.notification-dropdown.show {
+    display: block; /* Show dropdown when 'show' class is added */
+    margin-right: 15px;
+    margin-top: 5px;
+}
+.user-initial-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    background-color: #616779; /* Background color */
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.account-icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 0;
+}
+
+.account-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 150px;
+    z-index: 1000;
+}
+
+.account-dropdown.show {
+    display: block;
+    margin-right: 15px;
+    margin-top: -5px;
+}
+
+.account-dropdown ul {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-dropdown ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.account-dropdown ul li:last-child {
+    border-bottom: none;
+}
+
+.account-dropdown ul li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.account-dropdown ul li a:hover {
+    background-color: #f5f5f5;
+}
+
 .box {
     padding: 15px;
     position: relative;

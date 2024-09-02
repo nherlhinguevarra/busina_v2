@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AllUsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\RegisteredVehiclesController;
 use App\Http\Controllers\ReportedViolationsController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UnsettledViolationsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -44,6 +46,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('guidelines');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/account', [AccountController::class, 'show'])->name('account');
+    Route::put('/update-profile', [AccountController::class, 'updateProfile'])->name('updateProfile');
+    Route::put('/change-password', [AccountController::class, 'changePassword'])->name('changePassword');
     // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Route::get('/dashboard-tables', [DashboardController::class, 'index'])->name('dashboard.tables');

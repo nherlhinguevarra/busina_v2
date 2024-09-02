@@ -82,8 +82,29 @@
                 </tbody>
             </table>
             <div class="pagination">
-                <div>
+                <div class="showing">
                     Showing {{ $pendingPickups->firstItem() }} to {{ $pendingPickups->lastItem() }} of {{ $pendingPickups->total() }} entries
+                </div>
+                <div class="pagination-buttons">
+                    @if($pendingPickups->onFirstPage())
+                        <button class="page-btn" disabled>&laquo; Previous</button>
+                    @else
+                        <a href="{{ $pendingPickups->previousPageUrl() }}">&laquo; Previous</a>
+                    @endif
+
+                    @foreach ($pendingPickups->getUrlRange(1, $pendingPickups->lastPage()) as $page => $url)
+                        @if ($page == $pendingPickups->currentPage())
+                            <button class="pg-active" disabled>{{ $page }}</button>
+                        @else
+                            <a href="{{ $url }}">{{ $page }}</a>
+                        @endif
+                    @endforeach
+
+                    @if($pendingPickups->hasMorePages())
+                        <a href="{{ $pendingPickups->nextPageUrl() }}">Next &raquo;</a>
+                    @else
+                        <button class="page-btn" disabled>Next &raquo;</button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -98,24 +119,42 @@
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                        @foreach($unsettledViolations as $violation)
+                    @foreach($unsettledViolations as $violation)
                         <tr>
                             <td class="td-class">{{ $violation->vehicle->plate_no }}</td>
                             <td class="td-class">{{ $violation->violation_type->violation_name }}</td>
-                            <td class="td-class">{{ $violation->created_at }}</td>
+                            <td class="td-class">{{ $violation->created_at->format('Y-m-d') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="pagination">
-                <div>
+                <div class="showing">
                     Showing {{ $unsettledViolations->firstItem() }} to {{ $unsettledViolations->lastItem() }} of {{ $unsettledViolations->total() }} entries
+                </div>
+                <div class="pagination-buttons">
+                    @if($unsettledViolations->onFirstPage())
+                        <button class="page-btn" disabled>&laquo; Previous</button>
+                    @else
+                        <a href="{{ $unsettledViolations->previousPageUrl() }}">&laquo; Previous</a>
+                    @endif
+
+                    @foreach ($unsettledViolations->getUrlRange(1, $unsettledViolations->lastPage()) as $page => $url)
+                        @if ($page == $unsettledViolations->currentPage())
+                            <button class="pg-active" disabled>{{ $page }}</button>
+                        @else
+                            <a href="{{ $url }}">{{ $page }}</a>
+                        @endif
+                    @endforeach
+
+                    @if($unsettledViolations->hasMorePages())
+                        <a href="{{ $unsettledViolations->nextPageUrl() }}">Next &raquo;</a>
+                    @else
+                        <button class="page-btn" disabled>Next &raquo;</button>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </body>
-
-
-
 @endsection

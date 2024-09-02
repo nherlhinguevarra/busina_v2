@@ -43,6 +43,6 @@ class Authorized_user extends Model
     }
 
     public function employee() {
-        return $this->hasOne('employee');
+        return $this->belongsTo(Employee::class, 'emp_id');
     }
 }

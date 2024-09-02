@@ -77,6 +77,7 @@
         <div class="main-content">
             <header class="header">
                 <ul>
+                    <div class="hd-left">
                     <li>
                         <button class="sidebar-toggle" aria-label="Toggle sidebar">
                             <img src="https://img.icons8.com/fluency-systems-filled/96/616779/menu.png" alt="Sidebar Toggle" style="width: 24px; height: 24px; vertical-align: middle;">
@@ -85,6 +86,53 @@
                     <li>
                         <div class="clock" id="clock"></div> <!-- Clock display -->
                     </li>
+                    </div>
+                    <div class="hd-right">
+                    <li class="notification-icon">
+                        <img src="https://img.icons8.com/sf-regular/96/616779/appointment-reminders.png" alt="Notifications" style="width: 28px; height: 28px;">
+                        <div class="notification-dropdown">
+                            <ul>
+                                <!-- Replace with dynamic notifications -->
+                                <li><a href="#">Notification 1</a></li>
+                                <li><a href="#">Notification 2</a></li>
+                                <li><a href="#">Notification 3</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="account-icon">
+                        @php
+                            $user = Auth::user();
+                            $initials = '';
+
+                            if ($user) {
+                                $authorizedUser = $user->authorized_user; // Assuming you have a relationship set up
+                                $initials = strtoupper(substr($authorizedUser->fname, 0, 1) . substr($authorizedUser->lname, 0, 1));
+                            }
+                        @endphp
+                        <div class="user-initial-circle">
+                            {{ $initials }}
+                        </div>
+                        <div class="account-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="{{ route('account') }}" style="display: flex; align-items: center;">
+                                        <img src="https://img.icons8.com/fluency-systems-filled/96/616779/user.png" alt="My Account Icon" style="width: 17px; height: 17px; margin-right: 8px;">
+                                        My Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="display: flex; align-items: center;">
+                                        <img src="https://img.icons8.com/fluency-systems-filled/96/616779/logout-rounded-left.png" alt="Logout Icon" style="width: 17px; height: 17px; margin-right: 8px;">
+                                        Log Out
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    </div>
                 </ul>
             </header>
             <div>
@@ -104,6 +152,10 @@
     const closeButton = document.querySelector('.sidebar-close-btn');
     const sidebar = document.querySelector('.sidebar');
     const datetimeElement = document.getElementById('datetime');
+    const notificationIcon = document.querySelector('.notification-icon');
+    const accountIcon = document.querySelector('.account-icon');
+    const notificationDropdown = document.querySelector('.notification-dropdown');
+    const accountDropdown = document.querySelector('.account-dropdown');
     const mainContent = document.querySelector('.main-content');
 
     function updateClock() {
@@ -125,6 +177,14 @@
         mainContent.classList.remove('blur'); // Remove blur when sidebar is closed
     });
 
+    notificationIcon.addEventListener('click', function() {
+                notificationDropdown.classList.toggle('show');
+    });
+
+    accountIcon.addEventListener('click', function() {
+        accountDropdown.classList.toggle('show');
+    });
+
     window.addEventListener('resize', function() {
         if (window.innerWidth >= 769) {
             sidebar.classList.remove('collapsed');
@@ -134,6 +194,15 @@
 
     setInterval(updateClock, 1000);
     updateClock();
+
+    document.addEventListener('click', function(event) {
+        if (!notificationIcon.contains(event.target)) {
+            notificationDropdown.classList.remove('show');
+        }
+        if (!accountIcon.contains(event.target)) {
+            accountDropdown.classList.remove('show');
+        }
+    });
 });
 </script>
 
