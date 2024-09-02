@@ -40,7 +40,21 @@
                 <span class="stat-label">Reported Violations This Month</span>
             </div>
         </div>
-        <div class="box">Column 3 (twice the size)</div>
+        <div class="box">
+            <div class="title-col">
+                <div class="col-1">
+                    <img src="{{ asset('storage/images/busina_login.png') }}" alt="">
+                </div>
+                <div class="col-2">
+                    <h1 class="bu-title">
+                        <span class="t-1">BICOL</span>
+                        <span class="t-2">UNIVERSITY</span>
+                    </h1>
+                    <h2 class="mtrpl">MOTORPOOL SECTION</p>
+                    <h3 class="add">Rizal St., Legazpi City, Albay</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="cont-2">
         <div class="box-2">
