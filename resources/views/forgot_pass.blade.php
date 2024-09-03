@@ -12,9 +12,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    
     <link rel="stylesheet" href="{{ asset('storage/css/login.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -26,11 +26,11 @@
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
                 <div class="login-asset">
-                    <img src="{{ asset('storage/images/busina_login.png') }}">
+                    <img src="{{ asset('storage/images/login.png') }}">
                 </div>
             </div>
 
-            <div class="forgot1">
+            <div class="forms">
                 <div class="login-title">
                     <h2>FORGOT PASSWORD</h2>
                 </div>
@@ -38,9 +38,9 @@
                     @csrf
                     <div class="forgot-info">
                         <p>Enter your Employee Number and we'll send you a reset URL.</p>
-                        <p>The new password will be sent to the email address associated with your account.
-                        Once received, use the new password to log in, and consider changing it to something memorable and secure.</p>
-                        <p>If you have any issues, contact us through <span>BUsina@gmail.com</span></p>
+                        <p>The new password will be sent to the email address<br>associated with your account.</p>
+                        <p>Once received, use the new password to log in,<br>and consider changing it to something<br>memorable and secure.</p>
+                        <p>If you have any issues, contact us through<br><span>BUsina@gmail.com</span></p>
                     </div>
 
                     @if(session('error'))

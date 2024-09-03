@@ -24,7 +24,7 @@
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
                 <div class="login-asset">
-                    <img src="{{ asset('storage/images/busina_login.png') }}">
+                    <img src="{{ asset('storage/images/login.png') }}">
                 </div>
             </div>
 

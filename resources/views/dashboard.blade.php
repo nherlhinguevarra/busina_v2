@@ -43,7 +43,7 @@
         <div class="box">
             <div class="title-col">
                 <div class="col-1">
-                    <img src="{{ asset('storage/images/busina_login.png') }}" alt="">
+                    <img src="{{ asset('storage/images/busina_asset.png') }}" alt="">
                 </div>
                 <div class="col-2">
                     <h1 class="bu-title">
