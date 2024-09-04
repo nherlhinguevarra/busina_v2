@@ -62,7 +62,7 @@
 
                     <div class="forgot-info3">
                         <div class="forgot-info">
-                            <p>Enter your desire password, make sure to consider changing it to something memorable and secure. </p>
+                            <p>Enter your desired password. Make sure to<br>consider changing it to something memorable and secure. </p>
                         </div>
 
                         <div class="forgot-inputs">

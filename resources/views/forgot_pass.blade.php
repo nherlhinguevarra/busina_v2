@@ -39,7 +39,7 @@
                     <div class="forgot-info">
                         <p>Enter your Employee Number and we'll send you a reset URL.</p>
                         <p>The new password will be sent to the email address<br>associated with your account.</p>
-                        <p>Once received, use the new password to log in,<br>and consider changing it to something<br>memorable and secure.</p>
+                        <p>Once received, use the new password to log in and<br>consider changing it to something memorable<br>and secure.</p>
                         <p>If you have any issues, contact us through<br><span>BUsina@gmail.com</span></p>
                     </div>
 

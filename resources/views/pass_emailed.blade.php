@@ -42,7 +42,7 @@
                 
                 <div class="newpass-note">
                     <h3>Notification successfully sent!</h3>
-                    <p>An instruction on how to reset your password has been sent to your <span>Registered Email</span></p>
+                    <p>An instruction on how to reset your password<br>has been sent to your <span>Registered Email</span></p>
                 </div>
                 
                 <div class="back-login">
