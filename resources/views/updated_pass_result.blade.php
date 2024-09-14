@@ -5,17 +5,16 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Busina Security - Reset Password Successfully</title>
-    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ Vite::asset('favicon.png') }}" type="image/x-icon">
     <meta content="" name="description">
     <meta content="" name="keywords">
     
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('storage/css/login.css') }}">
-
+    <!-- <link rel="stylesheet" href="{{ asset('storage/css/login.css') }}"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    @vite(['storage/app/public/css/login.css', 'storage/app/public/js/login.js'])
 </head>
 
 <body>
@@ -27,7 +26,7 @@
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
                 <div class="login-asset">
-                    <img src="{{ asset('storage/images/login.png') }}">
+                    <img src="{{ Vite::asset('storage/app/public/images/login.png') }}">
                 </div>
             </div>
 
@@ -37,7 +36,7 @@
                 </div>
 
                 <div class="check_img">
-                    <img src="{{ asset('storage/images/password.png') }}" alt="">
+                    <img src="{{ Vite::asset('storage/app/public/images/password.png') }}" alt="">
                 </div>
                 
                 <div class="newpass-note">
