@@ -27,33 +27,37 @@
 </div>
 
 <div class="cont-g-2">
-    <div class="box-g-2">
-        <ul>
-            <li>Section 3</li>
-            <li>Section 4</li>
-            <li>Section 5</li>
-            <li>Section 6</li>
-            <li>Section 7</li>
-            <li>Section 8</li>
-            <li>Section 9</li>
-            <li>Section 10</li>
-            <li>Section 11</li>
-            <li>Section 12</li>
-            <li>Section 13</li>
-            <li>Section 14</li>
-            <li>Section 15</li>
-            <li>Section 16</li>
-            <li>Section 17</li>
-            <li>Section 18</li>
-            <li>Section 19</li>
-            <li>Section 20</li>
-            <li>Section 21</li>
-            <li>Section 22</li>
-        </ul>
+    <div class="dropdown-section">
+        <input type="text" id="sectionSearch" onkeyup="filterSections()" placeholder="Search sections..." />
+        <select id="sectionDropdown" onchange="location = this.value;">
+            <option value="#section3">Section 3</option>
+            <option value="#section4">Section 4</option>
+            <option value="#section5">Section 5</option>
+            <option value="#section6">Section 6</option>
+            <option value="#section7">Section 7</option>
+            <option value="#section8">Section 8</option>
+            <option value="#section9">Section 9</option>
+            <option value="#section10">Section 10</option>
+            <option value="#section11">Section 11</option>
+            <option value="#section12">Section 12</option>
+            <option value="#section13">Section 13</option>
+            <option value="#section14">Section 14</option>
+            <option value="#section15">Section 15</option>
+            <option value="#section16">Section 16</option>
+            <option value="#section17">Section 17</option>
+            <option value="#section18">Section 18</option>
+            <option value="#section19">Section 19</option>
+            <option value="#section20">Section 20</option>
+            <option value="#section21">Section 21</option>
+            <option value="#section22">Section 22</option>
+            <option value="#section23">Section 23</option>
+            <option value="#section24">Section 24</option>
+            <option value="#section25">Section 25</option>
+        </select>
     </div>
-    <div class="box-g-2">
+    <div class="box-g-3">
         <h3>PARKING GUIDELINES</h3>
-        <h4>Section 3. Designation of Appropriate Parking Space</h4>
+        <h4 id="section3">Section 3. Designation of Appropriate Parking Space</h4>
         <p>Parking of motorized and non-motorized vehicle is allowed
         only at designated parking areas for employees, visitors and
         other University stakeholders. The concerned Deans/Directors
@@ -63,25 +67,25 @@
         for BU Auxiliary, the Vice President for Academic Affairs.
         </p>
 
-        <h4>Section 4. BU Motorpool Parking</h4>
+        <h4 id="section4">Section 4. BU Motorpool Parking</h4>
         <p>The designated parking for BU Motorpool vehicles shall be used
         exclusively for University vehicles only. Any driver who parks a
         vehicle in the area reserved for BU vehicles shall be penalized
         in accordance with the succeeding sections.
         </p>
 
-        <h4>Section 5. Non-assumption of any liability for loss of things 
+        <h4 id="section5">Section 5. Non-assumption of any liability for loss of things 
         or damages in in parking spaces</h4>
         <p>The University assumes no liability for any loss or damage
         to privately owned vehicles parked within the University
         property.</p>
 
-        <h4>Section 6. Authority to Restrict Use of Parking Spaces</h4>
+        <h4 id="section6">Section 6. Authority to Restrict Use of Parking Spaces</h4>
         <p>The University may restrict or otherwise control as necessary,
         the use of parking spaces or lots for University needs and
         special events.</p>
 
-        <h4>Section 7. Prohibition on Overnight Parking</h4>
+        <h4 id="section7">Section 7. Prohibition on Overnight Parking</h4>
         <p>Overnight parking is strictly prohibited.Cars may be allowed to
         park overnight at designated overnight parking areas only in
         cases of emergency and official school functions. The
@@ -92,7 +96,7 @@
         or damage fo vehicle parked overnight inside its
         premises</p>
 
-        <h4>Section 7. Prohibition on Overnight Parking (continuation)</h4>
+        <h4 id="section7">Section 7. Prohibition on Overnight Parking (continuation)</h4>
         <p>In cases where overnight parking is allowed, the following
         procedures shall be observed:</p>
         <p>The applicant shall accomplish the Application for Overnight Parking permit (Annex A) and
@@ -109,18 +113,18 @@
         manner which obstructs the free flow of vehicles is prohibited. Ensure that the vehicle is
         parked within the space allotted for one vehicle only.</p>
 
-        <h4>Section 8. Reserved Parking Spaces</h4>
+        <h4 id="section8">Section 8. Reserved Parking Spaces</h4>
         <p>Parking of motorized and non-motorized vehicles in reserved
         parking areas or spaces is not allowed.For this purpose,
         the Vice-Presidents, Deans and Directors are authorized to
         designate reserved parking areas in their respective jurisdictions.</p>
 
-        <h4>Section 9. Prohibited Parking on Sidewalks and Driveways</h4>
+        <h4 id="section9">Section 9. Prohibited Parking on Sidewalks and Driveways</h4>
         <p>Parking on sidewalks and driveways is strictly prohibited.
         Violation of this sections shall be penalized in accordance
         with the succeeding sections.</p>
 
-        <h4>Section 10. Vehicle Sticker</h4>
+        <h4 id="section10">Section 10. Vehicle Sticker</h4>
         <p>The University shall issue a vehicle sticker to vehicles authorized
         to enter the University premises. Car stickers shall be issued for
         free to BU employees for one (1) vehicle only for every employee.
@@ -128,7 +132,7 @@
         the prescribed amount for the additional vehicle/s. Car stickers
         shall be valid for one (1) year only.</p>
 
-        <h4>Section 10. Vehicle Sticker (continuation)</h4>
+        <h4 id="section10">Section 10. Vehicle Sticker (continuation)</h4>
         <p>Below is the prescribed vehicles sticker fee:</p>
         <p>Applications for vehicle sticker, either for free or for a fee, shall be made at the
         Motorpool Section following the procedures below:</p>
@@ -143,35 +147,35 @@
         <p>The Motorpool Section, Security Services Unit and the Business Affairs Office (BAO) are hereby directed
         to come up with the design of the vehicle sticker.</p>
 
-        <h4>Section 11. Implementation of Traffic Rules and Regulations</h4>
+        <h4 id="section11">Section 11. Implementation of Traffic Rules and Regulations</h4>
         <p>All parking and traffic rules and regulations will be implemented
         anytime of the day and night.</p>
 
-        <h4>Section 12. Observance of due diligence in driving</h4>
+        <h4 id="section12">Section 12. Observance of due diligence in driving</h4>
         <p>All drivers are expected to exercise due caution on all parts of
         the University premises with particular regard for the safety of
         all pedestrians.</p>
 
-        <h4>Section 13. University Speed Limit</h4>
+        <h4 id="section13">Section 13. University Speed Limit</h4>
         <p>The speed limit in all University roads shall be 15 kilometers per
         hour (kph) Such speed limit shall however be reduced at
         crosswalks, buildings and parking lot entrances and in parking
         lots or other congested areas.</p>
 
-        <h4>Section 14, Driver's Identity Verification</h4>
+        <h4 id="section14">Section 14, Driver's Identity Verification</h4>
         <p>Security guards on duty have the authority to verify the identity
         of drivers and their respective vehicles entering the University
         premises A valid Identification Card (I.D.) can be requested
         from the person by the guard on duty when entering the
         University premises</p>
 
-        <h4>Section 15. Loading and Unloading Area</h4>
+        <h4 id="section15">Section 15. Loading and Unloading Area</h4>
         <p>The Vice-Presidents, Deans and Directors shall designate
         appropriate loading and unloading areas in their respective
         jurisdictions. Violation of this section shall also be penalized in
         accordance with the succeeding sections.</p>
 
-        <h4>Section 16. Other Guidelines for Driver's Observance.</h4>
+        <h4 id="section16">Section 16. Other Guidelines for Driver's Observance.</h4>
         <p>The drivers shall further observed the following guidelines:</p>
         <p>Use of cellular phones while driving is strictly prohibited.</p>
         <p>Driving under the influence of alcohol or drugs is strictly prohibited.</p>
@@ -185,11 +189,11 @@
         or any member of the university community is considered a violation of
         University traffic rules and regulations</p>
 
-        <h4>Section 17. Office tasked fo monitor the implementation</h4>
+        <h4 id="section17">Section 17. Office tasked fo monitor the implementation</h4>
         <p>The Security Services Unit (SSU) is authorized to strictly enforce
         and monitor the University traffic and parking regulations.</p>
 
-        <h4>Section 18. Towing of illegally parked vehicles</h4>
+        <h4 id="section18">Section 18. Towing of illegally parked vehicles</h4>
         <p>Bicol University reserves the right to tow away or impound any
         vehicle parked in violation of University rules and to impose
         such fines as may be specified<br>
@@ -201,7 +205,7 @@
         equipment, strict implementation of the penalty provisions
         herein provided shall be observed</p>
 
-        <h4>Section 19. Punishable Acts and Offenses</h4>
+        <h4 id="section19">Section 19. Punishable Acts and Offenses</h4>
         <p>The following are the punishable acts and offenses under
         these guidelines:</p>
 
@@ -221,7 +225,7 @@
         v. Obstructing traffic: driving against the traffic or blocking traffic.<br>
         vi. Driving vehicle on sidewalk & pedestrian walkway.</p>
 
-        <h4>Section 19. Punishable Acts and Offenses (continuation)</h4>
+        <h4 id="section19">Section 19. Punishable Acts and Offenses (continuation)</h4>
         <p>The following are the punishable acts and offenses under
         these guidelines:</p>
         <h5>B. Traffic Violations</h5>
@@ -237,7 +241,7 @@
         <p>i. Fake/altered vehicle sticker.<br>
         ii. Vehicle sticker was used for not for the vehicle it was issued.</p>
 
-        <h4>Section 20. Apprehension of Violators</h4>
+        <h4 id="section20">Section 20. Apprehension of Violators</h4>
         <p>The guard on duty/personnel designated to enforce these parking
         rules and regulation shall hand a violation ticket to the
         driver/person or place a violation ticket (Annex C) on the front
@@ -249,13 +253,13 @@
         duty/personnel of the violation committed (ex. double parking)
         and violation ticket placed on the vehicle.</p>
 
-        <h4>Section 21. Appeal Process for Issued Violation Ticket</h4>
+        <h4 id="section21">Section 21. Appeal Process for Issued Violation Ticket</h4>
         <p>Drivers who receive a violation ticket have the right to appeal. The
         written appeal must be submitted to the Office of the Dean/Director
         or VPAF or VPAA where the vehicle is registered within 10 working
         days from issuance of violation ticket.</p>
 
-        <h4>Section 21. Appeal Process for Issued Violation Ticket (continuation)</h4>
+        <h4 id="section21">Section 21. Appeal Process for Issued Violation Ticket (continuation)</h4>
         <p>The following information must be included in the appeal.</p>
         <p>(a) Name of Appealing Party<br>
         (b) Reason for appeal<br>
@@ -265,25 +269,25 @@
         A copy of the resolution of appeal should be fumished to the SSU/Guard<br>
         an duty for records purposes</p>
 
-        <h4>Section 22. Fines to be imposed in cases of violations.</h4>
+        <h4 id="section22">Section 22. Fines to be imposed in cases of violations.</h4>
         <p>Those issued with violation tickets who opted not to appeal and
         those whose appeal were denied are obligated to pay the
         corresponding fines immediately at the designated Cashier's Office:</p>
 
         <h4>Section 22. Fines fo be imposed in cases of violations (continuation)</h4>
 
-        <h4>Section 23. Consequence of Failure to Pay Fine</h4>
+        <h4 id="section23">Section 23. Consequence of Failure to Pay Fine</h4>
         <p>A driver-violator who refuses to pay the fines prescribed in these
         guidelines, for the first offense, shall not be allowed to bring their
         vehicles inside the University premises for a period of 2 months;
         and 6 months for the second offense.</p>
 
-        <h4>Section 24. Consequence of Repeated Violations of these Guidelines</h4>
+        <h4 id="section24">Section 24. Consequence of Repeated Violations of these Guidelines</h4>
         <p>A driver who violates the provisions of these guidelines for the
         third time shall no longer be allowed to bring their vehicles in
         the University premises.</p>
 
-        <h4>Section 25. Accounting and Utilization of Collected Fines</h4>
+        <h4 id="section25">Section 25. Accounting and Utilization of Collected Fines</h4>
         <p>The amount of fines to be collected as a consequence of any
         violation of these guidelines shall be deposited on a trust fund.
         Accumulated amount of fines shall be used exclusively for the
@@ -291,7 +295,23 @@
         concerned college/unit.</p>
     </div>
 </div>
+<script>
+    function filterSections() {
+    var input, filter, select, options, i;
+    input = document.getElementById("sectionSearch");
+    filter = input.value.toUpperCase();
+    select = document.getElementById("sectionDropdown");
+    options = select.getElementsByTagName("option");
 
-</div>
+    for (i = 0; i < options.length; i++) {
+        let txtValue = options[i].textContent || options[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            options[i].style.display = "";
+        } else {
+            options[i].style.display = "none";
+        }
+    }
+}
+</script>
 </body>
 @endsection
