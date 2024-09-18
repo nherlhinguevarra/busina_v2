@@ -10,16 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}">
-    <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['storage/app/public/css/app1.css', 'storage/app/public/js/app.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- @vite(['storage/app/public/css/app1.css', 'storage/app/public/js/app.js']) -->
 </head>
 
 <body>
 <div class="cont-g">
     <div class="box-g">
         <ul>
-            <li class="guide-title-1">BICOL UNIVERSITY</li>
             <li class="guide-title-2">PARKING AND TRAFFIC GUIDELINES</li>
             <li class="guide-title-3">ADMINISTRATIVE ORDER #384 S.2021</li>
         </ul>
@@ -28,7 +28,16 @@
 
 <div class="cont-g-2">
     <div class="dropdown-section">
-        <input type="text" id="sectionSearch" onkeyup="filterSections()" placeholder="Search sections..." />
+        <div class="srch-arw">
+            <input type="text" id="sectionSearch" placeholder="Search for guidelines..." onkeyup="searchGuidelines()">
+            <button onclick="prevMatch()" class="srch-btn">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            <button onclick="nextMatch()" class="srch-btn">
+                <i class="fas fa-arrow-down"></i>
+            </button>
+            <p id="matchInfo"></p>
+        </div>
         <select id="sectionDropdown" onchange="location = this.value;">
             <option value="#section3">Section 3</option>
             <option value="#section4">Section 4</option>
@@ -55,8 +64,9 @@
             <option value="#section25">Section 25</option>
         </select>
     </div>
-    <div class="box-g-3">
+    <div class="box-g-2">
         <h3>PARKING GUIDELINES</h3>
+        <hr>
         <h4 id="section3">Section 3. Designation of Appropriate Parking Space</h4>
         <p>Parking of motorized and non-motorized vehicle is allowed
         only at designated parking areas for employees, visitors and
@@ -296,22 +306,91 @@
     </div>
 </div>
 <script>
-    function filterSections() {
-    var input, filter, select, options, i;
-    input = document.getElementById("sectionSearch");
-    filter = input.value.toUpperCase();
-    select = document.getElementById("sectionDropdown");
-    options = select.getElementsByTagName("option");
+let currentMatchIndex = 0;
+let matches = [];
 
-    for (i = 0; i < options.length; i++) {
-        let txtValue = options[i].textContent || options[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            options[i].style.display = "";
-        } else {
-            options[i].style.display = "none";
-        }
+function searchGuidelines() {
+    const searchInput = document.getElementById('sectionSearch').value.trim().toLowerCase();
+    const guidelineSections = document.querySelectorAll('.box-g-2 h4, .box-g-2 p');
+
+    // Reset previous match highlights
+    resetHighlights();
+
+    if (searchInput === "") {
+        matches = [];
+        document.getElementById('matchInfo').innerText = '';
+        return;
+    }
+
+    // Find matches
+    matches = Array.from(guidelineSections).filter(section => {
+        const sectionText = section.innerText.toLowerCase();
+        return sectionText.includes(searchInput);
+    });
+
+    // Highlight matches
+    matches.forEach((match, index) => {
+        highlightMatch(match, searchInput);
+    });
+
+    if (matches.length > 0) {
+        currentMatchIndex = 0;
+        scrollToMatch(matches[currentMatchIndex]);
+        updateMatchInfo();
+    } else {
+        document.getElementById('matchInfo').innerText = 'No matches found.';
     }
 }
+
+function highlightMatch(element, searchTerm) {
+    const innerHTML = element.innerHTML;
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    element.innerHTML = innerHTML.replace(regex, '<span class="highlight">$1</span>');
+}
+
+function resetHighlights() {
+    const guidelineSections = document.querySelectorAll('.box-g-2 h4, .box-g-2 p');
+    guidelineSections.forEach(section => {
+        section.innerHTML = section.innerText;  // Reset content to plain text without highlights
+    });
+
+    // Remove the 'current-match' class from any previously highlighted matches
+    matches.forEach(match => match.classList.remove('current-match'));
+}
+
+function scrollToMatch(match) {
+    // Remove 'current-match' class from all matches
+    matches.forEach(m => m.classList.remove('current-match'));
+
+    // Add 'current-match' class to the new match
+    match.classList.add('current-match');
+    match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function updateMatchInfo() {
+    document.getElementById('matchInfo').innerText = `Match ${currentMatchIndex + 1} of ${matches.length}`;
+}
+
+function prevMatch() {
+    if (matches.length === 0) return;
+
+    if (currentMatchIndex > 0) {
+        currentMatchIndex--;
+        scrollToMatch(matches[currentMatchIndex]);
+        updateMatchInfo();
+    }
+}
+
+function nextMatch() {
+    if (matches.length === 0) return;
+
+    if (currentMatchIndex < matches.length - 1) {
+        currentMatchIndex++;
+        scrollToMatch(matches[currentMatchIndex]);
+        updateMatchInfo();
+    }
+}
+
 </script>
 </body>
 @endsection
