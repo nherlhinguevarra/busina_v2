@@ -66,7 +66,7 @@
     </div>
     <div class="box-g-2">
         <h3>PARKING GUIDELINES</h3>
-        <hr>
+
         <h4 id="section3">Section 3. Designation of Appropriate Parking Space</h4>
         <p>Parking of motorized and non-motorized vehicle is allowed
         only at designated parking areas for employees, visitors and
@@ -104,28 +104,27 @@
         authorized overnight parking, the driver applicant shall
         execute a waiver of liability to the University for any loss
         or damage fo vehicle parked overnight inside its
-        premises</p>
+        premises
 
-        <h4 id="section7">Section 7. Prohibition on Overnight Parking (continuation)</h4>
-        <p>In cases where overnight parking is allowed, the following
+        <p style="font-style:italic">In cases where overnight parking is allowed, the following
         procedures shall be observed:</p>
-        <p>The applicant shall accomplish the Application for Overnight Parking permit (Annex A) and
+        <p class="check">The applicant shall accomplish the Application for Overnight Parking permit (Annex A) and
         submit the same to the concerned office.</p>
-        <p>The Vice-President for Administration and Finance (VPAF) for GASS, the Vice-President for
+        <p  class="check">The Vice-President for Administration and Finance (VPAF) for GASS, the Vice-President for
         Academic Affairs (VPAA) for Auxiliary, the Vice-President for Research Development and
         Extension (VPRDE) for East Campus, and the Deans and Directors for external campuses and
         Campus/Cluster Administrative Officers in the main and Daraga campuses are authorized
         to act on the applications for overnight parking permit.</p>
-        <p>Once approved, the applicant for overnight parking shall furnish a copy of the approved
+        <p class="check">Once approved, the applicant for overnight parking shall furnish a copy of the approved
         overnight parking to the Guard on duty.</p>
-        <p>Guards on Duty must check the overnight parking permit of vehicles parked overnight</p>
-        <p>Vehicles must be parked properly and may not occupy two parking slots. Parking in any
+        <p class="check">Guards on Duty must check the overnight parking permit of vehicles parked overnight</p>
+        <p class="check">Vehicles must be parked properly and may not occupy two parking slots. Parking in any
         manner which obstructs the free flow of vehicles is prohibited. Ensure that the vehicle is
         parked within the space allotted for one vehicle only.</p>
 
         <h4 id="section8">Section 8. Reserved Parking Spaces</h4>
         <p>Parking of motorized and non-motorized vehicles in reserved
-        parking areas or spaces is not allowed.For this purpose,
+        parking areas or spaces is not allowed. For this purpose,
         the Vice-Presidents, Deans and Directors are authorized to
         designate reserved parking areas in their respective jurisdictions.</p>
 
@@ -142,20 +141,48 @@
         the prescribed amount for the additional vehicle/s. Car stickers
         shall be valid for one (1) year only.</p>
 
-        <h4 id="section10">Section 10. Vehicle Sticker (continuation)</h4>
-        <p>Below is the prescribed vehicles sticker fee:</p>
-        <p>Applications for vehicle sticker, either for free or for a fee, shall be made at the
+        <p style="font-style: italic";>Below is the prescribed vehicles sticker fee:</p>
+        <div style="display: flex; justify-content: center;">
+            <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; text-align: center;">
+                <thead>
+                    <tr>
+                        <th colspan="3" style="background-color: #FFA500; color: white;">VEHICLE STICKER FEES</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th style="color: #09b3e4;">4-wheel vehicles</th>
+                        <th style="color: #09b3e4;">Motorcycle / Tricycles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; color: #09b3e4;">BU Employees</td>
+                        <td style="color: #566a7f">P 350.00</td>
+                        <td style="color: #566a7f">P 150.00</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #09b3e4;">Non-BU employees</td>
+                        <td style="color: #566a7f">P 500.00</td>
+                        <td style="color: #566a7f">P 250.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-style: italic";>Applications for vehicle sticker, either for free or for a fee, shall be made at the
         Motorpool Section following the procedures below:</p>
-        <p>The applicant shall submit the accomplished Application for Vehicle Sticker (Annex B) together with the
+        <p class="check">The applicant shall submit the accomplished Application for Vehicle Sticker (Annex B) together with the
         photocopy of the motor vehicle's Official Receipt (OR)/Certificate of Registration (CR) and owner's driver's
         license to the BU Motorpool Section.</p>
-        <p>The Head of the Motorpool Section shall act on the applications for vehicle sticker.</p>
-        <p>Once approved, the applicant shall pay the corresponding amount ( applicable) at the University Cashiers
+        <p class="check">The Head of the Motorpool Section shall act on the applications for vehicle sticker.</p>
+        <p class="check">Once approved, the applicant shall pay the corresponding amount ( applicable) at the University Cashiers
         Office located at the Ricardo A. Arcilla Building (formerly GASS Building) Copy of official receipt shall be
         provided to the Motarpool Section for processing of vehicle sticker.</p>
-        <p>The BU Motorpool Section shall then issue the vehicle sticker to the driver applicant.</p>
-        <p>The Motorpool Section, Security Services Unit and the Business Affairs Office (BAO) are hereby directed
+        <p class="check">The BU Motorpool Section shall then issue the vehicle sticker to the driver applicant.</p>
+        <p style="font-style: italic";>The Motorpool Section, Security Services Unit and the Business Affairs Office (BAO) are hereby directed
         to come up with the design of the vehicle sticker.</p>
+
+        <hr>
+        <h3>TRAFFIC RULES AND GUIDELINES</h3>
 
         <h4 id="section11">Section 11. Implementation of Traffic Rules and Regulations</h4>
         <p>All parking and traffic rules and regulations will be implemented
@@ -172,12 +199,12 @@
         crosswalks, buildings and parking lot entrances and in parking
         lots or other congested areas.</p>
 
-        <h4 id="section14">Section 14, Driver's Identity Verification</h4>
+        <h4 id="section14">Section 14. Driver's Identity Verification</h4>
         <p>Security guards on duty have the authority to verify the identity
         of drivers and their respective vehicles entering the University
         premises A valid Identification Card (I.D.) can be requested
         from the person by the guard on duty when entering the
-        University premises</p>
+        University premises.</p>
 
         <h4 id="section15">Section 15. Loading and Unloading Area</h4>
         <p>The Vice-Presidents, Deans and Directors shall designate
@@ -186,18 +213,21 @@
         accordance with the succeeding sections.</p>
 
         <h4 id="section16">Section 16. Other Guidelines for Driver's Observance.</h4>
-        <p>The drivers shall further observed the following guidelines:</p>
-        <p>Use of cellular phones while driving is strictly prohibited.</p>
-        <p>Driving under the influence of alcohol or drugs is strictly prohibited.</p>
-        <p>Drivers must follow all traffic and street signs inside the campus. Alteration, removal
+        <p style="font-style: italic";>The drivers shall further observed the following guidelines:</p>
+        <p class="not">Use of cellular phones while driving is strictly prohibited.</p>
+        <p class="not">Driving under the influence of alcohol or drugs is strictly prohibited.</p>
+        <p class="check">Drivers must follow all traffic and street signs inside the campus. Alteration, removal
         and defacing any of the signage are prohibited.
         </p>
-        <p>Drivers inside the campus must observe all applicable traffic rules and ordinances
+        <p class="check">Drivers inside the campus must observe all applicable traffic rules and ordinances
         of the Local Government in addition to the rules and regulations of the University.</p>
-        <p>Driving, road and pedestrian courtesy must be observed at all times. Threatening or
+        <p class="check">Driving, road and pedestrian courtesy must be observed at all times. Threatening or
         verbal abuse of students, fellow drivers, parents, traffic enforcers/security guards,
         or any member of the university community is considered a violation of
         University traffic rules and regulations</p>
+
+        <hr>
+        <h3>ENFORCEMENT MECHANISM</h3>
 
         <h4 id="section17">Section 17. Office tasked fo monitor the implementation</h4>
         <p>The Security Services Unit (SSU) is authorized to strictly enforce
@@ -216,10 +246,10 @@
         herein provided shall be observed</p>
 
         <h4 id="section19">Section 19. Punishable Acts and Offenses</h4>
-        <p>The following are the punishable acts and offenses under
+        <p style="font-style: italic";>The following are the punishable acts and offenses under
         these guidelines:</p>
 
-        <h5>A. Parking Violations</h5>
+        <h5 style="color:#566a7f">A. Parking Violations</h5>
         <p>i. Unauthorized parking/overnight parking on campus.<br>
         ii. Parking at a NO parking zone.<br>
         iii, Parking on sidewalk and driveway.<br>
@@ -227,19 +257,14 @@
         v. Improperly parked vehicle (ex. double parking, parking occupying two
         lanes, etc.)</p>
 
-        <h5>B. Traffic Violations</h5>
+        <h5 style="color:#566a7f">B. Traffic Violations</h5>
         <p>i. Reckless driving.<br>
         ii. Violation of speed limit.<br>
         iii. Failure to give way to pedestrian on pedestrian lanes.<br>
         iv. Disregarding traffic sign or traffic enforcers/guard on duty.<br>
         v. Obstructing traffic: driving against the traffic or blocking traffic.<br>
-        vi. Driving vehicle on sidewalk & pedestrian walkway.</p>
-
-        <h4 id="section19">Section 19. Punishable Acts and Offenses (continuation)</h4>
-        <p>The following are the punishable acts and offenses under
-        these guidelines:</p>
-        <h5>B. Traffic Violations</h5>
-        <p>vii. Loading or unloading at NO loading/unloading zones.<br>
+        vi. Driving vehicle on sidewalk & pedestrian walkway.<br>
+        vii. Loading or unloading at NO loading/unloading zones.<br>
         viii. Driving under the influence of prohibited substances.<br>
         ix. Discourtesy/verbal abuse towards other drivers, students, pedestrians,
         or traffic enforcers/guard on duty.<br>
@@ -247,7 +272,7 @@
         xi. Counter flowing.<br>
         xii. Blowing of horns.</p>
 
-        <h5>C. Other Violations</h5>
+        <h5 style="color:#566a7f">C. Other Violations</h5>
         <p>i. Fake/altered vehicle sticker.<br>
         ii. Vehicle sticker was used for not for the vehicle it was issued.</p>
 
@@ -269,14 +294,13 @@
         or VPAF or VPAA where the vehicle is registered within 10 working
         days from issuance of violation ticket.</p>
 
-        <h4 id="section21">Section 21. Appeal Process for Issued Violation Ticket (continuation)</h4>
-        <p>The following information must be included in the appeal.</p>
+        <p style="font-style: italic";>The following information must be included in the appeal.</p>
         <p>(a) Name of Appealing Party<br>
         (b) Reason for appeal<br>
         (c) Plate number of the vehicle<br>
         (d) Copy of violation ticket<br>
-        (e) Appealing party's address and contact number<br>
-        A copy of the resolution of appeal should be fumished to the SSU/Guard<br>
+        (e) Appealing party's address and contact number</p>
+        <p style="font-style: italic";>A copy of the resolution of appeal should be fumished to the SSU/Guard<br>
         an duty for records purposes</p>
 
         <h4 id="section22">Section 22. Fines to be imposed in cases of violations.</h4>
@@ -284,7 +308,101 @@
         those whose appeal were denied are obligated to pay the
         corresponding fines immediately at the designated Cashier's Office:</p>
 
-        <h4>Section 22. Fines fo be imposed in cases of violations (continuation)</h4>
+        <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%; text-align: left;">
+            <thead>
+                <tr>
+                    <th style="color: #09b3e4;">Parking Violation</th>
+                    <th style="color: #09b3e4;">Corresponding Fee</th>
+                </tr>
+            </thead>
+            <tbody style="color: #566a7f">
+                <tr>
+                    <td>Unauthorized parking/overnight parking on campus.</td>
+                    <td>P 1000.00</td>
+                </tr>
+                <tr>
+                    <td>Parking at a NO parking zone.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Parking on sidewalk and driveway.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Parking in reserved areas.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Improperly parked vehicle.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <th colspan="2" style="color: #09b3e4;">Traffic Violation</th>
+                </tr>
+                <tr>
+                    <td>Reckless driving/ Driving in a manner that is threatening to the safety of a person.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Violation of speed limit.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Failure to give way to pedestrian on pedestrian lanes.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Disregarding traffic sign or traffic enforcers/guard on duty.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Driving vehicle on sidewalk & pedestrian walkway.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Obstructing traffic: driving against the traffic or blocking traffic.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Loading or unloading at NO loading/unloading zones.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Driving under the influence of prohibited substances.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Discourtesy/verbal abuse towards other drivers, students, pedestrians, or traffic enforcers/guard on duty.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Vandalism, removal or defacement of street signs.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Counter flowing.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Blowing of horns.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <th colspan="2" style="color: #09b3e4;">Other Violation</th>
+                </tr>
+                <tr>
+                    <td>Fake/altered vehicle sticker.</td>
+                    <td>P 500.00</td>
+                </tr>
+                <tr>
+                    <td>Improper/unauthorized use of vehicle sticker.</td>
+                    <td>P 500.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <h3>ENFORCEMENT REGULATION</h3>
 
         <h4 id="section23">Section 23. Consequence of Failure to Pay Fine</h4>
         <p>A driver-violator who refuses to pay the fines prescribed in these

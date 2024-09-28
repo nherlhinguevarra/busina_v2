@@ -627,6 +627,22 @@ hr {
     background-color: rgb(255, 217, 148);
 }
 
+.check::before {
+    content: "\f14a"; /* Font Awesome's checkbox icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 10px;
+    color: green;
+}
+
+.not::before {
+    content: "\f05e"; /* Font Awesome's 'ban' icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 10px;
+    color: red; /* You can change the color */
+}
+
 @media (max-width: 1200px) {
     .sidebar {
         position: fixed;
