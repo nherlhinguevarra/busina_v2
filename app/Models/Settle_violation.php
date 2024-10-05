@@ -14,7 +14,7 @@ class Settle_violation extends Model
     protected $fillable = [
         'violation_id',
         'document',
-        'resolve_at',
+        'created_at',
         'updated_at'
     ];
 

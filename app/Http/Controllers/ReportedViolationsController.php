@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Settle_violation;
 use App\Models\Violation;
-use App\Models\ViolationType;
+use Illuminate\Container\Attributes\Log;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log as FacadesLog;
 use Illuminate\Support\Facades\Response;
 
 class ReportedViolationsController extends Controller
@@ -103,15 +107,67 @@ class ReportedViolationsController extends Controller
 
     public function showDetails($id)
     {
-        // Fetch the violation details with related data
+        // Fetch the violation details with related data, including settle_violation
         $violation = Violation::with([
             'vehicle',
             'violation_type',
             'authorized_user',
-            'settle_violation'
+            'settle_violation' // Load settle_violation relationship
         ])->findOrFail($id);
 
-        return view('rv_details', compact('violation'));
+        // Initialize the proofImage variable
+        $proofImage = null;
+
+        // Check if a related settle_violation exists
+        $settleViolation = $violation->settle_violation;
+        if ($settleViolation && $settleViolation->document) {
+            try {
+                // Decrypt the document from the database
+                $decryptedContent = Crypt::decrypt($settleViolation->document);
+
+                // Convert the decrypted content to a base64 image string for displaying
+                $base64Image = base64_encode($decryptedContent);
+                $proofImage = 'data:image/jpeg;base64,' . $base64Image; // Adjust the MIME type if needed
+            } catch (\Exception $e) {
+                FacadesLog::error('Error decrypting document: ' . $e->getMessage());
+            }
+        }
+
+        return view('rv_details', compact('proofImage', 'settleViolation', 'violation'));
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'violation_id' => 'required|exists:violation,id',
+            'document' => 'required|file'
+        ]);
+
+        // Check if the violation already has an entry in the settle_violations table
+        $settleViolation = Settle_violation::firstOrNew(['violation_id' => $request->violation_id]);
+
+        if ($request->hasFile('document')) {
+            $document = $request->file('document');
+            $settleViolation->document = Crypt::encrypt(file_get_contents($document->getRealPath()));
+        }
+
+        // Save the record (either a new record or update existing)
+        $settleViolation->save();
+
+        $violation = Violation::find($request->violation_id);
+    
+        if (!empty($settleViolation->document)) {
+            $violation->remarks = 'Settled';
+        } else {
+            $violation->remarks = 'Not been settled';
+        }
+
+        $violation->save();
+        
+        return redirect()->back()->with('success', 'Document uploaded/updated successfully.');
+    }
+
+
+    
 
 }

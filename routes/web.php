@@ -13,6 +13,7 @@ use App\Http\Controllers\PendingPickupController;
 use App\Http\Controllers\RegisteredVehiclesController;
 use App\Http\Controllers\ReportedViolationsController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\SettleViolationController;
 use App\Http\Controllers\UnsettledViolationsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Container\Attributes\Auth;
@@ -91,6 +92,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::post('/settle-violation/store', [ReportedViolationsController::class, 'store'])->name('settle_violation.store');
+
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login'); // Login form

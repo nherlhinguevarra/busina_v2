@@ -8,7 +8,10 @@ h1 {
     font-weight: bold;
     padding-left: 20px;
 }
-
+.sec-title {
+    display: grid;
+    grid-template-columns: 615px 1fr;
+}
 .section-title {
     font-size: 18px;
     margin: 0;
@@ -72,6 +75,41 @@ h1 {
 .applicant-type {
     font-weight: bold;
 }
+
+.upload-area {
+    width: 300px;
+    height: 300px;
+    border: 2px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #f8f8f8;
+}
+
+.upload-area img {
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+}
+
+.upload-area p {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+}
+
+.upload-area:hover {
+    background-color: #e9e9e9;
+    border-color: #999;
+}
+
+.upload-area.dragover {
+    background-color: #f1f1f1;
+    border-color: #007bff;
+}
+
 
 .bu-personnel {
     color: blue;
