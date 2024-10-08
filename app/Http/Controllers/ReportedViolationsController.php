@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ViolationSettled;
 use App\Models\Settle_violation;
 use App\Models\Violation;
 use Illuminate\Container\Attributes\Log;
@@ -9,13 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log as FacadesLog;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 
 class ReportedViolationsController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = 10;
+        $perPage = 15;
 
         // Fetch violations with related violation type
         $data = Violation::with('violation_type')->paginate($perPage);
@@ -151,6 +153,15 @@ class ReportedViolationsController extends Controller
             $settleViolation->document = Crypt::encrypt(file_get_contents($document->getRealPath()));
         }
 
+        $violation = Violation::find($request->violation_id);
+    
+        if (!empty($settleViolation->document)) {
+            $violation->remarks = 'Settled';
+        } else {
+            $violation->remarks = 'Not been settled';
+        }
+
+        $violation->save();
         // Save the record (either a new record or update existing)
         $settleViolation->save();
 
@@ -163,6 +174,15 @@ class ReportedViolationsController extends Controller
         }
 
         $violation->save();
+
+        $vehicle = $violation->vehicle;
+        $vehicle_owner = $vehicle->vehicle_owner;
+        $users = $vehicle_owner->users;
+
+        if ($users) {
+            // Send email notification
+            Mail::to($users->email)->send(new ViolationSettled($violation));
+        }
         
         return redirect()->back()->with('success', 'Document uploaded/updated successfully.');
     }

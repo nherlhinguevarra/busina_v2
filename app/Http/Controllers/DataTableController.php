@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle_owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Response;
 
 
@@ -11,7 +12,7 @@ class DataTableController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = 10;
+        $perPage = 20;
         $data = Vehicle_owner::with(['applicant_type', 'vehicle'])
             ->whereHas('vehicle', function ($query) {
                 $query->whereHas('transaction', function ($subQuery) {
@@ -146,6 +147,21 @@ class DataTableController extends Controller
             'vehicle.vehicle_type', // Load vehicles and their types
             'vehicle.transaction'  // Load transactions related to vehicles
         ])->findOrFail($id);
+
+        foreach ($item->vehicle as $vehicle) {
+            try {
+                $vehicle->copy_driver_license = $vehicle->copy_driver_license ? Crypt::decrypt($vehicle->copy_driver_license) : null;
+                $vehicle->copy_cor = $vehicle->copy_cor ? Crypt::decrypt($vehicle->copy_cor) : null;
+                $vehicle->copy_school_id = $vehicle->copy_school_id ? Crypt::decrypt($vehicle->copy_school_id) : null;
+                $vehicle->copy_or_cr = $vehicle->copy_or_cr ? Crypt::decrypt($vehicle->copy_or_cr) : null;
+            } catch (\Exception $e) {
+                // Handle decryption errors (e.g., when the data is not encrypted or invalid)
+                $vehicle->copy_driver_license = 'Decryption error';
+                $vehicle->copy_cor = 'Decryption error';
+                $vehicle->copy_school_id = 'Decryption error';
+                $vehicle->copy_or_cr = 'Decryption error';
+            }
+        }
 
         $item->qr_code_base64 = base64_encode($item->qr_code);
 

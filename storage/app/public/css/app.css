@@ -100,6 +100,11 @@ body, html {
     border-radius: 10px;
 }
 
+.sidebar .payments:hover {
+    background-color: #D6EFD8;
+    border-radius: 10px;
+}
+
 .sidebar li.active {
     background-color: rgba(53, 192, 247, 0.3);
     border-radius: 10px;

@@ -116,6 +116,42 @@
             background-color: #FFD09B;
             color: white;
         }
+        #save-button:disabled {
+            cursor: not-allowed;        /* 'not-allowed' cursor */
+            color: #b0b0b0;
+            background-color:#f2f2f2;
+        }
+        .status-container {
+            display: flex;
+            align-items: center;
+            background-color: #F0F0F0; /* Light grey background */
+            padding: 8px;
+            border-radius: 5px;
+            font-family: 'Poppins';
+            width: 330px;
+        }
+
+        .status-label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #566a7f; /* Dark navy color */
+            margin-right: 15px;
+            margin-left: 20px;
+        }
+
+        .status-input {
+            font-family: 'Poppins';
+            border: 1px solid #CCC;
+            padding: 5px;
+            border-radius: 4px;
+            width: 200px; /* Adjust the width as needed */
+            height: 24px;
+            font-weight: 600;
+            color: #566a7f;
+        }
+        .text-green {
+            color: green;
+        }
     </style>
 </head>
 
@@ -143,10 +179,6 @@
             <span class="deets">{{ $violation->created_at }}</span>
         </li>
         <li>
-            <span>Remarks:</span>
-            <span class="deets">{{ $violation->remarks }}</span>
-        </li>
-        <li>
             <span>Location:</span>
             <span class="deets">{{ $violation->vehicle->location ?? 'Unknown' }}</span>
         </li>        
@@ -162,6 +194,9 @@
     
 </div>
 
+@endsection
+
+@section('content-2')
 <div class="sec-title">
     <h2 class="section-title">Document</h2>
 </div>
@@ -182,8 +217,8 @@
         </div>
 
         <div class="save_not_btn">
-            <button type="submit" id="submit" class="done">DONE</button>
             <a class="nav-link" href="{{ url('/reported_violations') }}">BACK</a>
+            <button type="submit" id="submit" class="done">SAVE</button>
         </div>
     </form>
     @else
@@ -204,6 +239,14 @@
             <button type="submit" id="save-button" class="save" disabled>SAVE</button>
         </form>
     @endif
+    </ul>
+    <ul>
+        <div class="status-container">
+            <label class="status-label">STATUS:</label>
+            <a class="status-input {{ $violation->remarks === 'Settled' ? 'text-green' : ($violation->remarks === 'Not Been Settled' ? 'text-gray' : '') }}">
+                {{ $violation->remarks }}
+            </a>
+        </div>
     </ul>
 </div>
 
@@ -252,6 +295,5 @@
         }
     });
 </script>
-
 
 @endsection

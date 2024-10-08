@@ -46,9 +46,9 @@
                             Reported Violations
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('payments') ? 'active' : '' }}">
-                        <a href="{{ route('payments') }}" class="{{ request()->routeIs('payments') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/wallet-app.png" class="{{ request()->routeIs('payments') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
+                    <li class="payments {{ request()->routeIs('payments') ? 'active' : '' }}">
+                        <a href="https://dashboard.paymongo.com/home" target="_blank" class="{{ request()->routeIs('payments') ? 'active' : '' }}">
+                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/leaf.png" class="{{ request()->routeIs('payments') ? 'active' : '' }}" alt="Payments Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
                             Payments
                         </a>
                     </li>

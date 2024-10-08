@@ -79,6 +79,8 @@ return [
             'transport' => 'array',
         ],
 
+        'log_channel' => env('MAIL_LOG_CHANNEL', 'stack'),
+
         'failover' => [
             'transport' => 'failover',
             'mailers' => [

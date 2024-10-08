@@ -97,19 +97,19 @@
     <ul>
         <li>
             <span>Copy of Driver License:</span> 
-            <span class="deets">{{ $vehicle->copy_driver_license }}</span>
+            <img class="deets" src="{{ $vehicle->copy_driver_license }}">
         </li>
         <li>
             <span>Copy of OR/CR:</span>
-            <span class="deets">{{ $vehicle->copy_or_cr }}</span>
+            <img class="deets" src="{{ $vehicle->copy_or_cr }}">
         </li>
         <li>
             <span>Copy of School ID:</span> 
-            <span class="deets">{{ $vehicle->copy_school_id }}</span>
+            <img class="deets" src="{{ $vehicle->copy_school_id }}">
         </li>
         <li>
             <span>Copy of COR:</span> 
-            <span class="deets">{{ $vehicle->copy_cor }}</span>
+            <img class="deets" src="{{ $vehicle->copy_cor }}">
         </li>
     </ul>
     </div>
