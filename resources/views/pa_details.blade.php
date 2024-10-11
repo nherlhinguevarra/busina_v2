@@ -93,26 +93,116 @@
         </li>
     </ul>
     </div>
+    <form id="documentApprovalForm" action="{{ route('save.document.approval', ['vehicleOwnerId' => $vehicleOwnerId]) }}" method="POST">
+    @csrf
     <div class="owner-info">
-    <ul>
-        <li>
-            <span>Copy of Driver License:</span> 
-            <img class="deets" src="{{ $vehicle->copy_driver_license }}">
-        </li>
-        <li>
-            <span>Copy of OR/CR:</span>
-            <img class="deets" src="{{ $vehicle->copy_or_cr }}">
-        </li>
-        <li>
-            <span>Copy of School ID:</span> 
-            <img class="deets" src="{{ $vehicle->copy_school_id }}">
-        </li>
-        <li>
-            <span>Copy of COR:</span> 
-            <img class="deets" src="{{ $vehicle->copy_cor }}">
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <span>Copy of Driver License:</span>
+                <button type="button" class="view-btn" onclick="openModal('licenseModal')">View</button>
+                <label>
+                    <input type="radio" name="status_license" value="approved" class="status-radio"> Approved
+                </label>
+                <label>
+                    <input type="radio" name="status_license" value="reupload" class="status-radio"> Reupload
+                </label>
+            </li>
+            <li>
+                <span>Copy of OR/CR:</span>
+                <button type="button" class="view-btn" onclick="openModal('orcrModal')">View</button>
+                <label>
+                    <input type="radio" name="status_orcr" value="approved" class="status-radio"> Approved
+                </label>
+                <label>
+                    <input type="radio" name="status_orcr" value="reupload" class="status-radio"> Reupload
+                </label>
+            </li>
+            <li>
+                <span>Copy of School ID:</span>
+                <button type="button" class="view-btn" onclick="openModal('schoolIdModal')">View</button>
+                <label>
+                    <input type="radio" name="status_schoolid" value="approved" class="status-radio"> Approved
+                </label>
+                <label>
+                    <input type="radio" name="status_schoolid" value="reupload" class="status-radio"> Reupload
+                </label>
+            </li>
+            <li>
+                <span>Copy of COR:</span>
+                <button type="button" class="view-btn" onclick="openModal('corModal')">View</button>
+                <label>
+                    <input type="radio" name="status_cor" value="approved" class="status-radio"> Approved
+                </label>
+                <label>
+                    <input type="radio" name="status_cor" value="reupload" class="status-radio"> Reupload
+                </label>
+            </li>
+        </ul>
     </div>
+    <button type="submit" class="save-btn">Save</button>
+</form>
+
+
+    <div id="licenseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('licenseModal')">&times;</span>
+            <h5>Driver License</h5>
+            <img src="{{ $vehicle->copy_driver_license }}" alt="Driver License" class="modal-img">
+            <a href="{{ $vehicle->copy_driver_license }}" download class="download-btn">Download</a>
+        </div>
+    </div>
+
+    <!-- Modal for OR/CR -->
+    <div id="orcrModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('orcrModal')">&times;</span>
+            <h5>OR/CR</h5>
+            <img src="{{ $vehicle->copy_or_cr }}" alt="OR/CR" class="modal-img">
+            <a href="{{ $vehicle->copy_or_cr }}" download class="download-btn">Download</a>
+        </div>
+    </div>
+
+    <!-- Modal for School ID -->
+    <div id="schoolIdModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('schoolIdModal')">&times;</span>
+            <h5>School ID</h5>
+            <img src="{{ $vehicle->copy_school_id }}" alt="School ID" class="modal-img">
+            <a href="{{ $vehicle->copy_school_id }}" download class="download-btn">Download</a>
+        </div>
+    </div>
+
+    <!-- Modal for COR -->
+    <div id="corModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('corModal')">&times;</span>
+            <h5>COR</h5>
+            <img src="{{ $vehicle->copy_cor }}" alt="COR" class="modal-img">
+            <a href="{{ $vehicle->copy_cor }}" download class="download-btn">Download</a>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
+
+// Close modal when clicking outside of the modal content
+window.onclick = function(event) {
+    const modals = document.getElementsByClassName('modal');
+    for (let i = 0; i < modals.length; i++) {
+        if (event.target == modals[i]) {
+            modals[i].style.display = "none";
+        }
+    }
+}
+
+    </script>
+
     @endforeach
 @endforeach
 @endsection

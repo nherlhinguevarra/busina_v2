@@ -16,7 +16,7 @@ class DashboardController extends Controller
 
     // Fetch transactions with pending claiming status, limited to 5 per page
     $pendingPickups = Transaction::with(['vehicle.vehicle_owner'])
-        ->where('claiming_status_id', 1)
+        ->where('claiming_status_id', 2) //2 for claiming
         ->paginate($limitPerPage, ['*'], 'pending-pickups-page');
 
     // Fetch unsettled violations, limited to 5 per page

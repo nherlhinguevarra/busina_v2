@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use AllDocsApprovedMail;
+use App\Mail\AllDocsApprovedMail as MailAllDocsApprovedMail;
 use App\Models\Vehicle_owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Response;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DocumentReuploadMail;
+use App\Mail\AllDocumentsApprovedMail;
+use App\Models\Users;
+use App\Mail\DocsReuploadMail;
+use App\Models\Vehicle;
 
 class DataTableController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = 20;
+        $perPage = 10;
         $data = Vehicle_owner::with(['applicant_type', 'vehicle'])
             ->whereHas('vehicle', function ($query) {
                 $query->whereHas('transaction', function ($subQuery) {
-                    $subQuery->where('claiming_status_id', 1); //adjust to 0
+                    $subQuery->where('claiming_status_id', 1); //1-pending, 2-to claim
                 });
             })
             ->paginate($perPage);
@@ -148,6 +155,8 @@ class DataTableController extends Controller
             'vehicle.transaction'  // Load transactions related to vehicles
         ])->findOrFail($id);
 
+        $vehicleOwnerId = $item->id;  // Store the vehicle owner ID for the form
+
         foreach ($item->vehicle as $vehicle) {
             try {
                 $vehicle->copy_driver_license = $vehicle->copy_driver_license ? Crypt::decrypt($vehicle->copy_driver_license) : null;
@@ -165,7 +174,69 @@ class DataTableController extends Controller
 
         $item->qr_code_base64 = base64_encode($item->qr_code);
 
-        return view('pa_details', compact('item'));
+        return view('pa_details', compact('item', 'vehicleOwnerId'));
     }
+
+    public function saveDocumentApproval(Request $request, $vehicleOwnerId)
+{
+    // Fetch vehicle owner and the related user and vehicle information
+    $vehicleOwner = Vehicle_owner::find($vehicleOwnerId);
+    $user = $vehicleOwner->users; // Fetch user associated with vehicle_owner
+    
+    // Get the first vehicle related to the vehicle owner
+    $vehicle = $vehicleOwner->vehicle->first();
+    
+    if ($vehicle) {
+        // Get the first transaction related to this vehicle
+        $transaction = $vehicle->transaction->first(); // Ensure it's a single model
+        
+        // Track files that need reupload
+        $filesToReupload = [];
+        
+        // Check each file status
+        if ($request->input('status_license') === 'reupload') {
+            $filesToReupload[] = 'Copy of Driver License';
+        }
+        if ($request->input('status_orcr') === 'reupload') {
+            $filesToReupload[] = 'Copy of OR/CR';
+        }
+        if ($request->input('status_schoolid') === 'reupload') {
+            $filesToReupload[] = 'Copy of School ID';
+        }
+        if ($request->input('status_cor') === 'reupload') {
+            $filesToReupload[] = 'Copy of COR';
+        }
+        
+        // Check if there are files to be reuploaded
+        if (count($filesToReupload) > 0) {
+            // Send an email to notify the user to reupload specific files
+            Mail::to($user->email)->send(new DocsReuploadMail($filesToReupload, $user));
+        
+        } else {
+            // All files are approved, send notification about next steps
+            // Get the plate_no from the first vehicle, assuming it exists
+            $plateNo = $vehicle->plate_no;
+
+            // Send email notifying that all docs are approved
+            Mail::to($user->email)->send(new MailAllDocsApprovedMail($user, $plateNo));
+        
+            // If the transaction exists, update the claiming_status_id to 2 (approved status)
+            if ($transaction) {
+                // Make sure we're dealing with a single transaction model
+                $transaction->claiming_status_id = 2;
+                $transaction->save(); // Save the transaction model
+            } else {
+                // Handle the case where no transaction is found
+                return redirect()->back()->with('error', 'No transaction found for the vehicle.');
+            }
+        }
+    } else {
+        return redirect()->back()->with('error', 'No vehicle found for this owner.');
+    }
+    
+    return redirect()->back()->with('success', 'Document statuses saved successfully.');
+}
+
+
 
 }

@@ -95,6 +95,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/settle-violation/store', [ReportedViolationsController::class, 'store'])->name('settle_violation.store');
 
+    Route::post('/save-document-approval/{vehicleOwnerId}', [DataTableController::class, 'saveDocumentApproval'])->name('save.document.approval');
+
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login'); // Login form
