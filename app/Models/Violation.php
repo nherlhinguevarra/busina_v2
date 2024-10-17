@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\NewViolationNotif;
+use Illuminate\Support\Facades\Notification;
 
 class Violation extends Model
 {
@@ -36,5 +38,12 @@ class Violation extends Model
 
     public function authorized_user() {
         return $this->belongsTo(Authorized_user::class, 'reported_by');
+    }
+
+    protected static function booted() {
+        static::created(function ($violation) {
+            Notification::route('broadcast', '')
+                ->notify(new NewViolationNotif($violation));
+        });
     }
 }

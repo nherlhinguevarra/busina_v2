@@ -19,6 +19,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\NotificationController;
+use App\Models\Vehicle;
+use App\Models\Violation;
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -96,6 +99,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/settle-violation/store', [ReportedViolationsController::class, 'store'])->name('settle_violation.store');
 
     Route::post('/save-document-approval/{vehicleOwnerId}', [DataTableController::class, 'saveDocumentApproval'])->name('save.document.approval');
+
+    Route::get('/check-new-entries', function() {
+        $newVehicles = Vehicle::with('vehicle_owner') // Ensure relationship is loaded
+            ->where('created_at', '>', now()->subMinutes(60))
+            ->get();
+    
+        $newViolations = Violation::where('created_at', '>', now()->subMinutes(60))->get();
+    
+        return response()->json([
+            'newVehicles' => $newVehicles,
+            'newViolations' => $newViolations
+        ]);
+    });
+    
+    
 
 });
 

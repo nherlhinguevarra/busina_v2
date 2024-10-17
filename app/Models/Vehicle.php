@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\NewVehicleNotif;
+use Illuminate\Support\Facades\Notification;
 
 class Vehicle extends Model
 {
@@ -40,5 +42,12 @@ class Vehicle extends Model
 
     public function vehicle_owner() {
         return $this->belongsTo(Vehicle_owner::class, 'vehicle_owner_id', 'id');
+    }
+
+    protected static function booted () {
+        static::created(function ($vehicle) {
+            Notification::route('broadcast', '')
+                ->notify(new NewVehicleNotif($vehicle));
+        });
     }
 }

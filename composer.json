@@ -9,10 +9,11 @@
         "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "phpmailer/phpmailer": "^6.9"
+        "phpmailer/phpmailer": "^6.9",
+        "pusher/pusher-php-server": "^7.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.13",
+        "barryvdh/laravel-debugbar": "*",
         "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
