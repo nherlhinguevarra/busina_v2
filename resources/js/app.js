@@ -1,5 +1,4 @@
 import './bootstrap';
-import '../../storage/app/public/js/notification-listener';
 
 window.Echo.channel('vehicle-channel')
     .listen('NewVehicleNotif', (event) => {
