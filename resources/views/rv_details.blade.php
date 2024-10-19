@@ -14,145 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    @vite(['storage/app/public/css/details.css', 'storage/app/public/js/app.js'])
-
-    <style>
-        .click_files {
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed rgba(0, 0, 0, 1);
-            border-radius: 4px;
-            padding: 30px 20px 20px 20px;
-            text-align: center;
-            color: #999;
-            cursor: pointer;
-            background-color: white;
-            margin-top: 0.3rem;
-        }
-        .click_files img {
-            width: 100px;
-            margin-right: 10px;
-        }
-        .photo {
-            text-align: center;
-            padding: 15px 0px 0px 0px;
-        }
-        .save_not_btn {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .save_not_btn .done {
-            font-family: 'Poppins';
-            background-color: #FFAD60;
-            color: white;
-            padding: 8px 16px; 
-            border: none; 
-            border-radius: 4px; 
-            margin-right: 8px;
-            width: 100px;
-        }
-        .done:hover {
-            background-color: #FFD09B;
-            color: white;
-        }
-        .save_not_btn .nav-link {
-            text-decoration: none;
-            font-family: 'Poppins';
-            padding: 8px 16px; 
-            border: none; 
-            border-radius: 4px; 
-            margin-right: 8px;
-            width: 75px;
-            background-color: #5077A5; 
-            color: white;
-            font-size: 14px;
-            text-align: center;
-            font-weight: 200;
-        }
-        .save_not_btn .nav-link:hover {
-            background-color: rgba(53, 192, 247, 0.3);
-            color: #09b3e4;
-        }
-        .docu {
-            width: 100%;
-            margin-left: 150px;
-        }
-        .edit {
-            font-family: 'Poppins';
-            font-size: 14px;
-            background-color: #5077A5; 
-            color: white; 
-            padding: 8px 16px; 
-            border: none; 
-            border-radius: 4px; 
-            margin-right: 8px;
-            width: 100px;
-            text-align: center;
-            margin-left: 150px;
-            margin-top: 20px;
-            font-weight: 400;
-        }
-        .edit:hover {
-            background-color: rgba(53, 192, 247, 0.3);
-            color: #09b3e4;
-        }
-        .save {
-            font-family: 'Poppins';
-            font-size: 14px;
-            background-color: #FFAD60;
-            color: white;
-            padding: 8px 16px; 
-            border: none; 
-            border-radius: 4px; 
-            margin-right: 8px;
-            width: 100px;
-            text-align: center;
-            margin-left: 135px;
-            margin-top: 20px;
-            font-weight: 400;
-        }
-        .save:hover {
-            background-color: #FFD09B;
-            color: white;
-        }
-        #save-button:disabled {
-            cursor: not-allowed;        /* 'not-allowed' cursor */
-            color: #b0b0b0;
-            background-color:#f2f2f2;
-        }
-        .status-container {
-            display: flex;
-            align-items: center;
-            background-color: #F0F0F0; /* Light grey background */
-            padding: 8px;
-            border-radius: 5px;
-            font-family: 'Poppins';
-            width: 330px;
-        }
-
-        .status-label {
-            font-weight: bold;
-            font-size: 14px;
-            color: #566a7f; /* Dark navy color */
-            margin-right: 15px;
-            margin-left: 20px;
-        }
-
-        .status-input {
-            font-family: 'Poppins';
-            border: 1px solid #CCC;
-            padding: 5px;
-            border-radius: 4px;
-            width: 200px; /* Adjust the width as needed */
-            height: 24px;
-            font-weight: 600;
-            color: #566a7f;
-        }
-        .text-green {
-            color: green;
-        }
-    </style>
+    @vite(['resources/css/details.css', 'resources/js/app.js'])
 </head>
 
 <!-- Displaying Violation Information -->
@@ -209,7 +71,7 @@
         <input type="hidden" name="violation_id" value="{{ $violation->id }}">
         
         <div class="click_files" id="click-files">
-            <img src="{{ Vite::asset('storage/app/public/images/upload 1.png') }}" alt="Upload icon" id="upload-icon">
+            <img src="{{ Vite::asset('resources/images/upload 1.png') }}" alt="Upload icon" id="upload-icon">
             <div class="file-label">
                 <label for="files">Click to Attach Document</label>
             </div>
@@ -218,7 +80,7 @@
 
         <div class="save_not_btn">
             <a class="nav-link" href="{{ url('/reported_violations') }}">BACK</a>
-            <button type="submit" id="submit" class="done">SAVE</button>
+            <button type="submit" id="submit" class="save">SAVE</button>
         </div>
     </form>
     @else

@@ -82,7 +82,7 @@ class DataTableController extends Controller
         return response()->stream($callback, 200, $headers);
     }
 
-    public function exportAllDetailsToCSV()
+    public function exportAllAppDetailsToCSV()
     {
         $owners = Vehicle_owner::with([
             'applicant_type', 
@@ -90,7 +90,7 @@ class DataTableController extends Controller
             'vehicle.transaction'
         ])->get();
 
-        $csvFileName = 'vehicle_owner_details.csv';
+        $csvFileName = 'pending_applications.csv';
         $headers = [
             'Content-type' => 'text/csv',
             'Content-Disposition' => "attachment; filename=$csvFileName",
@@ -211,6 +211,7 @@ class DataTableController extends Controller
         if (count($filesToReupload) > 0) {
             // Send an email to notify the user to reupload specific files
             Mail::to($user->email)->send(new DocsReuploadMail($filesToReupload, $user));
+            return redirect()->route('pending_applications')->with('success', 'Registration remarks sent to applicant via email');
         
         } else {
             // All files are approved, send notification about next steps
@@ -224,7 +225,9 @@ class DataTableController extends Controller
             if ($transaction) {
                 // Make sure we're dealing with a single transaction model
                 $transaction->claiming_status_id = 2;
+                $transaction->issued_date = now()->toDateString();
                 $transaction->save(); // Save the transaction model
+                return redirect()->route('pending_applications')->with('success', 'Registration remarks sent to applicant via email');
             } else {
                 // Handle the case where no transaction is found
                 return redirect()->back()->with('error', 'No transaction found for the vehicle.');

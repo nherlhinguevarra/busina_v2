@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/details.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['storage/app/public/css/details.css', 'storage/app/public/js/app.js'])
+    @vite(['resources/css/details.css', 'resources/js/app.js'])
 </head>
 
 <!-- Owner Information -->
@@ -45,10 +45,6 @@
             <span>Issued Date:</span>
             <span class="deets">{{ $transaction->issued_date }}</span>
         </li>
-        <li>
-            <span>Claiming Status:</span>
-            <span class="deets">{{ $transaction->claiming_status->status ?? 'Unknown' }}</span>
-        </li>
     </ul>
 </div>
 @endsection
@@ -73,8 +69,6 @@
             <span>Expiry Date:</span>
             <span class="deets">{{ $transaction->vehicle->expiry_date }}</span>
         </li>
-    </ul>
-    <ul>
         <li>
             <span>OR No:</span>
             <span class="deets">{{ $transaction->vehicle->or_no }}</span>
@@ -87,26 +81,88 @@
             <span>Reference No:</span>
             <span class="deets">{{ $transaction->reference_no }}</span>
         </li>
+        <li>
+            <span>Claiming Status:</span>
+            <span class="deets">{{ $transaction->claiming_status->status ?? 'Unknown' }}</span>
+        </li>
     </ul>
-</div>
-<div class="owner-info">
     <ul>
         <li>
             <span>Copy of Driver License:</span>
-            <span class="deets">{{ $transaction->vehicle->copy_driver_license }}</span>
-        </li>
-        <li>
-            <span>Copy of COR:</span>
-            <span class="deets">{{ $transaction->vehicle->copy_cor }}</span>
-        </li>
-        <li>
-            <span>Copy of School ID:</span>
-            <span class="deets">{{ $transaction->vehicle->copy_school_id }}</span>
+            <button type="button" class="view-btn" onclick="openModal('licenseModal')">View</button>
         </li>
         <li>
             <span>Copy of OR/CR:</span>
-            <span class="deets">{{ $transaction->vehicle->copy_or_cr }}</span>
+            <button type="button" class="view-btn" onclick="openModal('orcrModal')">View</button>
+        </li>
+        <li>
+            <span>Copy of School ID:</span>
+            <button type="button" class="view-btn" onclick="openModal('schoolIdModal')">View</button>
+        </li>
+        <li>
+            <span>Copy of COR:</span>
+            <button type="button" class="view-btn" onclick="openModal('corModal')">View</button>
         </li>
     </ul>
 </div>
+
+<div id="licenseModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('licenseModal')">&times;</span>
+        <h5>Driver License</h5>
+        <img src="{{ $transaction->vehicle->copy_driver_license }}" alt="Driver License" class="modal-img">
+        <a href="{{ $transaction->vehicle->copy_driver_license }}" download class="blue-btn">Download</a>
+    </div>
+</div>
+
+<!-- Modal for OR/CR -->
+<div id="orcrModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('orcrModal')">&times;</span>
+        <h5>OR/CR</h5>
+        <img src="{{ $transaction->vehicle->copy_or_cr }}" alt="OR/CR" class="modal-img">
+        <a href="{{ $transaction->vehicle->copy_or_cr }}" download class="blue-btn">Download</a>
+    </div>
+</div>
+
+<!-- Modal for School ID -->
+<div id="schoolIdModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('schoolIdModal')">&times;</span>
+        <h5>School ID</h5>
+        <img src="{{ $transaction->vehicle->copy_school_id }}" alt="School ID" class="modal-img">
+        <a href="{{ $transaction->vehicle->copy_school_id }}" download class="blue-btn">Download</a>
+    </div>
+</div>
+
+<!-- Modal for COR -->
+<div id="corModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('corModal')">&times;</span>
+        <h5>COR</h5>
+        <img src="{{ $transaction->vehicle->copy_cor }}" alt="COR" class="modal-img">
+        <a href="{{ $transaction->vehicle->copy_cor }}" download class="blue-btn">Download</a>
+    </div>
+</div>
+
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+
+    // Close modal when clicking outside of the modal content
+    window.onclick = function(event) {
+        const modals = document.getElementsByClassName('modal');
+        for (let i = 0; i < modals.length; i++) {
+            if (event.target == modals[i]) {
+                modals[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
 @endsection

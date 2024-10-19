@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['storage/app/public/css/app.css', 'storage/app/public/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
 </head>
 <body>
@@ -16,9 +16,9 @@
             <aside class="sidebar">
                 <div class="logo-btn">
                     <button class="sidebar-close-btn" aria-label="Close sidebar">
-                        <img src="{{ Vite::asset('storage/app/public/images/close-btn.png') }}" alt="Sidebar Close" style="width: 50px; height: 50px;">
+                        <img src="{{ Vite::asset('resources/images/close-btn.png') }}" alt="Sidebar Close" style="width: 50px; height: 50px;">
                     </button>
-                    <img src="{{ Vite::asset('storage/app/public/images/BUsina-logo-gray.png') }}" class="side-logo" alt="Description">
+                    <img src="{{ Vite::asset('resources/images/BUsina-logo-gray.png') }}" class="side-logo" alt="Description">
                 </div>
                     <!-- Side menu content -->
                 <ul>

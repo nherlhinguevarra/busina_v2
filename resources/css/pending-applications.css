@@ -182,3 +182,44 @@ input[type="text"]:focus {
 .table {
     margin-top: 20px;
 }
+
+/* Notification Box */
+.notification-box {
+    background-color: #D6EFD8; /* Green for success */
+    color: #347928;
+    padding: 17px;
+    position: fixed;
+    top: 20px;
+    right: -300px; /* Initially hide off-screen to the right */
+    border-radius: 5px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.5s ease-out, right 0.5s ease-out;
+}
+
+/* Sliding in from the right */
+.slide-in {
+    right: 20px; /* Bring it into view */
+}
+
+/* Sliding out to the right */
+.slide-out {
+    right: -300px; /* Move it off-screen */
+}
+
+/* Hidden by default */
+.hidden {
+    display: none;
+}
+
+/* Close button for the notification */
+.notification-box .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    font-style: 'Poppins';
+}

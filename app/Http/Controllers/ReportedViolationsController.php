@@ -63,7 +63,7 @@ class ReportedViolationsController extends Controller
         return Response::stream($callback, 200, $headers);
     }
 
-    public function exportAllDetailsToCSV()
+    public function exportAllVioDetailsToCSV()
     {
         // Fetch all violations with related violation_type and authorized_user
         $violations = Violation::with([
@@ -72,7 +72,7 @@ class ReportedViolationsController extends Controller
             'vehicle' // Load related vehicle information
         ])->get();
 
-        $csvFileName = 'reported_violations_details.csv';
+        $csvFileName = 'reported_violations.csv';
         $headers = [
             'Content-type' => 'text/csv',
             'Content-Disposition' => "attachment; filename=$csvFileName",

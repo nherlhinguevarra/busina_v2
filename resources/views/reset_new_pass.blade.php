@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Busina Security - Reset New Password</title>
-    <link rel="shortcut icon" href="{{ Vite::asset('favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ Vite::asset('resources/images/favicon.png') }}" type="image/x-icon">
     <meta content="" name="description">
     <meta content="" name="keywords">
     
@@ -15,7 +15,7 @@
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/login.css') }}"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @vite(['storage/app/public/css/login.css', 'storage/app/public/js/login.js'])
+    @vite(['resources/css/login.css', 'resources/js/login.js'])
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
                 <div class="login-asset">
-                    <img src="{{ Vite::asset('storage/app/public/images/login.png') }}">
+                    <img src="{{ Vite::asset('resources/images/login.png') }}">
                 </div>
             </div>
 
@@ -100,6 +100,6 @@
         </div>
     </div>
     
-    <script src="{{ VIte::asset('storage/app/public/js/reset_new_pass.js') }}"></script>
+    <script src="{{ VIte::asset('resources/js/reset_new_pass.js') }}"></script>
 </body>
 </html>

@@ -66,7 +66,7 @@ class AllUsersController extends Controller
         return Response::stream($callback, 200, $headers);
     }
 
-    public function exportAllDetailsToCSV()
+    public function exportAllUserDetailsToCSV()
     {
         $owners = Vehicle_owner::with([
             'users',
@@ -74,7 +74,7 @@ class AllUsersController extends Controller
             'vehicle.transaction'
         ])->get();
 
-        $csvFileName = 'all_users_details.csv';
+        $csvFileName = 'all_users.csv';
         $headers = [
             'Content-type' => 'text/csv',
             'Content-Disposition' => "attachment; filename=$csvFileName",

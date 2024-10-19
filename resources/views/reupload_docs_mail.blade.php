@@ -2,12 +2,12 @@
     <head>
         <!-- <link rel="stylesheet" href="{{ asset('css/email_style.css') }}"> -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        @vite(['storage/app/public/css/email_style.css'])
+        @vite(['resources/css/email_style.css'])
     </head>
     <body style='font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; font-weight: 500;'>
         <div style='background-color: white; border-radius: 10px; width: 100%; max-width: 600px; margin: 20px auto; text-align: left;'>
             <div style='background-color: #161a39; align-items: center; text-align: center; padding: 20px;'>
-                <img src="{{ Vite::asset('storage/images/lockreload.png') }}" alt="">
+                <img src="{{ Vite::asset('resources/images/lockreload.png') }}" alt="">
                 <h3 style='color: white; font-size: 20px;'>Reupload Vehicle Registration Documents</h3>
             </div>
             <div style='padding: 40px;'>

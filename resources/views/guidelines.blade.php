@@ -11,9 +11,9 @@
     <title>@yield('title', 'My Laravel App')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}"> -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- @vite(['storage/app/public/css/app1.css', 'storage/app/public/js/app.js']) -->
+    @vite(['storage/app/public/css/app1.css'])
 </head>
 
 <body>

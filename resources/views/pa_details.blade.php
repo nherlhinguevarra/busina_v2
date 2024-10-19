@@ -16,8 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/details.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['storage/app/public/css/details.css', 'storage/app/public/js/app.js'])
+    @vite(['resources/css/details.css', 'resources/js/app.js'])
 </head>
+
 <h2 class="section-title">Owner Information</h2>
 <div class="owner-info">
     <ul>
@@ -59,6 +60,7 @@
 <h2 class="section-title">Vehicle Information</h2>
 @foreach($item->vehicle as $vehicle)
     @foreach($vehicle->transaction as $transaction)
+    
     <div class="owner-info">
     <ul>
         <li>
@@ -77,8 +79,6 @@
             <span>Expiry Date:</span> 
             <span class="deets">{{ $vehicle->expiry_date }}</span>
         </li>
-    </ul>
-    <ul>
         <li>
             <span>OR No:</span> 
             <span class="deets">{{ $vehicle->or_no }}</span>
@@ -92,54 +92,55 @@
             <span class="deets">{{ $transaction->reference_no }}</span>
         </li>
     </ul>
-    </div>
+    <ul>
     <form id="documentApprovalForm" action="{{ route('save.document.approval', ['vehicleOwnerId' => $vehicleOwnerId]) }}" method="POST">
     @csrf
-    <div class="owner-info">
-        <ul>
-            <li>
-                <span>Copy of Driver License:</span>
-                <button type="button" class="view-btn" onclick="openModal('licenseModal')">View</button>
-                <label>
-                    <input type="radio" name="status_license" value="approved" class="status-radio"> Approved
-                </label>
-                <label>
-                    <input type="radio" name="status_license" value="reupload" class="status-radio"> Reupload
-                </label>
-            </li>
-            <li>
-                <span>Copy of OR/CR:</span>
-                <button type="button" class="view-btn" onclick="openModal('orcrModal')">View</button>
-                <label>
-                    <input type="radio" name="status_orcr" value="approved" class="status-radio"> Approved
-                </label>
-                <label>
-                    <input type="radio" name="status_orcr" value="reupload" class="status-radio"> Reupload
-                </label>
-            </li>
-            <li>
-                <span>Copy of School ID:</span>
-                <button type="button" class="view-btn" onclick="openModal('schoolIdModal')">View</button>
-                <label>
-                    <input type="radio" name="status_schoolid" value="approved" class="status-radio"> Approved
-                </label>
-                <label>
-                    <input type="radio" name="status_schoolid" value="reupload" class="status-radio"> Reupload
-                </label>
-            </li>
-            <li>
-                <span>Copy of COR:</span>
-                <button type="button" class="view-btn" onclick="openModal('corModal')">View</button>
-                <label>
-                    <input type="radio" name="status_cor" value="approved" class="status-radio"> Approved
-                </label>
-                <label>
-                    <input type="radio" name="status_cor" value="reupload" class="status-radio"> Reupload
-                </label>
-            </li>
-        </ul>
+        <li>
+            <span>Copy of Driver License:</span>
+            <button type="button" class="view-btn" onclick="openModal('licenseModal')">View</button>
+            <label>
+                <input type="radio" name="status_license" value="approved" class="status-radio"> Approved
+            </label>
+            <label>
+                <input type="radio" name="status_license" value="reupload" class="status-radio"> Reupload
+            </label>
+        </li>
+        <li>
+            <span>Copy of OR/CR:</span>
+            <button type="button" class="view-btn" onclick="openModal('orcrModal')">View</button>
+            <label>
+                <input type="radio" name="status_orcr" value="approved" class="status-radio"> Approved
+            </label>
+            <label>
+                <input type="radio" name="status_orcr" value="reupload" class="status-radio"> Reupload
+            </label>
+        </li>
+        <li>
+            <span>Copy of School ID:</span>
+            <button type="button" class="view-btn" onclick="openModal('schoolIdModal')">View</button>
+            <label>
+                <input type="radio" name="status_schoolid" value="approved" class="status-radio"> Approved
+            </label>
+            <label>
+                <input type="radio" name="status_schoolid" value="reupload" class="status-radio"> Reupload
+            </label>
+        </li>
+        <li>
+            <span>Copy of COR:</span>
+            <button type="button" class="view-btn" onclick="openModal('corModal')">View</button>
+            <label>
+                <input type="radio" name="status_cor" value="approved" class="status-radio"> Approved
+            </label>
+            <label>
+                <input type="radio" name="status_cor" value="reupload" class="status-radio"> Reupload
+            </label>
+        </li>
+    </ul>
     </div>
-    <button type="submit" class="save-btn">Save</button>
+    <div class="buttons">
+        <a class="blue-btn" href="{{ url('/pending_applications') }}">BACK</a>
+        <button type="submit" class="save-btn">DONE</button>
+    </div>
 </form>
 
 
@@ -148,7 +149,7 @@
             <span class="close" onclick="closeModal('licenseModal')">&times;</span>
             <h5>Driver License</h5>
             <img src="{{ $vehicle->copy_driver_license }}" alt="Driver License" class="modal-img">
-            <a href="{{ $vehicle->copy_driver_license }}" download class="download-btn">Download</a>
+            <a href="{{ $vehicle->copy_driver_license }}" download class="blue-btn">Download</a>
         </div>
     </div>
 
@@ -158,7 +159,7 @@
             <span class="close" onclick="closeModal('orcrModal')">&times;</span>
             <h5>OR/CR</h5>
             <img src="{{ $vehicle->copy_or_cr }}" alt="OR/CR" class="modal-img">
-            <a href="{{ $vehicle->copy_or_cr }}" download class="download-btn">Download</a>
+            <a href="{{ $vehicle->copy_or_cr }}" download class="blue-btn">Download</a>
         </div>
     </div>
 
@@ -168,7 +169,7 @@
             <span class="close" onclick="closeModal('schoolIdModal')">&times;</span>
             <h5>School ID</h5>
             <img src="{{ $vehicle->copy_school_id }}" alt="School ID" class="modal-img">
-            <a href="{{ $vehicle->copy_school_id }}" download class="download-btn">Download</a>
+            <a href="{{ $vehicle->copy_school_id }}" download class="blue-btn">Download</a>
         </div>
     </div>
 
@@ -178,29 +179,45 @@
             <span class="close" onclick="closeModal('corModal')">&times;</span>
             <h5>COR</h5>
             <img src="{{ $vehicle->copy_cor }}" alt="COR" class="modal-img">
-            <a href="{{ $vehicle->copy_cor }}" download class="download-btn">Download</a>
+            <a href="{{ $vehicle->copy_cor }}" download class="blue-btn">Download</a>
         </div>
     </div>
 
-    <script>
-        function openModal(modalId) {
-    document.getElementById(modalId).style.display = "block";
-}
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
 
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = "none";
-}
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
 
-// Close modal when clicking outside of the modal content
-window.onclick = function(event) {
-    const modals = document.getElementsByClassName('modal');
-    for (let i = 0; i < modals.length; i++) {
-        if (event.target == modals[i]) {
-            modals[i].style.display = "none";
+    // Close modal when clicking outside of the modal content
+    window.onclick = function(event) {
+        const modals = document.getElementsByClassName('modal');
+        for (let i = 0; i < modals.length; i++) {
+            if (event.target == modals[i]) {
+                modals[i].style.display = "none";
+            }
         }
     }
-}
 
+    // Function to show the notification
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.querySelector('.message').textContent = message;
+        notification.classList.remove('hidden');
+        
+        // Slide the notification in
+        setTimeout(function() {
+            notification.classList.add('slide-in');
+        }, 100); // Small delay for better effect
+        
+        // Automatically hide the notification after 5 seconds
+        setTimeout(function() {
+            closeNotification();
+        }, 5000);
+    }
     </script>
 
     @endforeach

@@ -10,8 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/pending-applications.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['storage/app/public/css/pending-applications.css', 'storage/app/public/js/app.js'])
+    @vite(['resources/css/pending-applications.css', 'resources/js/app.js'])
 </head>
+
+<div id="notification" class="notification-box hidden">
+    <span class="message"></span>
+    <button class="close-btn" onclick="closeNotification()" style="color: #347928;">×</button>
+</div>
 
 <div class="table-container">
     <div class="heading">
@@ -22,7 +27,7 @@
                     Export as CSV
                 </button>
             </form>
-            <form action="{{ route('exportAllDetailsToCSV') }}" method="GET" style="display: inline;">
+            <form action="{{ route('exportAllAppDetailsToCSV') }}" method="GET" style="display: inline;">
                 <button type="submit" class="buttons">Export All Details to CSV</button>
             </form>
         </div>
@@ -103,6 +108,44 @@
 </div>
 
 <script>
+    // Function to show the notification
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.querySelector('.message').textContent = message;
+        notification.classList.remove('hidden');
+        
+        // Slide the notification in
+        setTimeout(function() {
+            notification.classList.add('slide-in');
+        }, 100); // Small delay for better effect
+        
+        // Automatically hide the notification after 5 seconds
+        setTimeout(function() {
+            closeNotification();
+        }, 5000);
+    }
+
+    // Function to close the notification manually
+    function closeNotification() {
+        const notification = document.getElementById('notification');
+        
+        // Slide the notification out
+        notification.classList.remove('slide-in');
+        notification.classList.add('slide-out');
+        
+        // After the slide-out animation, hide the notification
+        setTimeout(function() {
+            notification.classList.add('hidden');
+            notification.classList.remove('slide-out'); // Reset for future use
+        }, 500); // Match the transition time
+    }
+
+// Check for session messages (if you are using Laravel's session flash)
+@if (session('success'))
+    showNotification('{{ session('success') }}');
+@endif
+
+
     document.getElementById('searchInput').addEventListener('keyup', filterTable);
     document.getElementById('yearFilter').addEventListener('change', filterTable);
     document.getElementById('monthFilter').addEventListener('change', filterTable);

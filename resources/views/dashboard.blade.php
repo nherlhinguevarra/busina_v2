@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['storage/app/public/css/app1.css', 'storage/app/public/js/app.js'])
+    @vite(['resources/css/app1.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -44,7 +44,7 @@
         <div class="box">
             <div class="title-col">
                 <div class="col-1">
-                    <img src="{{ Vite::asset('storage/app/public/images/busina_asset.png') }}" alt="">
+                    <img src="{{ Vite::asset('resources/images/busina_asset.png') }}" alt="">
                 </div>
                 <div class="col-2">
                     <h1 class="bu-title">

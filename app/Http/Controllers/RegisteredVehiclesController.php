@@ -53,7 +53,7 @@ class RegisteredVehiclesController extends Controller
         return response()->stream($callback, 200, $headers);
     }
 
-    public function exportAllDetailsToCSV()
+    public function exportAllRegDetailsToCSV()
     {
         $owners = Vehicle_owner::with([
             'applicant_type',
@@ -61,7 +61,7 @@ class RegisteredVehiclesController extends Controller
             'vehicle.transaction.claiming_status'
         ])->get();
 
-        $csvFileName = 'vehicle_owner_details.csv';
+        $csvFileName = 'registered_vehicles.csv';
         $headers = [
             'Content-type' => 'text/csv',
             'Content-Disposition' => "attachment; filename=$csvFileName",

@@ -1,0 +1,375 @@
+.title-details {
+  margin: 0px;
+  color: #566a7f;
+  margin-left: 5px;
+}
+h1 {
+    font-size: 24px; 
+    font-weight: bold;
+    padding-left: 20px;
+}
+.sec-title {
+    display: grid;
+    grid-template-columns: 615px 1fr;
+}
+.section-title {
+    font-size: 18px;
+    margin: 0;
+    color:#566a7f;
+}
+
+.owner-info ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensure the container takes full width */
+    margin-right: 20px;
+}
+
+.owner-info ul li {
+    display: flex;
+    justify-content: space-between; /* Aligns items to the left and right */
+    align-items: center;
+    padding-bottom: 20px;
+    font-size: 14px;
+    width: 100%; /* Ensure each li takes full width */
+    color:#566a7f;
+}
+
+.deets {
+    border: 1px solid #ddd;
+    padding: 3px;
+    width: 70%;
+    text-align: right;
+    height: 100%;
+    align-content: center;
+    background-color:#ffffff ;
+}
+
+.owner-info {
+   display: flex;
+   gap: 50px;
+}
+
+.code {
+    margin-left: 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    width: 150px;
+    height: 150px;
+}
+.num {
+    font-size: 20px;
+}
+.vehicle {
+    border: 1px solid #dddedf;
+    border-radius: 10px;
+    background-color: aliceblue;
+    padding: 10px;
+}
+.veh-no {
+    font-size: 14px;
+    color: #566a7f;
+    margin: 20px;
+}
+/* Ensure this is in a CSS file that's linked to your Blade view */
+.applicant-type {
+    font-weight: bold;
+}
+
+.upload-area {
+    width: 300px;
+    height: 300px;
+    border: 2px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #f8f8f8;
+}
+
+.upload-area img {
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+}
+
+.upload-area p {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+}
+
+.upload-area:hover {
+    background-color: #e9e9e9;
+    border-color: #999;
+}
+
+.upload-area.dragover {
+    background-color: #f1f1f1;
+    border-color: #007bff;
+}
+
+/* Radio button label styling */
+.status-radio {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+/* Align radio buttons and buttons */
+li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+li span {
+    flex: 1;
+}
+
+.view-btn, label {
+    margin-left: 15px;
+}
+
+/* Modal and button styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.view-btn {
+    background-color: #5077A5; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Poppins';
+    padding: 8px 16px; 
+    border-radius: 4px;
+    font-weight: 200;
+}
+
+.view-btn:hover {
+    background-color: rgba(53, 192, 247, 0.3);
+    color: #09b3e4;
+}
+
+.modal-img {
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+}
+
+.blue-btn {
+    background-color: #5077A5; 
+    color: white;
+    font-family: 'Poppins';
+    font-size: 14px;
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    text-align: center;
+    font-weight: 200;
+    text-decoration: none;
+    width: 75px;
+}
+.blue-btn:hover {
+    background-color: rgba(53, 192, 247, 0.3);
+    color: #09b3e4;
+}
+
+.buttons {
+    display: flex; 
+    justify-content: flex-end;
+    gap: 30px;
+}
+.save-btn {
+    font-family: 'Poppins';
+    font-size: 14px;
+    background-color: #FFAD60;
+    color: white;
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    text-align: center;
+    font-weight: 200;
+    width: 105px;
+}    
+.save-btn:hover {
+    background-color: #FFD09B;
+    color: white;
+}
+
+/* SETTLE VIOLATION */
+
+.click_files {
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(0, 0, 0, 1);
+    border-radius: 4px;
+    padding: 30px 20px 20px 20px;
+    text-align: center;
+    color: #999;
+    cursor: pointer;
+    background-color: white;
+    margin-top: 0.3rem;
+}
+.click_files img {
+    width: 100px;
+    margin-right: 10px;
+}
+.photo {
+    text-align: center;
+    padding: 15px 0px 0px 0px;
+}
+.save_not_btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.save_not_btn .done {
+    font-family: 'Poppins';
+    background-color: #FFAD60;
+    color: white;
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    margin-right: 8px;
+    width: 100px;
+}
+.done:hover {
+    background-color: #FFD09B;
+    color: white;
+}
+.save_not_btn .nav-link {
+    text-decoration: none;
+    font-family: 'Poppins';
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    margin-right: 8px;
+    width: 75px;
+    background-color: #5077A5; 
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 200;
+}
+.save_not_btn .nav-link:hover {
+    background-color: rgba(53, 192, 247, 0.3);
+    color: #09b3e4;
+}
+.docu {
+    width: 100%;
+    margin-left: 150px;
+}
+.edit {
+    font-family: 'Poppins';
+    font-size: 14px;
+    background-color: #5077A5; 
+    color: white; 
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    margin-right: 8px;
+    width: 100px;
+    text-align: center;
+    margin-left: 150px;
+    margin-top: 20px;
+    font-weight: 400;
+}
+.edit:hover {
+    background-color: rgba(53, 192, 247, 0.3);
+    color: #09b3e4;
+}
+.save {
+    font-family: 'Poppins';
+    font-size: 14px;
+    background-color: #FFAD60;
+    color: white;
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    margin-right: 8px;
+    width: 100px;
+    text-align: center;
+    margin-left: 135px;
+    margin-top: 20px;
+    font-weight: 400;
+}
+.save:hover {
+    background-color: #FFD09B;
+    color: white;
+}
+#save-button:disabled {
+    cursor: not-allowed;        /* 'not-allowed' cursor */
+    color: #b0b0b0;
+    background-color:#f2f2f2;
+}
+.status-container {
+    display: flex;
+    align-items: center;
+    background-color: #F0F0F0; /* Light grey background */
+    padding: 8px;
+    border-radius: 5px;
+    font-family: 'Poppins';
+    width: 330px;
+}
+
+.status-label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #566a7f; /* Dark navy color */
+    margin-right: 15px;
+    margin-left: 20px;
+}
+
+.status-input {
+    font-family: 'Poppins';
+    border: 1px solid #CCC;
+    padding: 5px;
+    border-radius: 4px;
+    width: 200px; /* Adjust the width as needed */
+    height: 24px;
+    font-weight: 600;
+    color: #566a7f;
+}
+.text-green {
+    color: green;
+}
+
+

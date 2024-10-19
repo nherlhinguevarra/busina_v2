@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/pending-applications.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['storage/app/public/css/pending-applications.css', 'storage/app/public/js/app.js'])
+    @vite(['resources/css/pending-applications.css', 'resources/js/app.js'])
 </head>
 
 <div class="table-container">

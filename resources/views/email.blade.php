@@ -2,12 +2,12 @@
     <head>
         <!-- <link rel="stylesheet" href="{{ asset('css/email_style.css') }}"> -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        @vite(['storage/app/public/css/email_style.css'])
+        @vite(['resources/css/email_style.css'])
     </head>
     <body>
         <div class='email-container'>
             <div class="headmail">
-                <img src="{{ Vite::asset('lockreload.png') }}" alt="">
+                <img src="{{ Vite::asset('resources/images/lockreload.png') }}" alt="">
                 <h3>Please reset your password</h3>
             </div>
             <div class="semi-mail">

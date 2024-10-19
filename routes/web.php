@@ -78,19 +78,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/pending_applications', [DataTableController::class, 'index'])->name('pending_applications');
     Route::get('/pa_details/{id}', [DataTableController::class, 'showDetails'])->name('pa_details');
-    Route::get('/export-all-details-csv', [DataTableController::class, 'exportAllDetailsToCSV'])->name('exportAllDetailsToCSV');
+    Route::get('/export-all-app-details-csv', [DataTableController::class, 'exportAllAppDetailsToCSV'])->name('exportAllAppDetailsToCSV');
 
     Route::get('/registered_vehicles', [RegisteredVehiclesController::class, 'index'])->name('registered_vehicles');
     Route::get('/reg_details/{id}', [RegisteredVehiclesController::class, 'showDetails'])->name('reg_details');
-    Route::get('/export-all-details-csv', [RegisteredVehiclesController::class, 'exportAllDetailsToCSV'])->name('exportAllDetailsToCSV');
+    Route::get('/export-all-reg-details-csv', [RegisteredVehiclesController::class, 'exportAllRegDetailsToCSV'])->name('exportAllRegDetailsToCSV');
 
     Route::get('/reported_violations', [ReportedViolationsController::class, 'index'])->name('reported_violations');
     Route::get('/rv_details/{id}', [ReportedViolationsController::class, 'showDetails'])->name('rv_details');
-    Route::get('/export-all-details-csv', [ReportedViolationsController::class, 'exportAllDetailsToCSV'])->name('exportAllDetailsToCSV');
+    Route::get('/export-all-vio-details-csv', [ReportedViolationsController::class, 'exportAllVioDetailsToCSV'])->name('exportAllVioDetailsToCSV');
 
     Route::get('/all_users', [AllUsersController::class, 'index'])->name('all_users');
     Route::get('/au_details/{id}', [AllUsersController::class, 'showDetails'])->name('au_details');
-    Route::get('/export-all-details-csv', [AllUsersController::class, 'exportAllDetailsToCSV'])->name('exportAllDetailsToCSV');
+    Route::get('/export-all-user-details-csv', [AllUsersController::class, 'exportAllUserDetailsToCSV'])->name('exportAllUserDetailsToCSV');
 
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
 

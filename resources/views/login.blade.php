@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/login.css') }}"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @vite(['storage/app/public/css/login.css', 'storage/app/public/js/login.js'])
+    @vite(['resources/css/login.css'])
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
                 <div class="login-asset">
-                    <img src="{{ Vite::asset('storage/app/public/images/login.png') }}">
+                    <img src="{{ Vite::asset('resources/images/login.png') }}">
                 </div>
             </div>
 
@@ -91,8 +91,8 @@
         </div>
     </div>
     
-    <script src="{{ Vite::asset('storage/app/public/js/disableForm.js') }}"></script>
-    <script src="{{ Vite::asset('storage/app/public/js/login_toggle_password.js') }}"></script>
-    <script src="{{ Vite::asset('storage/app/public/js/hide_error_message.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/disableForm.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/login_toggle_password.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/hide_error_message.js') }}"></script>
 </body>
 </html>
