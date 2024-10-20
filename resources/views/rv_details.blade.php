@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main1')
 
 @section('title', 'Violation Details')
 
@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    @vite(['resources/css/details.css', 'resources/js/app.js'])
+    @vite(['resources/css/details.css', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <!-- Displaying Violation Information -->
@@ -110,6 +110,10 @@
             </a>
         </div>
     </ul>
+</div>
+
+<div class="buttons">
+        <a class="blue-btn" href="{{ url('/reported_violations') }}">BACK</a>
 </div>
 
 <script>

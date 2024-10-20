@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main1')
 
 @section('title', 'User Details')
 
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/details.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['resources/css/details.css', 'resources/js/app.js'])
+    @vite(['resources/css/details.css', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <h2 class="section-title">Owner Information</h2>
@@ -62,43 +62,50 @@
 
 @section('content-2')
 <h2 class="section-title">Vehicle Information</h2>
-<div class="vehicle">
     @foreach($sortedVehicles as $index => $vehicle)
-        <div class="owner-info">
-        <h3 class="veh-no">Vehicle 
-            <span class="num">#{{ $index + 1 }}</span>
-        </h3>
-            <ul>
-                <li>
-                    <span>Plate No:</span> 
-                    <span class="deets">{{ $vehicle->plate_no }}</span>
-                </li>
-                <li>
-                    <span>Vehicle Type:</span> 
-                    <span class="deets">{{ $vehicle->vehicle_type->type ?? 'Unknown' }}</span>
-                </li>
-            </ul>
-            <ul>
-                @if($vehicle->transaction->isNotEmpty())
-                    @foreach($vehicle->transaction as $transactionIndex => $transaction)
+        <div class="vehicle">
+            <div class="owner-info">
+                <h3 class="veh-no">Vehicle 
+                    <span class="num">#{{ $index + 1 }}</span>
+                </h3>
+                    <ul>
                         <li>
-                            <span>Registration No. :</span> 
-                            <span class="deets">{{ $transaction->registration_no ?? 'Unknown' }}</span>
+                            <span>Plate No:</span> 
+                            <span class="deets">{{ $vehicle->plate_no }}</span>
                         </li>
                         <li>
-                            <span>Issued Date:</span> 
-                            <span class="deets">{{ $transaction->created_at->format('Y-m-d') ?? 'Unknown' }}</span>
+                            <span>Vehicle Type:</span> 
+                            <span class="deets">{{ $vehicle->vehicle_type->type ?? 'Unknown' }}</span>
                         </li>
-                    @endforeach
-                @else
-                    <li>
-                        <span>Registration No:</span> 
-                        <span class="deets">No registration found</span>
-                    </li>
-                @endif
-            </ul>
+                    </ul>
+                    <ul>
+                        @if($vehicle->transaction->isNotEmpty())
+                            @foreach($vehicle->transaction as $transactionIndex => $transaction)
+                                <li>
+                                    <span>Registration No. :</span> 
+                                    <span class="deets">{{ $transaction->registration_no ?? 'Unknown' }}</span>
+                                </li>
+                                <li>
+                                    <span>Issued Date:</span> 
+                                    <span class="deets">{{ $transaction->created_at->format('Y-m-d') ?? 'Unknown' }}</span>
+                                </li>
+                            @endforeach
+                        @else
+                            <li>
+                                <span>Registration No:</span> 
+                                <span class="deets">No registration found</span>
+                            </li>
+                            <li>
+                                <span>Issued Date:</span> 
+                                <span class="deets">Not issued</span>
+                            </li>
+                        @endif
+                    </ul>
+            </div>
+            <div class="veh-btn">
+                <a class="blue-view" href="{{ url('/reg_details/' . $transaction->id) }}">View Details</a>
+            </div>
         </div>
-</div>
 @endforeach
 @endsection
 

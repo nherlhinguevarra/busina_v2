@@ -2,9 +2,22 @@
 
 @section('title', 'Account Details')
 
-@section('content')
+@section('title-details')
 <div class="account-details">
     <h1>Account Details</h1>
+</div>
+@endsection
+
+@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'My Laravel App')</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ asset('storage/css/details.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script> -->
+    @vite(['resources/css/details.css', 'resources/css/app.css', 'resources/js/app.js'])
+</head>
     
     <!-- Back Button -->
     <div class="back-button">
@@ -18,7 +31,9 @@
         <p><strong>Employee Number:</strong> {{ $user->authorized_user->employee->emp_no }}</p>
         <p><strong>Created At:</strong> {{ $user->created_at->format('F d, Y') }}</p>
     </div>
-    
+@endsection
+
+@section('content-2')
     <div class="update-profile">
         <h2>Update Profile</h2>
         <form action="{{ route('updateProfile') }}" method="POST">
@@ -60,7 +75,7 @@
             <button type="submit" class="btn">Update Profile</button>
         </form>
     </div>
-    
+
     <div class="change-password">
         <h2>Change Password</h2>
         <form action="{{ route('changePassword') }}" method="POST">
@@ -92,9 +107,5 @@
         </form>
     </div>
 </div>
-
 @endsection
 
-@section('content-2')
-<!-- You can add additional content or leave this section empty -->
-@endsection

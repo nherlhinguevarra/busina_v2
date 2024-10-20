@@ -80,6 +80,27 @@
         <div>
             Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} entries
         </div>
+        <div class="page-btns"> 
+            @if($data->onFirstPage())
+                <button class="page-btn" disabled>&laquo; Previous</button>
+            @else
+                <a href="{{ $data->previousPageUrl() }}">&laquo; Previous</a>
+            @endif
+
+            @foreach ($data->getUrlRange(1, $data->lastPage()) as $page => $url)
+                @if ($page == $data->currentPage())
+                    <button class="pg-active" disabled>{{ $page }}</button>
+                @else
+                    <a href="{{ $url }}">{{ $page }}</a>
+                @endif
+            @endforeach
+
+            @if($data->hasMorePages())
+                <a href="{{ $data->nextPageUrl() }}">Next &raquo;</a>
+            @else
+                <button class="page-btn" disabled>Next &raquo;</button>
+            @endif
+        </div>
     </div>
 </div>
 

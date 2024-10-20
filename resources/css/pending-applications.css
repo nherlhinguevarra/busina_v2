@@ -99,32 +99,14 @@ input[type="text"]:focus {
 
 .pagination {
     font-size: 12px;
-    color:#566a7f; 
+    color:#566a7f;
 }
-
-.pagination .page-link {
-    background-color: #f0f0f0; /* Example custom background */
-    color: #333; /* Custom text color */
-    padding: 10px;
-    border-radius: 5px;
-    margin: 5px;
-    width: 10px;
-    height: 10px;
+.page-btns {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -5px;
 }
-
-.pagination .page-item.active .page-link {
-    background-color: #4CAF50; /* Active page background */
-    color: white;
-} 
-
-.pagination-buttons {
-    position: absolute;
-    bottom: 15px; /* Positions the pagination 10px above the bottom */
-    left: 0;
-    right: 0;
-    text-align: center; /* Centers the pagination buttons */
-}
-.pagination-buttons a {
+.page-btns a {
     text-decoration: none;
     color:#566a7f;
     border: 1px solid #697a8d;
@@ -133,6 +115,7 @@ input[type="text"]:focus {
     border-radius: 5px;
     background-color:#f2f2f2;
 }
+
 .pg-active {
     border: 1px solid #697a8d;
     padding: 5px;

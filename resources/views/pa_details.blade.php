@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main1')
 
 @section('title', 'Application Details')
 
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/details.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['resources/css/details.css', 'resources/js/app.js'])
+    @vite(['resources/css/details.css', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <h2 class="section-title">Owner Information</h2>

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/main.js'])
     
 </head>
 <body>
@@ -64,28 +64,66 @@
                             Guidelines
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('logout') ? 'active' : '' }}" style="margin-top: 80px;">
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="{{ request()->routeIs('logout') ? 'active' : '' }}">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/697a8d/open-pane.png" class="{{ request()->routeIs('logout') ? 'active' : '' }}" alt="Guidelines Icon" style="width: 17px; height: 17px; vertical-align: middle; margin-right: 8px; margin-left: 8px;">
-                            Log Out
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
                 </ul>
             </aside>
         <div class="main-content">
             <header class="header">
                 <ul>
-                    <li>
-                        <button class="sidebar-toggle" aria-label="Toggle sidebar">
-                            <img src="https://img.icons8.com/fluency-systems-filled/96/616779/menu.png" alt="Sidebar Toggle" style="width: 24px; height: 24px; vertical-align: middle;">
-                        </button>
-                    </li>
-                    <li>
-                        <div class="clock" id="clock"></div> <!-- Clock display -->
-                    </li>
+                    <div class="hd-left">
+                        <li>
+                            <button class="sidebar-toggle" aria-label="Toggle sidebar">
+                                <img src="https://img.icons8.com/fluency-systems-filled/96/616779/menu.png" alt="Sidebar Toggle" style="width: 24px; height: 24px; vertical-align: middle;">
+                            </button>
+                        </li>
+                        <li>
+                            <div class="clock" id="clock"></div> <!-- Clock display -->
+                        </li>
+                    </div>
+                    <div class="hd-right">
+                        <li class="notification-icon">
+                            <img src="https://img.icons8.com/sf-regular/96/616779/appointment-reminders.png" alt="Notifications" style="width: 28px; height: 28px;">
+                            <span id="notification-count"></span> <!-- Shows number of unread notifications -->
+                            <div class="notification-dropdown">
+                                <ul id="notification-list">
+                                    <!-- Notifications will be dynamically added here -->
+                                </ul>
+                                <button id="mark-all-read">Mark all as read</button>
+                            </div>
+                        </li>
+                        <li class="account-icon">
+                            @php
+                                $user = Auth::user();
+                                $initials = '';
+
+                                if ($user) {
+                                    $authorizedUser = $user->authorized_user; // Assuming you have a relationship set up
+                                    $initials = strtoupper(substr($authorizedUser->fname, 0, 1) . substr($authorizedUser->lname, 0, 1));
+                                }
+                            @endphp
+                            <div class="user-initial-circle">
+                                {{ $initials }}
+                            </div>
+                            <div class="account-dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="{{ route('account') }}" style="display: flex; align-items: center;">
+                                            <img src="https://img.icons8.com/fluency-systems-filled/96/616779/user.png" alt="My Account Icon" style="width: 17px; height: 17px; margin-right: 8px;">
+                                            My Account
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="display: flex; align-items: center;">
+                                            <img src="https://img.icons8.com/fluency-systems-filled/96/616779/logout-rounded-left.png" alt="Logout Icon" style="width: 17px; height: 17px; margin-right: 8px;">
+                                            Log Out
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </div>
                 </ul>
             </header>
             <div>
@@ -94,51 +132,9 @@
             <main class="content">
                 @yield('content')
             </main>
-            <main class="content">
-                @yield('content-2')
-            </main>
         </div>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const toggleButton = document.querySelector('.sidebar-toggle');
-    const closeButton = document.querySelector('.sidebar-close-btn');
-    const sidebar = document.querySelector('.sidebar');
-    const datetimeElement = document.getElementById('datetime');
-    const mainContent = document.querySelector('.main-content');
-
-    function updateClock() {
-        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const now = new Date();
-        const day = daysOfWeek[now.getDay()];
-        const date = now.toLocaleDateString();
-        const time = now.toLocaleTimeString();
-        document.getElementById('clock').textContent = `${day}, ${date} - ${time}`;
-    }
-
-    toggleButton.addEventListener('click', function() {
-        sidebar.classList.add('collapsed');
-        mainContent.classList.add('blur'); // Add blur when sidebar is opened
-    });
-
-    closeButton.addEventListener('click', function() {
-        sidebar.classList.remove('collapsed');
-        mainContent.classList.remove('blur'); // Remove blur when sidebar is closed
-    });
-
-    window.addEventListener('resize', function() {
-        if (window.innerWidth >= 769) {
-            sidebar.classList.remove('collapsed');
-            mainContent.classList.remove('blur'); // Ensure blur is removed on resize
-        }
-    });
-
-    setInterval(updateClock, 1000);
-    updateClock();
-    
-});
-</script>
-
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </body>
 </html>
 

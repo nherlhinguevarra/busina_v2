@@ -83,6 +83,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/registered_vehicles', [RegisteredVehiclesController::class, 'index'])->name('registered_vehicles');
     Route::get('/reg_details/{id}', [RegisteredVehiclesController::class, 'showDetails'])->name('reg_details');
     Route::get('/export-all-reg-details-csv', [RegisteredVehiclesController::class, 'exportAllRegDetailsToCSV'])->name('exportAllRegDetailsToCSV');
+    Route::post('/update-claiming-status', [RegisteredVehiclesController::class, 'updateClaimingStatus']);
 
     Route::get('/reported_violations', [ReportedViolationsController::class, 'index'])->name('reported_violations');
     Route::get('/rv_details/{id}', [ReportedViolationsController::class, 'showDetails'])->name('rv_details');

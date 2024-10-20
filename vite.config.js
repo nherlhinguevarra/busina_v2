@@ -9,7 +9,7 @@ export default defineConfig({
                 'resources/css/app1.css',
                 'resources/css/details.css',
                 'resources/css/email_style.css',
-                'resources/css/guide.css',
+                'resources/css/guidelines.css',
                 'resources/css/login.css',
                 'resources/css/pending-applications.css',
 
@@ -23,6 +23,7 @@ export default defineConfig({
                 'resources/images/upload 1.png',
 
                 'resources/js/app.js',
+                'resources/js/main.js',
                 'resources/js/bootstrap.js',
                 'resources/js/disableForm.js',
                 'resources/js/hide_error_message.js',

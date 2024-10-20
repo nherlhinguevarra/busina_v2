@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main1')
 
 @section('title', 'Transaction Details')
 
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/details.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['resources/css/details.css', 'resources/js/app.js'])
+    @vite(['resources/css/details.css', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <!-- Owner Information -->
@@ -103,7 +103,24 @@
             <span>Copy of COR:</span>
             <button type="button" class="view-btn" onclick="openModal('corModal')">View</button>
         </li>
+        <li>
+        <div class="status-container">
+            <label class="status-label">STATUS:</label>
+
+            <!-- Dropdown for selecting status -->
+            <select id="status-dropdown" style="height: 30px" class="status-input form-select {{ $transaction->claiming_status->status === 'To claim' ? 'text-gray' : ($transaction->claiming_status->status === 'Claimed' ? 'text-green' : '') }}" onchange="enableSaveButton()">
+                <option value="2" {{ $transaction->claiming_status->status === 'To claim' ? 'selected' : '' }}>To claim</option>
+                <option value="3" {{ $transaction->claiming_status->status === 'Claimed' ? 'selected' : '' }}>Claimed</option>
+            </select>
+
+            <!-- Save Button (hidden by default) -->
+            <button id="save-button" style="font-size: 14px;"class="btn-save" onclick="showConfirmation()" disabled>Save</button>
+        </div>
+        </li>
     </ul>
+</div>
+<div class="buttons">
+    <a class="blue-btn" href="{{ url('/registered_vehicles') }}">BACK</a>
 </div>
 
 <div id="licenseModal" class="modal">
@@ -145,6 +162,40 @@
     </div>
 </div>
 
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('confirmationModal')">&times;</span>
+        <h5>Confirm Status Update</h5>
+        <p>Are you sure you want to update the claiming status?</p>
+        <div class="modal-buttons">
+            <button onclick="closeModal('confirmationModal')" class="gray-btn">Cancel</button>
+            <button onclick="saveStatus()" class="blue-btn">Yes</button>
+        </div>
+    </div>
+</div>
+
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('successModal')">&times;</span>
+        <h5>Success!</h5>
+        <p>Claiming status has been updated successfully.</p>
+        <div class="modal-buttons">
+            <button onclick="handleSuccessAndReload()" class="blue-btn">OK</button>
+        </div>
+    </div>
+</div>
+
+<div id="errorModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('errorModal')">&times;</span>
+        <h5>Error</h5>
+        <p>There was an error updating the status. Please try again.</p>
+        <div class="modal-buttons">
+            <button onclick="closeModal('errorModal')" class="blue-btn">OK</button>
+        </div>
+    </div>
+</div>
+
 <script>
     function openModal(modalId) {
         document.getElementById(modalId).style.display = "block";
@@ -163,6 +214,90 @@
             }
         }
     }
+
+    function enableSaveButton() {
+        const saveButton = document.getElementById('save-button');
+        const dropdown = document.getElementById('status-dropdown');
+        const currentValue = dropdown.value;
+        const initialStatus = '{{ $transaction->claiming_status_id }}';
+        
+        // Enable save button only if the selected value is different from the current status
+        saveButton.disabled = currentValue === initialStatus;
+    }
+
+    function showConfirmation() {
+        openModal('confirmationModal');
+    }
+
+    function saveStatus() {
+        const statusDropdown = document.getElementById('status-dropdown');
+        const selectedStatus = statusDropdown.value;
+
+        fetch('/update-claiming-status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                transaction: {{ $transaction->id }},
+                claiming_status_id: selectedStatus
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            closeModal('confirmationModal');
+            if (data.success) {
+                openModal('successModal');
+                document.getElementById('save-button').disabled = true;
+
+                if (selectedStatus === '2') {
+                    statusDropdown.classList.add('text-gray');
+                    statusDropdown.classList.remove('text-green');
+                } else if (selectedStatus === '3') {
+                    statusDropdown.classList.add('text-green');
+                    statusDropdown.classList.remove('text-gray');
+                }
+            } else {
+                openModal('errorModal');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            closeModal('confirmationModal');
+            openModal('errorModal');
+        });
+    }
+    async function handleSuccessAndReload() {
+        closeModal('successModal');
+        
+        // Show loading state if needed
+        document.body.style.cursor = 'wait';
+        
+        try {
+            // Reload the current page data
+            const response = await fetch(window.location.href);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            // Reload the page
+            window.location.reload();
+        } catch (error) {
+            console.error('Error reloading:', error);
+            document.body.style.cursor = 'default';
+            // Optionally show an error message
+            openModal('errorModal');
+        }
+    }
+
+
+
 </script>
 
 @endsection

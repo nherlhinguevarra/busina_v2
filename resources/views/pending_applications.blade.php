@@ -83,7 +83,7 @@
         <div>
             Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} entries
         </div>
-        <div class="pagination-buttons">
+        <div class="page-btns"> 
             @if($data->onFirstPage())
                 <button class="page-btn" disabled>&laquo; Previous</button>
             @else

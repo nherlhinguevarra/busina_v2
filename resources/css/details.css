@@ -65,6 +65,7 @@ h1 {
     border-radius: 10px;
     background-color: aliceblue;
     padding: 10px;
+    margin-bottom: 10px;
 }
 .veh-no {
     font-size: 14px;
@@ -117,13 +118,13 @@ h1 {
 }
 
 /* Align radio buttons and buttons */
-li {
+.owner-info ul li {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
 
-li span {
+.owner-info ul li span {
     flex: 1;
 }
 
@@ -206,6 +207,7 @@ li span {
     font-weight: 200;
     text-decoration: none;
     width: 75px;
+    text-align: center;
 }
 .blue-btn:hover {
     background-color: rgba(53, 192, 247, 0.3);
@@ -234,6 +236,23 @@ li span {
     color: white;
 }
 
+.btn-save {
+    font-family: 'Poppins';
+    font-size: 14px;
+    background-color: #FFAD60;
+    color: white;
+    padding: 5px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    text-align: center;
+    font-weight: 200;
+    width: 105px;
+}    
+
+.btn-save:hover {
+    background-color: #FFD09B;
+    color: white;
+}
 /* SETTLE VIOLATION */
 
 .click_files {
@@ -372,4 +391,91 @@ li span {
     color: green;
 }
 
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    right: 30px;
+    bottom: 30px;
+    font-size: 17px;
+}
 
+.toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.gray-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.gray-btn:hover {
+    background-color: #5a6268;
+}
+
+#save-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#status-dropdown {
+    margin-right: 10px;
+}
+
+.blue-view {
+    background-color: #5077A5; 
+    color: white;
+    font-family: 'Poppins';
+    font-size: 14px;
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 4px; 
+    text-align: center;
+    font-weight: 200;
+    text-decoration: none;
+    width: 75px;
+}
+.blue-view:hover {
+    background-color: rgba(53, 192, 247, 0.3);
+    color: #09b3e4;
+}
+.veh-btn {
+    text-align: right;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+}

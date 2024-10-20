@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\Vehicle_owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 
 class RegisteredVehiclesController extends Controller
@@ -132,5 +133,23 @@ class RegisteredVehiclesController extends Controller
 
         return view('reg_details', ['transaction' => $transaction]);
     }
+
+    public function updateClaimingStatus(Request $request)
+{
+    try {
+        $transaction = Transaction::findOrFail($request->input('transaction'));
+        $transaction->claiming_status_id = $request->input('claiming_status_id');
+        $transaction->save();
+
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        Log::error('Error updating claiming status: ' . $e->getMessage());
+        return response()->json(['success' => false, 'error' => 'Error updating claiming status.'], 500);
+    }
+}
+
+    
+
+    
 
 }
