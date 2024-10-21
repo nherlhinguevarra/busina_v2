@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Settle_violation;
 use App\Models\Transaction;
+use App\Models\Vehicle;
 use App\Models\Violation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
     public function index()
-{
+    {
     $limitPerPage = 5;
 
     // Fetch transactions with pending claiming status, limited to 5 per page
@@ -47,7 +48,37 @@ class DashboardController extends Controller
         'violationsToBeReviewed',
         'reportedViolationsThisMonth'
     ));
-}
+    }
+
+    public function getVehicleAndViolationData()
+    {
+        // Get vehicles registered per week
+        $vehiclesPerWeek = Vehicle::selectRaw('YEARWEEK(created_at) as week, COUNT(*) as count')
+            ->groupBy('week')
+            ->get();
+
+        // Get vehicles registered per month
+        $vehiclesPerMonth = Vehicle::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
+            ->groupBy('year', 'month')
+            ->get();
+
+        // Get violations reported per week
+        $violationsPerWeek = Violation::selectRaw('YEARWEEK(created_at) as week, COUNT(*) as count')
+            ->groupBy('week')
+            ->get();
+
+        // Get violations reported per month
+        $violationsPerMonth = Violation::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
+            ->groupBy('year', 'month')
+            ->get();
+
+        return response()->json([
+            'vehiclesPerWeek' => $vehiclesPerWeek,
+            'vehiclesPerMonth' => $vehiclesPerMonth,
+            'violationsPerWeek' => $violationsPerWeek,
+            'violationsPerMonth' => $violationsPerMonth,
+        ]);
+    }
 
 
 }

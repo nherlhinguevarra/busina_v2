@@ -83,7 +83,7 @@
                     <div class="hd-right">
                         <li class="notification-icon">
                             <img src="https://img.icons8.com/sf-regular/96/616779/appointment-reminders.png" alt="Notifications" style="width: 28px; height: 28px;">
-                            <span id="notification-count"></span> <!-- Shows number of unread notifications -->
+                            <span id="notification-count" class="notification-count">0</span> <!-- Shows number of unread notifications -->
                             <div class="notification-dropdown">
                                 <ul id="notification-list">
                                     <!-- Notifications will be dynamically added here -->
@@ -107,14 +107,14 @@
                             <div class="account-dropdown">
                                 <ul>
                                     <li>
-                                        <a href="{{ route('account') }}" style="display: flex; align-items: center;">
+                                        <a href="{{ route('account') }}">
                                             <img src="https://img.icons8.com/fluency-systems-filled/96/616779/user.png" alt="My Account Icon" style="width: 17px; height: 17px; margin-right: 8px;">
                                             My Account
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="display: flex; align-items: center;">
-                                            <img src="https://img.icons8.com/fluency-systems-filled/96/616779/logout-rounded-left.png" alt="Logout Icon" style="width: 17px; height: 17px; margin-right: 8px;">
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <img src="https://img.icons8.com/fluency-systems-filled/96/616779/open-pane.png" alt="Logout Icon" style="width: 17px; height: 17px; margin-right: 8px;">
                                             Log Out
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

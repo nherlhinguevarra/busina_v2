@@ -28,7 +28,8 @@ export default defineConfig({
                 'resources/js/disableForm.js',
                 'resources/js/hide_error_message.js',
                 'resources/js/login_toggle_password.js',
-                'resources/js/reset_new_pass.js'
+                'resources/js/reset_new_pass.js',
+                'resources/js/dashboard.js'
             ],
             refresh: true,
         }),

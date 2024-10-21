@@ -51,6 +51,20 @@ input[type="text"]:focus {
     border-radius: 4px;
     color: #566a7f;
 }
+
+.filter-select:focus {
+    border: 2px solid;
+    border-color: #566a7f;
+    outline: none;
+}
+.table tr:hover {
+    background-color: rgba(80, 119, 165, 0.1); /* Light blue background on hover */
+    transition: background-color 0.2s ease;
+}
+
+.table tr {
+    cursor: pointer;
+}
 .buttons {
     background-color: #5077A5; 
     color: white; 

@@ -54,6 +54,13 @@
                 <option value="{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}">{{ $day }}</option>
             @endforeach
         </select>
+
+        <!-- Claiming Status Filter -->
+        <select id="claimingStatusFilter" class="filter-select">
+            <option value="">All</option>
+            <option value="2">To Claim</option>
+            <option value="3">Claimed</option>
+        </select>
     </div>
 
     <table class="table">
@@ -109,12 +116,14 @@
     document.getElementById('yearFilter').addEventListener('change', filterTable);
     document.getElementById('monthFilter').addEventListener('change', filterTable);
     document.getElementById('dayFilter').addEventListener('change', filterTable);
+    document.getElementById('claimingStatusFilter').addEventListener('change', filterTable);
 
     function filterTable() {
         let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
         let yearValue = document.getElementById('yearFilter').value;
         let monthValue = document.getElementById('monthFilter').value;
         let dayValue = document.getElementById('dayFilter').value;
+        let claimingStatusValue = document.getElementById('claimingStatusFilter').value;
         
         let rows = document.querySelectorAll('#tableBody tr');
 
@@ -122,6 +131,7 @@
             let registrationNo = row.cells[0].textContent.toLowerCase();
             let plateNo = row.cells[1].textContent.toLowerCase();
             let dateIssued = row.cells[2].textContent;
+            let claimingStatus = row.cells[3].textContent;
             
             let dateParts = dateIssued.split(' ')[0].split('-');
             let year = dateParts[0];
@@ -132,13 +142,17 @@
             let matchesYear = yearValue === '' || year === yearValue;
             let matchesMonth = monthValue === '' || month === monthValue;
             let matchesDay = dayValue === '' || day === dayValue;
+            let matchesClaimingStatus = claimingStatusValue === '' || 
+                (claimingStatusValue === '2' && claimingStatus.trim() === 'To Claim') ||
+                (claimingStatusValue === '3' && claimingStatus.trim() === 'Claimed');
             
-            if (matchesSearch && matchesYear && matchesMonth && matchesDay) {
+            if (matchesSearch && matchesYear && matchesMonth && matchesDay && matchesClaimingStatus) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
             }
         });
     }
+
 </script>
 @endsection

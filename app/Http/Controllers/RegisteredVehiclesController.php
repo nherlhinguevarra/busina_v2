@@ -13,17 +13,29 @@ class RegisteredVehiclesController extends Controller
     public function index(Request $request)
     {
         $perPage = 10;
+        
+        // Initialize query
+        $query = Transaction::with(['claiming_status', 'vehicle'])
+            ->whereIn('claiming_status_id', [2, 3]);
 
-        // Fetch transactions with related claiming status and vehicle
-        $data = Transaction::with(['claiming_status', 'vehicle'])
-                    ->paginate($perPage);
+        // Apply filter if requested
+        if ($request->has('claiming_status') && $request->claiming_status !== '') {
+            $query->where('claiming_status_id', $request->claiming_status);
+        }
 
+        // Paginate results
+        $data = $query->paginate($perPage);
+
+        // Handle CSV export
         if ($request->query('export') === 'csv') {
             return $this->exportToCSV($data);
         }
 
+        // Return view with data
         return view('registered_vehicles', compact('data'));
     }
+
+
 
 
     private function exportToCSV($data)

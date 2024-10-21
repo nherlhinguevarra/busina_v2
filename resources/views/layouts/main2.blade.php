@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('storage/css/app.css') }}">
-    <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['resources/css/app.css', 'resources/js/main.js'])
+    <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}"> -->
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    @vite(['resources/css/app1.css', 'resources/js/main.js'])
+    <!-- @vite(['storage/app/public/css/notifications.css', 'storage/app/public/js/notification-listener.js']) -->
     
 </head>
 <body>
@@ -131,6 +132,12 @@
             </div>
             <main class="content">
                 @yield('content')
+            </main>
+            <main class="content">
+                @yield('content-2')
+            </main>
+            <main class="content">
+                @yield('content-3')
             </main>
         </div>
     </div>

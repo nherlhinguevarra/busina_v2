@@ -1,8 +1,6 @@
-@extends('layouts.main1')
+@extends('layouts.main2')
 
 @section('title', 'Dashboard')
-
-@section('header', 'Dashboard Header')
 
 @section('content')
 <head>
@@ -12,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
-    @vite(['resources/css/app1.css'])
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @vite(['resources/css/app1.css', 'resources/js/dashboard.js'])
 </head>
 
 <body>
@@ -57,7 +56,31 @@
             </div>
         </div>
     </div>
+
     <div class="cont-2">
+        <div class="box-2">
+            <!-- Dropdown for selecting timeframe for Registered Vehicles -->
+            <label for="vehicleTimeframe" class="page-title">Registered Vehicles Per: </label>
+            <select id="vehicleTimeframe">
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+            </select>
+
+            <!-- Canvas for the Registered Vehicles Chart -->
+            <canvas id="vehicleChart" height="125"></canvas>
+        </div>
+        <div class="box-2">
+            <!-- Dropdown for selecting timeframe for Reported Violations -->
+            <label for="violationTimeframe" class="page-title">Reported Violations Per: </label>
+            <select id="violationTimeframe">
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+            </select>
+
+            <!-- Canvas for the Reported Violations Chart -->
+            <canvas id="violationChart" height="125"></canvas>
+        </div>
+
         <div class="box-2">
             <h1 class="page-title">Pending Sticker and Card Pickup</h1>
             <table class="table">
@@ -70,7 +93,7 @@
                 </thead>
                 <tbody id="tableBody">
                     @foreach($pendingPickups as $transaction)
-                        <tr>
+                        <tr style="cursor: pointer;" onclick="window.location='{{ route('reg_details', ['id' => $transaction->id]) }}'">
                             <td class="td-class">
                                 {{ $transaction->vehicle->vehicle_owner->fname }} 
                                 {{ $transaction->vehicle->vehicle_owner->mname }} 
@@ -121,7 +144,7 @@
                 </thead>
                 <tbody id="tableBody">
                     @foreach($unsettledViolations as $violation)
-                        <tr>
+                        <tr style="cursor: pointer;" onclick="window.location='{{ route('rv_details', ['id' => $violation->id]) }}'">
                             <td class="td-class">{{ $violation->vehicle->plate_no }}</td>
                             <td class="td-class">{{ $violation->violation_type->violation_name }}</td>
                             <td class="td-class">{{ $violation->created_at->format('Y-m-d') }}</td>
@@ -157,5 +180,6 @@
             </div>
         </div>
     </div>
+   
 </body>
 @endsection
