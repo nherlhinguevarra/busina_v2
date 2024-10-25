@@ -78,7 +78,26 @@
                             <td class="td-class">{{ $row->registration_no }}</td>
                             <td class="td-class">{{ $row->vehicle->plate_no }}</td>
                             <td class="td-class">{{ $row->issued_date }}</td>
-                            <td class="td-class">{{ $row->claiming_status->status ?? 'Unknown' }}</td>
+                            <td class="td-class">
+                                <span style="
+                                    color: {{
+                                        match($row->claiming_status->status) {
+                                            'To Claim' => '#797501',
+                                            'Claimed' => '#097901',
+                                        }
+                                    }};
+                                    background-color: {{ 
+                                        match($row->claiming_status->status) {
+                                            'To Claim' => '#FAFFB8',
+                                            'Claimed' => '#B9FFB8'
+                                        }
+                                    }};
+                                    padding: 4px 8px;
+                                    border-radius: 4px;
+                                    display: inline-block;
+                                    font-weight: bold;
+                                    font-size: 11px;
+                                ">{{ $row->claiming_status->status ?? 'Unknown' }}</td>
                         </tr>
             @endforeach
         </tbody>

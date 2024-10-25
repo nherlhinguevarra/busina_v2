@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'My Laravel App')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}"> -->
@@ -88,7 +89,9 @@
                                 <ul id="notification-list">
                                     <!-- Notifications will be dynamically added here -->
                                 </ul>
-                                <button id="mark-all-read">Mark all as read</button>
+                                <div id="no-notifications-message" style="display: none; text-align: center; color: #888;">
+                                    No new notifications
+                                </div>
                             </div>
                         </li>
                         <li class="account-icon">
@@ -142,6 +145,7 @@
         </div>
     </div>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
 </body>
 </html>
 

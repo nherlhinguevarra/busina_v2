@@ -64,23 +64,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize notifications from localStorage
     let notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    let controller = null;
 
     // Fetch notifications from server
     async function fetchNotifications() {
         try {
-            const response = await fetch('/check-new-entries');
+            // Cancel any existing request
+            if (controller) {
+                controller.abort();
+            }
+    
+            // Create a new AbortController instance
+            controller = new AbortController();
+    
+            const response = await fetch('/check-new-entries', {
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                signal: controller.signal,
+                credentials: 'same-origin'
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
             const data = await response.json();
             updateNotifications(data.newVehicles, data.newViolations);
         } catch (error) {
             console.error('Error fetching new entries:', error);
-            showToast('Failed to fetch notifications', 'error');
+            if (error.name !== 'AbortError') {
+                showToast('Failed to fetch notifications', 'error');
+            }
+        } finally {
+            // Reset the controller after the request completes
+            controller = null;
         }
     }
+    
+    
 
     // Update and render notifications
     function updateNotifications(newVehicles = [], newViolations = []) {
         const notificationList = document.getElementById('notification-list');
         const unreadCountElem = document.getElementById('notification-count');
+        const noNotificationsMessage = document.getElementById('no-notifications-message');
         let unreadCount = 0;
 
         // Process new vehicles
@@ -102,8 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!notifications.some(notif => notif.id === violation.id && notif.type === 'violation')) {
                 notifications.push({
                     id: violation.id,
-                    violation_name: violation.violation_name,
-                    owner_id: violation.vehicle_owner_id,
+                    plate_no : violation.plate_no,
+                    violation_id: violation.id,
                     type: 'violation',
                     read: false,
                     timestamp: new Date().toISOString()
@@ -121,11 +152,9 @@ document.addEventListener('DOMContentLoaded', function() {
         notificationList.innerHTML = '';
         
         if (notifications.length === 0) {
-            const emptyMessage = document.createElement('li');
-            emptyMessage.classList.add('notification-empty');
-            emptyMessage.textContent = 'No notifications';
-            notificationList.appendChild(emptyMessage);
+            noNotificationsMessage.style.display = 'block';
         } else {
+            noNotificationsMessage.style.display = 'none';
             notifications.forEach(notif => {
                 const notifElement = document.createElement('li');
                 notifElement.classList.add('notification-item');
@@ -147,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 message.classList.add('notification-message');
                 message.textContent = notif.type === 'vehicle' 
                     ? `New vehicle with plate no. ${notif.plate_no}`
-                    : `New violation: ${notif.violation_name}`;
+                    : `New violation: ${notif.plate_no}`;
                 contentDiv.appendChild(message);
 
                 // Add timestamp
@@ -166,7 +195,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 notifElement.addEventListener('click', () => {
                     notif.read = true;
                     localStorage.setItem('notifications', JSON.stringify(notifications));
-                    window.location.href = `/pa_details/${notif.owner_id}`;
+                    // Check the type of notification
+                        if (notif.type === 'violation') {
+                            // Redirect to the violation details page
+                            window.location.href = `/rv_details/${notif.violation_id}`;
+                        } else {
+                            // Redirect to the pending application details page
+                            window.location.href = `/pa_details/${notif.owner_id}`;
+                        }
                 });
 
                 // Add delete button
@@ -196,24 +232,6 @@ document.addEventListener('DOMContentLoaded', function() {
     async function deleteNotification(id, type, event) {
         event.stopPropagation();
 
-        try {
-            const response = await fetch('/api/notifications/delete', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Add CSRF token if needed
-                    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: JSON.stringify({
-                    notification_id: id,
-                    notification_type: type
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to delete notification');
-            }
-
             // Remove from local storage
             notifications = notifications.filter(notif => !(notif.id === id && notif.type === type));
             localStorage.setItem('notifications', JSON.stringify(notifications));
@@ -228,37 +246,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
 
             showToast('Notification deleted successfully');
-
-        } catch (error) {
-            console.error('Error deleting notification:', error);
-            showToast('Failed to delete notification', 'error');
-        }
-    }
-
-    // Mark all as read function
-    async function markAllAsRead() {
-        try {
-            const response = await fetch('/api/notifications/mark-all-read', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Add CSRF token if needed
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to mark notifications as read');
-            }
-
-            notifications.forEach(notif => notif.read = true);
-            localStorage.setItem('notifications', JSON.stringify(notifications));
-            updateNotifications();
-            showToast('All notifications marked as read');
-
-        } catch (error) {
-            console.error('Error marking notifications as read:', error);
-            showToast('Failed to mark notifications as read', 'error');
-        }
     }
 
     // Toast notification function
@@ -370,7 +357,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateNotifications();
 
     // Poll for new notifications every 30 seconds
-    setInterval(fetchNotifications, 30000);
+    setInterval(fetchNotifications, 10000);
 });
 
-//DELETE AND MARK ALL AS READ NOT WORKING

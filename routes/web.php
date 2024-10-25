@@ -103,20 +103,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/save-document-approval/{vehicleOwnerId}', [DataTableController::class, 'saveDocumentApproval'])->name('save.document.approval');
 
-    Route::get('/check-new-entries', function() {
-        $newVehicles = Vehicle::with('vehicle_owner') // Ensure relationship is loaded
-            ->where('created_at', '>', now()->subMinutes(60))
-            ->get();
+    // Route::get('/check-new-entries', function() {
+    //     $newVehicles = Vehicle::with('vehicle_owner')
+    //         ->where('created_at', '>', now()->subMinutes(30))
+    //         ->get();
     
-        $newViolations = Violation::where('created_at', '>', now()->subMinutes(60))->get();
+    //     $newViolations = Violation::where('created_at', '>', now()->subMinutes(30))
+    //         ->get()
+    //         ->map(function ($violation) {
+    //             // Convert proof_image to Base64
+    //             $violation->proof_image = $violation->proof_image ? base64_encode($violation->proof_image) : null;
+    //             return $violation;
+    //         });
     
-        return response()->json([
-            'newVehicles' => $newVehicles,
-            'newViolations' => $newViolations
-        ]);
-    });
-    
-    
+    //     return response()->json([
+    //         'newVehicles' => $newVehicles,
+    //         'newViolations' => $newViolations
+    //     ]);
+    // });
+
+    Route::get('/check-new-entries', [NotificationController::class, 'checkNewEntries']);
+
 
 });
 

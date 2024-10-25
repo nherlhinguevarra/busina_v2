@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @vite(['resources/css/app1.css', 'resources/js/dashboard.js'])
 </head>
@@ -56,29 +58,32 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('content-2')
     <div class="cont-2">
         <div class="box-2">
-            <!-- Dropdown for selecting timeframe for Registered Vehicles -->
-            <label for="vehicleTimeframe" class="page-title">Registered Vehicles Per: </label>
-            <select id="vehicleTimeframe">
-                <option value="week">Week</option>
-                <option value="month">Month</option>
-            </select>
+            <div style="display: flex;">
+                <label for="vehicleTimeframe" class="page-title">Registered Vehicles Per: </label>
+                    <select id="vehicleTimeframe" style="margin-left: 10px">
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                    </select>
+                    <button id="downloadRegistrationPDF" class="dwn-btn">Download</button>
+            </div>
+            <canvas id="vehicleChart"></canvas>
 
-            <!-- Canvas for the Registered Vehicles Chart -->
-            <canvas id="vehicleChart" height="125"></canvas>
         </div>
         <div class="box-2">
-            <!-- Dropdown for selecting timeframe for Reported Violations -->
-            <label for="violationTimeframe" class="page-title">Reported Violations Per: </label>
-            <select id="violationTimeframe">
-                <option value="week">Week</option>
-                <option value="month">Month</option>
-            </select>
-
-            <!-- Canvas for the Reported Violations Chart -->
-            <canvas id="violationChart" height="125"></canvas>
+            <div style="display: flex;">
+                <label for="violationTimeframe" class="page-title">Reported Violations Per: </label>
+                    <select id="violationTimeframe"  style="margin-left: 10px">
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                    </select>
+                    <button id="downloadViolationPDF" class="dwn-btn">Download</button>
+            </div>
+            <canvas id="violationChart"></canvas>
         </div>
 
         <div class="box-2">
@@ -180,6 +185,5 @@
             </div>
         </div>
     </div>
-   
 </body>
 @endsection

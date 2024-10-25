@@ -73,7 +73,32 @@
             @foreach ($data as $row)
                 <tr style="cursor: pointer;" onclick="window.location='{{ route('pa_details', ['id' => $row->id]) }}'">
                     <td class="td-class">{{ $row->fname . ' ' . $row->mname . ' ' . $row->lname }}</td>
-                    <td class="td-class">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
+                    <td class="td-class">
+        <span style="
+            color: {{ 
+                match($row->applicant_type->type) {
+                    'Student' => '#FCFAEE',
+                    'BU-personnel' => '#F4F6FF',
+                    'Non-Personnel' => '#09b3e4',
+                    'VIP' => '#F5F5F7',
+                    default => 'black'
+                }
+            }};
+            background-color: {{ 
+                match($row->applicant_type->type) {
+                    'Student' => '#FFAD60',
+                    'BU-personnel' => '#040044',
+                    'Non-Personnel' => '#D1E9F6',
+                    'VIP' => '#808080',
+                    default => 'black'
+                }
+            }};
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 11px;
+        ">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
                     <td class="td-class">{{ $row->created_at }}</td>
                 </tr>
             @endforeach

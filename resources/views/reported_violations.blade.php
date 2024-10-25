@@ -54,6 +54,12 @@
                 <option value="{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}">{{ $day }}</option>
             @endforeach
         </select>
+
+        <select id="remarksFilter" class="filter-select">
+            <option value="">All</option>
+            <option value="1">Not been settled</option>
+            <option value="2">Settled</option>
+        </select>
     </div>
 
     <table class="table">
@@ -109,20 +115,23 @@
     document.getElementById('yearFilter').addEventListener('change', filterTable);
     document.getElementById('monthFilter').addEventListener('change', filterTable);
     document.getElementById('dayFilter').addEventListener('change', filterTable);
-
+    document.getElementById('remarksFilter').addEventListener('change', filterTable);
+    
     function filterTable() {
         let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
         let yearValue = document.getElementById('yearFilter').value;
         let monthValue = document.getElementById('monthFilter').value;
         let dayValue = document.getElementById('dayFilter').value;
-        
+        let remarksFilterValue = document.getElementById('remarksFilter').value;
+
         let rows = document.querySelectorAll('#tableBody tr');
 
         rows.forEach(row => {
             let plateNo = row.cells[0].textContent.toLowerCase();
             let violationType = row.cells[1].textContent.toLowerCase();
             let dateCreated = row.cells[2].textContent;
-            
+            let remarks = row.cells[3].textContent;
+
             let dateParts = dateCreated.split(' ')[0].split('-');
             let year = dateParts[0];
             let month = dateParts[1];
@@ -132,8 +141,11 @@
             let matchesYear = yearValue === '' || year === yearValue;
             let matchesMonth = monthValue === '' || month === monthValue;
             let matchesDay = dayValue === '' || day === dayValue;
-            
-            if (matchesSearch && matchesYear && matchesMonth && matchesDay) {
+            let matchesRemarks = remarksFilterValue === '' ||
+                (remarksFilterValue === '1' && remarks.trim() === 'Not been settled') ||
+                (remarksFilterValue === '2' && remarks.trim() === 'Settled');
+
+            if (matchesSearch && matchesYear && matchesMonth && matchesDay && matchesRemarks) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';

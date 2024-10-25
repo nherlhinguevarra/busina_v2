@@ -29,7 +29,8 @@ export default defineConfig({
                 'resources/js/hide_error_message.js',
                 'resources/js/login_toggle_password.js',
                 'resources/js/reset_new_pass.js',
-                'resources/js/dashboard.js'
+                'resources/js/dashboard.js',
+                'resources/js/notifs.js'
             ],
             refresh: true,
         }),

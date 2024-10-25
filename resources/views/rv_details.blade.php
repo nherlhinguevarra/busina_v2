@@ -20,7 +20,6 @@
 <!-- Displaying Violation Information -->
 <div class="sec-title">
     <h2 class="section-title">Violation Information</h2>
-    <h2 class="section-title">Proof Image</h2>
 </div>
 <div class="owner-info">
     <ul>
@@ -47,6 +46,7 @@
     </ul>
 
     <ul>
+        <h2 class="section-title" style="font-weight: 500">Proof Image</h2>
         @if (!empty($violation->settle_violation->proof_image))
             <img src="data:image/jpeg;base64,{{ base64_encode(Crypt::decrypt($violation->settle_violation->proof_image)) }}" alt="Proof Image" style="width: 300px; height: 500px;">
         @else
@@ -64,51 +64,54 @@
 </div>
 
 <div class="owner-info">
-    <ul>
-    @if (empty($violation->settle_violation->document))
-    <form action="{{ route('settle_violation.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" name="violation_id" value="{{ $violation->id }}">
-        
-        <div class="click_files" id="click-files">
-            <img src="{{ Vite::asset('resources/images/upload 1.png') }}" alt="Upload icon" id="upload-icon">
-            <div class="file-label">
-                <label for="files">Click to Attach Document</label>
-            </div>
-            <input type="file" id="files" name="document" accept="image/*" style="display: none;" required>
-        </div>
+    <ul class="img-cont">
+        <li>
+            @if (empty($violation->settle_violation->document))
+            <form action="{{ route('settle_violation.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="violation_id" value="{{ $violation->id }}">
+                
+                <div class="click_files" id="click-files">
+                    <img src="{{ Vite::asset('resources/images/upload 1.png') }}" alt="Upload icon" id="upload-icon">
+                    <div class="file-label">
+                        <label for="files">Click to Attach Document</label>
+                    </div>
+                    <input type="file" id="files" name="document" accept="image/*" style="display: none;" required>
+                </div>
 
-        <div class="save_not_btn">
-            <a class="nav-link" href="{{ url('/reported_violations') }}">BACK</a>
-            <button type="submit" id="submit" class="save">SAVE</button>
-        </div>
-    </form>
-    @else
-        <!-- Display uploaded document -->
-        <div class="docu">
-            <img src="data:image/jpeg;base64,{{ base64_encode(Crypt::decrypt($violation->settle_violation->document)) }}" alt="Uploaded Document" style="width: 350px; height: 550px;" id="uploaded-document">
-        </div>
+                <div class="save_not_btn">
+                    <button type="submit" id="submit" class="save">SAVE</button>
+                </div>
+            </form>
+            @else
+                <!-- Display uploaded document -->
+                <div class="docu">
+                    <img src="data:image/jpeg;base64,{{ base64_encode(Crypt::decrypt($violation->settle_violation->document)) }}" alt="Uploaded Document" style="width: 350px; height: 550px;" id="uploaded-document">
+                </div>
 
-        <!-- Form for Updating the Document -->
-        <form id="edit-form" action="{{ route('settle_violation.store') }}" method="POST" enctype="multipart/form-data">
-        <button type="button" id="edit-button" class="edit">EDIT</button>
-            @csrf
-            <!-- Hidden Violation ID and File Input -->
-            <input type="hidden" name="violation_id" value="{{ $violation->id }}">
-            <input type="file" id="new-document" name="document" accept="image/jpeg,image/png" style="display:none;">
-            
-            <!-- Save Button (Initially disabled) -->
-            <button type="submit" id="save-button" class="save" disabled>SAVE</button>
-        </form>
-    @endif
+                <!-- Form for Updating the Document -->
+                <form id="edit-form" action="{{ route('settle_violation.store') }}" method="POST" enctype="multipart/form-data">
+                <button type="button" id="edit-button" class="edit">EDIT</button>
+                    @csrf
+                    <!-- Hidden Violation ID and File Input -->
+                    <input type="hidden" name="violation_id" value="{{ $violation->id }}">
+                    <input type="file" id="new-document" name="document" accept="image/jpeg,image/png" style="display:none;">
+                    
+                    <!-- Save Button (Initially disabled) -->
+                    <button type="submit" id="save-button" class="save" disabled>SAVE</button>
+                </form>
+            @endif
+        </li>
     </ul>
     <ul>
-        <div class="status-container">
-            <label class="status-label">STATUS:</label>
-            <a class="status-input {{ $violation->remarks === 'Settled' ? 'text-green' : ($violation->remarks === 'Not Been Settled' ? 'text-gray' : '') }}">
-                {{ $violation->remarks }}
-            </a>
-        </div>
+        <li>
+            <div class="status-container">
+                <label class="status-label">STATUS:</label> 
+                <a class="status-input {{ $violation->remarks === 'Settled' ? 'text-green' : ($violation->remarks === 'Not Been Settled' ? 'text-gray' : '') }}">
+                    {{ $violation->remarks }}
+                </a>
+            </div>
+        </li>
     </ul>
 </div>
 

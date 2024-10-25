@@ -135,6 +135,7 @@ body, html {
     grid-template-rows: repeat(2, 1fr);
     margin: 20px;
     gap: 10px;
+    margin-bottom: 10px;
     height: 250px;
 }
 
@@ -290,6 +291,8 @@ body, html {
 
 .notification-dropdown {
     display: block;
+    height: 400px;
+    overflow-y: scroll;
 }
 
 .notification-item:hover {
@@ -300,14 +303,13 @@ body, html {
     background-color: red;
     color: white;
     border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
+    padding: 1px 1px;
+    font-size: 11px;
     position: absolute;
     top: 0;
     right: 0;
-    margin-right: 5px;
-    margin-left: 5px;
-    margin-top: -10px;
+    margin-right: 9px;
+    margin-top: -7px;
     display: none;  /* Hidden by default */
 }
 
@@ -534,6 +536,26 @@ body, html {
     border-radius: 4px;
     text-align: center;
     margin-left: 5px;
+}
+
+.dwn-btn {
+    background-color: #5077A5; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: 'Poppins';
+    padding: 5px 13px; 
+    border-radius: 4px;
+    font-weight: 200;
+    position: absolute;
+    right: 20px;
+
+}
+
+.dwn-btn:hover {
+    background-color: rgba(53, 192, 247, 0.3);
+    color: #09b3e4;
 }
 
 @media (max-width: 1200px) {
