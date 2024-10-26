@@ -33,7 +33,7 @@
         </div>
     </div>
     <!-- Search and Filter Inputs -->
-    <div style="margin-bottom: 16px; display: flex; gap: 8px;">
+    <div style="display: flex; gap: 8px;">
         <input type="text" id="searchInput" placeholder="Search by name or applicant type" class="search-input">
         
         <!-- Year Filter -->
@@ -82,31 +82,31 @@
                 <tr style="cursor: pointer;" onclick="window.location='{{ route('pa_details', ['id' => $row->id]) }}'">
                     <td class="td-class">{{ $row->fname . ' ' . $row->mname . ' ' . $row->lname }}</td>
                     <td class="td-class">
-        <span style="
-            color: {{ 
-                match($row->applicant_type->type) {
-                    'Student' => '#FCFAEE',
-                    'BU-personnel' => '#F4F6FF',
-                    'Non-Personnel' => '#09b3e4',
-                    'VIP' => '#F5F5F7',
-                    default => 'black'
-                }
-            }};
-            background-color: {{ 
-                match($row->applicant_type->type) {
-                    'Student' => '#FFAD60',
-                    'BU-personnel' => '#040044',
-                    'Non-Personnel' => '#D1E9F6',
-                    'VIP' => '#808080',
-                    default => 'black'
-                }
-            }};
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-            font-weight: bold;
-            font-size: 11px;
-        ">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
+                        <span style="
+                            color: {{ 
+                                match($row->applicant_type->type) {
+                                    'Student' => '#FCFAEE',
+                                    'BU-personnel' => '#F4F6FF',
+                                    'Non-Personnel' => '#09b3e4',
+                                    'VIP' => '#F5F5F7',
+                                    default => 'black'
+                                }
+                            }};
+                            background-color: {{ 
+                                match($row->applicant_type->type) {
+                                    'Student' => '#FFAD60',
+                                    'BU-personnel' => '#040044',
+                                    'Non-Personnel' => '#D1E9F6',
+                                    'VIP' => '#808080',
+                                    default => 'black'
+                                }
+                            }};
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            display: inline-block;
+                            font-weight: bold;
+                            font-size: 11px;
+                        ">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
                     <td class="td-class">{{ $row->created_at }}</td>
                 </tr>
             @endforeach
@@ -186,40 +186,40 @@
     document.getElementById('applicantFilter').addEventListener('change', filterTable);
 
     function filterTable() {
-    let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
-    let yearValue = document.getElementById('yearFilter').value;
-    let monthValue = document.getElementById('monthFilter').value;
-    let dayValue = document.getElementById('dayFilter').value;
-    let applicantValue = document.getElementById('applicantFilter').value;
-    
-    let rows = document.querySelectorAll('#tableBody tr');
+        let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
+        let yearValue = document.getElementById('yearFilter').value;
+        let monthValue = document.getElementById('monthFilter').value;
+        let dayValue = document.getElementById('dayFilter').value;
+        let applicantValue = document.getElementById('applicantFilter').value;
+        
+        let rows = document.querySelectorAll('#tableBody tr');
 
-    rows.forEach(row => {
-        let fullName = row.cells[0].textContent.toLowerCase();
-        let applicantType = row.cells[1].textContent.toLowerCase();
-        let dateSubmitted = row.cells[2].textContent;
-        
-        let dateParts = dateSubmitted.split(' ')[0].split('-');
-        let year = dateParts[0];
-        let month = dateParts[1];
-        let day = dateParts[2];
-        
-        let matchesSearch = fullName.includes(searchValue) || applicantType.includes(searchValue);
-        let matchesYear = yearValue === '' || year === yearValue;
-        let matchesMonth = monthValue === '' || month === monthValue;
-        let matchesDay = dayValue === '' || day === dayValue;
-        let matchesApplicant = applicantValue === '' ||
-            (applicantValue === '1' && applicantType === 'student') ||
-            (applicantValue === '2' && applicantType === 'bu-personnel') ||
-            (applicantValue === '3' && applicantType === 'non-personnel') ||
-            (applicantValue === '4' && applicantType === 'vip');
-        
-        if (matchesSearch && matchesYear && matchesMonth && matchesDay && matchesApplicant) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
+        rows.forEach(row => {
+            let fullName = row.cells[0].textContent.toLowerCase();
+            let applicantType = row.cells[1].textContent.toLowerCase();
+            let dateSubmitted = row.cells[2].textContent;
+            
+            let dateParts = dateSubmitted.split(' ')[0].split('-');
+            let year = dateParts[0];
+            let month = dateParts[1];
+            let day = dateParts[2];
+            
+            let matchesSearch = fullName.includes(searchValue) || applicantType.includes(searchValue);
+            let matchesYear = yearValue === '' || year === yearValue;
+            let matchesMonth = monthValue === '' || month === monthValue;
+            let matchesDay = dayValue === '' || day === dayValue;
+            let matchesApplicant = applicantValue === '' ||
+                (applicantValue === '1' && applicantType.includes('student')) ||
+                (applicantValue === '2' && (applicantType.includes('bu-personnel') || applicantType.includes('bu personnel'))) ||
+                (applicantValue === '3' && (applicantType.includes('non-personnel') || applicantType.includes('non personnel'))) ||
+                (applicantValue === '4' && applicantType.includes('vip'));
+            
+            if (matchesSearch && matchesYear && matchesMonth && matchesDay && matchesApplicant) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
 }
 </script>
 

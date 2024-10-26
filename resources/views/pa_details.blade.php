@@ -32,11 +32,11 @@
         </li>
         <li>
             <span>Employee ID:</span> 
-            <span class="deets">{{ $item->emp_id }}</span>
+            <span class="deets">{{ $item->emp_id ?? 'N/A' }}</span>
         </li>
         <li>
             <span>Student ID:</span> 
-            <span class="deets">{{ $item->std_id }}</span>
+            <span class="deets">{{ $item->std_id ?? 'N/A' }}</span>
         </li>
     </ul>
     <ul>

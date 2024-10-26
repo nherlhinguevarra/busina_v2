@@ -46,6 +46,10 @@
             <span>Applicant Type:</span>
             <span class="deets">{{ $item->applicant_type->type ?? 'Unknown' }}</span>
         </li>
+        <li>
+            <span>Account Created At:</span>
+            <span class="deets">{{ $item->created_at }}</span>
+        </li>
     </ul>
     <ul class="right">
         <li>QR Code:</li>

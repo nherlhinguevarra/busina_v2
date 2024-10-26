@@ -40,7 +40,7 @@
             <span class="deets">{{ $user->authorized_user->employee->emp_no }}</span>
         </li>
         <li>
-            <span>Account created at:</span>
+            <span>Account Created At:</span>
             <span class="deets">{{ $user->created_at->format('F d, Y') }}</span>
         </li>
     </ul>

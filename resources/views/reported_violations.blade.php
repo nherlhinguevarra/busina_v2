@@ -28,7 +28,7 @@
         </div>
     </div>
     <!-- Search and Filter Inputs -->
-    <div style="margin-bottom: 16px; display: flex; gap: 8px;">
+    <div style="display: flex; gap: 8px;">
         <input type="text" id="searchInput" placeholder="Search by plate no or violation type" class="search-input">
         
         <!-- Year Filter -->
@@ -77,7 +77,28 @@
                     <td class="td-class">{{ $row->plate_no }}</td>
                     <td class="td-class">{{ $row->violation_type->violation_name ?? 'Unknown' }}</td>
                     <td class="td-class">{{ $row->created_at }}</td>
-                    <td class="td-class">{{ $row->remarks }}</td>
+                    <td class="td-class">
+                        <span style="
+                            color: {{
+                                match($row->remarks) {
+                                    'Not been settled' => '#797501',
+                                    'Settled' => '#097901',
+                                    default => ''
+                                }
+                            }};
+                            background-color: {{ 
+                                match($row->remarks) {
+                                    'Not been settled' => '#FAFFB8',
+                                    'Settled' => '#B9FFB8',
+                                    default => ''
+                                }
+                            }};
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            display: inline-block;
+                            font-weight: bold;
+                            font-size: 11px;
+                            ">{{ $row->remarks ?? 'Unknown' }}</td>
                 </tr>
             @endforeach
         </tbody>

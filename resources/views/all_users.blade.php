@@ -29,31 +29,15 @@
     </div>
 
     <!-- Search and Filter Inputs -->
-    <div style="margin-bottom: 16px; display: flex; gap: 8px;">
+    <div style="display: flex; gap: 8px;">
         <input type="text" id="searchInput" placeholder="Search by name or applicant type" class="search-input">
-        
-        <!-- Year Filter -->
-        <select id="yearFilter" class="filter-select">
-            <option value="">Select Year</option>
-            @foreach(range(date('Y'), 2000) as $year)
-                <option value="{{ $year }}">{{ $year }}</option>
-            @endforeach
-        </select>
-        
-        <!-- Month Filter -->
-        <select id="monthFilter" class="filter-select">
-            <option value="">Select Month</option>
-            @foreach(range(1, 12) as $month)
-                <option value="{{ str_pad($month, 2, '0', STR_PAD_LEFT) }}">{{ date('F', mktime(0, 0, 0, $month, 1)) }}</option>
-            @endforeach
-        </select>
-        
-        <!-- Day Filter -->
-        <select id="dayFilter" class="filter-select">
-            <option value="">Select Day</option>
-            @foreach(range(1, 31) as $day)
-                <option value="{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}">{{ $day }}</option>
-            @endforeach
+
+        <select id="applicantFilter" class="filter-select">
+            <option value="">Applicant Type</option>
+            <option value="1">Student</option>
+            <option value="2">BU-personnel</option>
+            <option value="3">Non-Personnel</option>
+            <option value="4">VIP</option>
         </select>
     </div>
 
@@ -71,7 +55,32 @@
                 <tr style="cursor: pointer;" onclick="window.location='{{ route('au_details', ['id' => $row->id]) }}'">
                     <td class="td-class">{{ $row->fname . ' ' . $row->mname . ' ' . $row->lname }}</td>
                     <td class="td-class">{{ $row->users->email ?? 'No email' }}</td>
-                    <td class="td-class">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
+                    <td class="td-class">
+                        <span style="
+                            color: {{ 
+                                match($row->applicant_type->type) {
+                                    'Student' => '#FCFAEE',
+                                    'BU-personnel' => '#F4F6FF',
+                                    'Non-Personnel' => '#09b3e4',
+                                    'VIP' => '#F5F5F7',
+                                    default => 'black'
+                                }
+                            }};
+                            background-color: {{ 
+                                match($row->applicant_type->type) {
+                                    'Student' => '#FFAD60',
+                                    'BU-personnel' => '#040044',
+                                    'Non-Personnel' => '#D1E9F6',
+                                    'VIP' => '#808080',
+                                    default => 'black'
+                                }
+                            }};
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            display: inline-block;
+                            font-weight: bold;
+                            font-size: 11px;
+                        ">{{ $row->applicant_type->type ?? 'Unknown' }}</td>
                     <td class="td-class">
                         @php
                             $registrationNumbers = [];
@@ -120,34 +129,26 @@
 
 <script>
     document.getElementById('searchInput').addEventListener('keyup', filterTable);
-    document.getElementById('yearFilter').addEventListener('change', filterTable);
-    document.getElementById('monthFilter').addEventListener('change', filterTable);
-    document.getElementById('dayFilter').addEventListener('change', filterTable);
+    document.getElementById('applicantFilter').addEventListener('change', filterTable);
 
     function filterTable() {
         let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
-        let yearValue = document.getElementById('yearFilter').value;
-        let monthValue = document.getElementById('monthFilter').value;
-        let dayValue = document.getElementById('dayFilter').value;
+        let applicantValue = document.getElementById('applicantFilter').value;
         
         let rows = document.querySelectorAll('#tableBody tr');
 
         rows.forEach(row => {
             let fullName = row.cells[0].textContent.toLowerCase();
-            let applicantType = row.cells[1].textContent.toLowerCase();
-            let dateSubmitted = row.cells[3].textContent;
-            
-            let dateParts = dateSubmitted.split('-');
-            let year = dateParts[0];
-            let month = dateParts[1];
-            let day = dateParts[2];
-            
+            let applicantType = row.cells[2].textContent.toLowerCase();
+        
             let matchesSearch = fullName.includes(searchValue) || applicantType.includes(searchValue);
-            let matchesYear = yearValue === '' || year === yearValue;
-            let matchesMonth = monthValue === '' || month === monthValue;
-            let matchesDay = dayValue === '' || day === dayValue;
+            let matchesApplicant = applicantValue === '' ||
+                (applicantValue === '1' && applicantType.includes('student')) ||
+                (applicantValue === '2' && (applicantType.includes('bu-personnel') || applicantType.includes('bu personnel'))) ||
+                (applicantValue === '3' && (applicantType.includes('non-personnel') || applicantType.includes('non personnel'))) ||
+                (applicantValue === '4' && applicantType.includes('vip'));
             
-            if (matchesSearch && matchesYear && matchesMonth && matchesDay) {
+            if (matchesSearch && matchesApplicant) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';

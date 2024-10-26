@@ -70,7 +70,7 @@
                                 <input type="hidden" name="token" value="{{ $token }}" readonly>
                             </div>
 
-                            <div class="forgot-inputs">
+                            <div class="forgot-inputs" style="margin-left: 0px">
                                 <div class="forgot-input-form">
                                     <label for="new_pass">NEW PASSWORD</label><br>
                                     <input type="password" placeholder="" id="new_pass" name="new_pass" required>
@@ -81,7 +81,7 @@
                             <div id="passwordSuccess" class="inside-success-message" style="display: none;">Password strength: <span id="passwordStrength"></span></div>
                             <div id="passwordAccept" class="inside-weak-message" style="display: none;">Password strength: <span id="passwordStrength"></span></div>
 
-                            <div class="forgot-inputs">
+                            <div class="forgot-inputs" style="margin-left: 0px">
                                 <div class="forgot-input-form">
                                     <label for="con_pass">CONFIRM PASSWORD</label><br>
                                     <input type="password" placeholder="" id="con_pass" name="new_pass_confirmation" required>
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="sendbtn" type="submit">SUBMIT</button>
+                    <button class="sendbtn" type="submit" style="margin-top: 10px">SUBMIT</button>
                 </form>
                 <div class="back-login">
                     <a href="{{ route('login') }}"><i class="bi bi-chevron-left"></i> Back to login</a>

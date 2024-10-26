@@ -28,7 +28,7 @@
         </div>
     </div>
     <!-- Search and Filter Inputs -->
-    <div style="margin-bottom: 16px; display: flex; gap: 8px;">
+    <div style="display: flex; gap: 8px;">
         <input type="text" id="searchInput" placeholder="Search by registration no or plate no" class="search-input">
         
         <!-- Year Filter -->
