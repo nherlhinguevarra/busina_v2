@@ -57,7 +57,7 @@
 
         <!-- Claiming Status Filter -->
         <select id="claimingStatusFilter" class="filter-select">
-            <option value="">All</option>
+            <option value="">Status</option>
             <option value="2">To Claim</option>
             <option value="3">Claimed</option>
         </select>

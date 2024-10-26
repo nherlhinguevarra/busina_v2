@@ -56,7 +56,7 @@
         </select>
 
         <select id="remarksFilter" class="filter-select">
-            <option value="">All</option>
+            <option value="">Remarks</option>
             <option value="1">Not been settled</option>
             <option value="2">Settled</option>
         </select>

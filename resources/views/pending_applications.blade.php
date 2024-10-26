@@ -59,6 +59,14 @@
                 <option value="{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}">{{ $day }}</option>
             @endforeach
         </select>
+
+        <select id="applicantFilter" class="filter-select">
+            <option value="">Applicant</option>
+            <option value="1">Student</option>
+            <option value="2">BU-personnel</option>
+            <option value="3">Non-Personnel</option>
+            <option value="4">VIP</option>
+        </select>
     </div>
 
     <table class="table">
@@ -165,22 +173,24 @@
         }, 500); // Match the transition time
     }
 
-// Check for session messages (if you are using Laravel's session flash)
-@if (session('success'))
-    showNotification('{{ session('success') }}');
-@endif
+    // Check for session messages (if you are using Laravel's session flash)
+    @if (session('success'))
+        showNotification('{{ session('success') }}');
+    @endif
 
-
+    // Add event listeners to filters
     document.getElementById('searchInput').addEventListener('keyup', filterTable);
     document.getElementById('yearFilter').addEventListener('change', filterTable);
     document.getElementById('monthFilter').addEventListener('change', filterTable);
     document.getElementById('dayFilter').addEventListener('change', filterTable);
+    document.getElementById('applicantFilter').addEventListener('change', filterTable);
 
     function filterTable() {
     let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
     let yearValue = document.getElementById('yearFilter').value;
     let monthValue = document.getElementById('monthFilter').value;
     let dayValue = document.getElementById('dayFilter').value;
+    let applicantValue = document.getElementById('applicantFilter').value;
     
     let rows = document.querySelectorAll('#tableBody tr');
 
@@ -194,17 +204,23 @@
         let month = dateParts[1];
         let day = dateParts[2];
         
-        let matchesSearch = fullName.includes(searchValue) || applicantType === searchValue;
+        let matchesSearch = fullName.includes(searchValue) || applicantType.includes(searchValue);
         let matchesYear = yearValue === '' || year === yearValue;
         let matchesMonth = monthValue === '' || month === monthValue;
         let matchesDay = dayValue === '' || day === dayValue;
+        let matchesApplicant = applicantValue === '' ||
+            (applicantValue === '1' && applicantType === 'student') ||
+            (applicantValue === '2' && applicantType === 'bu-personnel') ||
+            (applicantValue === '3' && applicantType === 'non-personnel') ||
+            (applicantValue === '4' && applicantType === 'vip');
         
-        if (matchesSearch && matchesYear && matchesMonth && matchesDay) {
+        if (matchesSearch && matchesYear && matchesMonth && matchesDay && matchesApplicant) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
         }
     });
-    }
+}
 </script>
+
 @endsection
