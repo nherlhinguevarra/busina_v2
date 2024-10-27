@@ -42,7 +42,7 @@
             <span class="deets">{{ $transaction->reference_no }}</span>
         </li>
         <li>
-            <span>Issued Date:</span>
+            <span>Date Issued:</span>
             <span class="deets">{{ $transaction->issued_date }}</span>
         </li>
     </ul>

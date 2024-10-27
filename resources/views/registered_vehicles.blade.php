@@ -68,7 +68,7 @@
             <tr>
                 <th class="th-class">Registration No</th>
                 <th class="th-class">Plate No</th>
-                <th class="th-class">Issued Date</th>
+                <th class="th-class">Date Issued</th>
                 <th class="th-class">Claiming Status</th>
             </tr>
         </thead>

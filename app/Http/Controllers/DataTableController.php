@@ -152,7 +152,8 @@ class DataTableController extends Controller
         $item = Vehicle_owner::with([
             'applicant_type',  // Load applicant type details
             'vehicle.vehicle_type', // Load vehicles and their types
-            'vehicle.transaction'  // Load transactions related to vehicles
+            'vehicle.transaction',  // Load transactions related to vehicles
+            'users'
         ])->findOrFail($id);
 
         $vehicleOwnerId = $item->id;  // Store the vehicle owner ID for the form

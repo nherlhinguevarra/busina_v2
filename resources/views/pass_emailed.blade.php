@@ -26,11 +26,11 @@
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
                 <div class="login-asset">
-                    <img src="{{ Vite::asset('resources/images/login.png') }}">
+                    <img src="{{ Vite::asset('resources/images/login.png') }}" style="width: 107%;">
                 </div>
             </div>
 
-            <div class="forgot1">
+            <div class="forgot1" style="padding-left: 60px;">
                 <div class="login-title pass-emailed-title">
                     <h2>FORGOT PASSWORD</h2>
                 </div>

@@ -26,7 +26,7 @@ class DashboardController extends Controller
         ->paginate($limitPerPage, ['*'], 'unsettled-violations-page');
 
     // Statistics
-    $pendingApplications = Transaction::where('claiming_status_id', 0)->count();
+    $pendingApplications = Transaction::where('claiming_status_id', 1)->count();
     $registeredVehicles = Transaction::whereMonth('issued_date', now()->month)
         ->whereYear('issued_date', now()->year)
         ->count();

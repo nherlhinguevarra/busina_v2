@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite(['resources/css/login.css'])
-</head>
+</head> 
 
 <body>
 <div class="semi-body">
@@ -68,12 +68,12 @@
 
                     <div class="login-inputs">
                         <div class="login-input-form">
-                            <label for="email">Email Address</label>
+                            <label for="email" style="color: #5077A5; font-weight: 600">Email Address</label>
                             <input type="email" placeholder="" id="email" name="email" required>
                         </div>
 
                         <div class="login-input-form">
-                            <label for="password">Password</label>
+                            <label for="password" style="color: #5077A5; font-weight: 600">Password</label>
                             <input type="password" placeholder="" id="password" name="password" required>
                             <i class="fa fa-eye-slash eye-icon" aria-hidden="true" onclick="togglePassword()"></i>
                         </div>

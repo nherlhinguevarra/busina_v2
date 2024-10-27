@@ -25,7 +25,7 @@
                     <h3>BICOL <span>UNIVERSITY</span></h3>
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
-                <div class="login-asset">
+                <div class="login-asset" style="position: absolute; bottom: 0;">
                     <img src="{{ Vite::asset('resources/images/login.png') }}">
                 </div>
             </div>
@@ -41,7 +41,9 @@
                 
                 <div class="newpass-note">
                     <h3>Reset Password Successfully</h3>
-                    <p>If you have any questions or need further assistance, please don't hesitate to contact us at <span>busina@gmail.com</span></p>
+                    <p>If you have any questions or need further assistance, 
+                    <p>please don't hesitate to contact us at</p>
+                    <p>busina@gmail.com</span></p>
                 </div>
                 
                 <div class="back-login">

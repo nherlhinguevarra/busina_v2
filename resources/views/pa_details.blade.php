@@ -31,6 +31,14 @@
             <span class="deets">{{ $item->contact_no }}</span>
         </li>
         <li>
+            <span>Email:</span> 
+            <span class="deets">{{ $item->users->email }}</span>
+        </li>
+        <li>
+            <span>Applicant Type:</span> 
+            <span class="deets">{{ $item->applicant_type->type ?? 'Unknown' }}</span>
+        </li>
+        <li>
             <span>Employee ID:</span> 
             <span class="deets">{{ $item->emp_id ?? 'N/A' }}</span>
         </li>

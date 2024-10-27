@@ -26,7 +26,7 @@
                     <h3>BICOL <span>UNIVERSITY</span></h3>
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
-                <div class="login-asset">
+                <div class="login-asset" style="position: absolute; bottom: 0;">
                     <img src="{{ Vite::asset('resources/images/login.png') }}">
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     </div>
 
                     @if(session('error'))
-                    <div class="main-error">
+                    <div class="main-error" style="width: 350px; margin-left: -15px;">
                         <p id="errorMessage" class="error-message">
                             <span><i class="bi bi-exclamation-circle"></i></span> {{ session('error') }}
                             <a class="cancel-button" onclick="hideErrorMessage()"><i class="bi bi-x"></i></a>
@@ -74,12 +74,11 @@
                     <div class="forgot-info3">
                         <div class="forgot-inputs">
                             <div class="forgot-input-form">
-                                <label for="emp_no">Employee Number</label><br>
+                                <label for="emp_no" style="color: #5077A5; font-weight: 600">Employee Number</label><br>
                                 <input type="text" placeholder="" id="emp_no" name="emp_no" value="{{ old('emp_no') }}" required>
                             </div>
                         </div>
                     </div>
-
                     <button class="sendbtn" type="submit">Send Reset Code</button>
                 </form>
                 <div class="back-login">

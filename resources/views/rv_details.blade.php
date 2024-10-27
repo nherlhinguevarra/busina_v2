@@ -36,7 +36,7 @@
             <span class="deets">{{ $violation->authorized_user->fname }} {{ $violation->authorized_user->mname }} {{ $violation->authorized_user->lname }}</span>
         </li>
         <li>
-            <span>Created At:</span>
+            <span>Reported At:</span>
             <span class="deets">{{ $violation->created_at }}</span>
         </li>
         <li>

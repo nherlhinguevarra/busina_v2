@@ -15,8 +15,8 @@ function togglePassword(inputId) {
 }
 
 // Function to hide error message
-function hideErrorMessage() {
-    const errorMessage = document.getElementById('errorMessage');
+function hide() {
+    const  = document.getElementById('errorMessage');
     if (errorMessage) {
         errorMessage.style.display = 'none';
     }

@@ -26,7 +26,7 @@
                     <h3>BICOL <span>UNIVERSITY</span></h3>
                     <h1>MOTORPOOL SECTION</h1>
                 </div>
-                <div class="login-asset">
+                <div class="login-asset" style="position: absolute; bottom: 0;">
                     <img src="{{ Vite::asset('resources/images/login.png') }}">
                 </div>
             </div>
@@ -65,14 +65,14 @@
 
                         <div class="forgot-inputs">
                             <div class="forgot-input-form">
-                                <label for="emp_no">Employee Number</label>
+                                <label for="emp_no" style="color: #5077A5; font-weight: 600">Employee Number</label>
                                 <input type="text" placeholder="" id="emp_no" name="emp_no" value="{{ $emp_no }}" readonly>
                                 <input type="hidden" name="token" value="{{ $token }}" readonly>
                             </div>
 
                             <div class="forgot-inputs" style="margin-left: 0px">
                                 <div class="forgot-input-form">
-                                    <label for="new_pass">NEW PASSWORD</label><br>
+                                    <label for="new_pass" style="color: #5077A5; font-weight: 600">New Password</label><br>
                                     <input type="password" placeholder="" id="new_pass" name="new_pass" required>
                                     <i class="fa fa-eye-slash eye-icon2" aria-hidden="true" onclick="togglePassword()" id="togglePassword"></i>
                                 </div>
@@ -83,7 +83,7 @@
 
                             <div class="forgot-inputs" style="margin-left: 0px">
                                 <div class="forgot-input-form">
-                                    <label for="con_pass">CONFIRM PASSWORD</label><br>
+                                    <label for="con_pass" style="color: #5077A5; font-weight: 600">CONFIRM PASSWORD</label><br>
                                     <input type="password" placeholder="" id="con_pass" name="new_pass_confirmation" required>
                                     <i class="fa fa-eye-slash eye-icon2" aria-hidden="true" onclick="togglePassword2()" id="togglePassword2"></i>
                                 </div>

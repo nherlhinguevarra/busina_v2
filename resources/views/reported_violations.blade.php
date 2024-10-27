@@ -67,7 +67,7 @@
             <tr>
                 <th class="th-class">Plate No</th>
                 <th class="th-class">Violation Type</th>
-                <th class="th-class">Created At</th>
+                <th class="th-class">Reported At</th>
                 <th class="th-class">Remarks</th>
             </tr>
         </thead>
