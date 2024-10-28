@@ -10,7 +10,6 @@
     <!-- <link rel="stylesheet" href="{{ asset('storage/css/app1.css') }}"> -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     @vite(['resources/css/app1.css', 'resources/js/main.js'])
-    <!-- @vite(['storage/app/public/css/notifications.css', 'storage/app/public/js/notification-listener.js']) -->
     
 </head>
 <body>
